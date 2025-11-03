@@ -1,22 +1,51 @@
 markdownExploder: true
+project:
+  name: Second Brain Foundation
+  version: 2.0.0-alpha
+  architecture: graph-based-markdown
+  vault_structure: enterprise-multi-domain
 qa:
   qaLocation: docs/qa
 prd:
   prdFile: docs/prd.md
-  prdVersion: v4
+  prdVersion: v2.0
   prdSharded: true
   prdShardedLocation: docs/prd
   epicFilePattern: epic-{n}*.md
 architecture:
-  architectureFile: docs/architecture.md
-  architectureVersion: v4
+  architectureFile: docs/architecture-v2.md
+  architectureVersion: v2.0
   architectureSharded: true
   architectureShardedLocation: docs/architecture
-customTechnicalDocuments: null
+  legacyFile: docs/architecture.md
+projectBrief:
+  briefFile: docs/project-brief.md
+  briefVersion: v2.0
+vault:
+  templateLocation: vault/
+  entityTemplates: templates/
+  domainFolders:
+    - 00_Meta
+    - 01_Identity
+    - 02_Knowledge
+    - 03_Operations
+    - 04_Field
+    - 05_Commerce
+    - 06_ITIL
+    - 07_Healthcare
+    - 08_Legal
+    - 09_Agriculture
+    - 10_Retail
+    - 11_Research
+    - 12_AI
+customTechnicalDocuments:
+  - docs/CLI-ENHANCEMENT-GUIDE.md
+  - docs/CLI-SCAFFOLDING-GUIDE.md
+  - templates/README.md
 devLoadAlwaysFiles:
-  - docs/architecture/coding-standards.md
-  - docs/architecture/tech-stack.md
-  - docs/architecture/source-tree.md
+  - docs/architecture-v2.md
+  - docs/project-brief.md
+  - templates/README.md
 devDebugLog: .ai/debug-log.md
 devStoryLocation: docs/stories
-slashPrefix: BMad
+slashPrefix: SBF

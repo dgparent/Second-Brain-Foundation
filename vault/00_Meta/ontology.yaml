@@ -1,0 +1,254 @@
+
+entities:
+  # Identity / Org
+  - person
+  - org
+  - team
+  - role
+  # Knowledge / Policies
+  - topic
+  - policy
+  - standard
+  - risk
+  - control
+  # Operations
+  - project
+  - process
+  - task
+  - service
+  - asset
+  - kpi
+  - objective
+  - meeting
+  - decision
+  - issue
+  - approval
+  # Evidence / Data
+  - artifact
+  - dataset
+  - report
+  - document
+  - form
+  # Commerce / Finance / CRM
+  - account
+  - product
+  - order
+  - invoice
+  - contract
+  - payment
+  - shipment
+  - customer
+  # Field / Physical
+  - site
+  - facility
+  - equipment
+  - material
+  - batch
+  - inspection
+  # Incident / Event (cross-domain)
+  - incident
+  - change
+  - release
+  - observation
+  - complaint
+  - visit
+  - ticket
+  # Healthcare / Vet
+  - patient
+  - case
+  - diagnosis
+  - treatment
+  - labresult
+  - procedure
+  - specimen
+  - consent
+  # Agriculture
+  - farm
+  - field
+  - crop
+  - input
+  - harvest
+  - weather
+  - sensor
+  # Legal & Compliance
+  - regulation
+  - clause
+  - casefile
+  - audit
+  - breach
+  - finding
+  # Retail / Advertising
+  - campaign
+  - adcreative
+  - transaction
+  - loyaltyprogram
+  - review
+  # ITIL / DevOps
+  - configurationitem
+  # Research / R&D
+  - experiment
+  - hypothesis
+  - protocol
+  - sample
+  - metric
+  - result
+  # System / AI
+  - aeisession
+  - aiinsight
+  - automationrule
+  - overridelog
+
+relations:
+  - depends_on
+  - produces
+  - consumes
+  - causes
+  - results_in
+  - involves
+  - governs
+  - inspects
+  - inspected_by
+  - located_at
+  - complies_with
+  - reports_to
+  - manages
+  - author_of
+  - derived_from
+  - cites
+  - tests
+  - detects
+  - services
+  - monitors
+  - tracks
+  - sells_to
+  - purchases_from
+  - member_of
+  - resolves
+  - mitigates
+  - relates_to
+  - belongs_to
+  - targets
+  - bundles
+  - duplicates
+  - child_of
+  - parent_of
+
+core_parameters:
+  - uid
+  - type
+  - title
+  - aliases
+  - description
+  - created
+  - updated
+  - status
+  - owner
+  - stakeholders
+  - tags
+  - importance
+  - confidence
+  - lifecycle.state
+  - lifecycle.review_at
+  - lifecycle.dissolve_at
+  - sensitivity.level
+  - sensitivity.pii
+  - privacy.permissions.cloud_ai
+  - privacy.permissions.local_ai
+  - privacy.permissions.export
+  - location.site
+  - location.region
+  - location.gps
+  - relations
+  - provenance.sources
+  - attachments
+  - metrics
+  - audit.changes
+  - audit.approvals
+  - audit.override.human_last
+  - tool.compat.obsidian
+  - tool.compat.notebooklm
+  - tool.compat.anythingllm
+
+domain_parameters:
+  manufacturing_supply_chain:
+    - batch_id
+    - lot_no
+    - material_code
+    - supplier
+    - quality_grade
+    - inspection_result
+    - shipment_id
+    - temperature
+    - humidity
+    - weight
+    - unit_cost
+  healthcare_veterinary:
+    - patient_id
+    - dob
+    - species
+    - diagnosis_code
+    - treatment_plan
+    - procedure_code
+    - specimen_id
+    - lab_test
+    - consent_ref
+    - privacy_tier
+  itil_devops:
+    - service_id
+    - ci_type
+    - severity
+    - priority
+    - ticket_status
+    - mttr
+    - sla_target
+    - deployment_id
+    - automation_rule_id
+  legal_risk_compliance:
+    - case_id
+    - regulation_ref
+    - clause
+    - control_id
+    - risk_level
+    - likelihood
+    - impact
+    - evidence_ref
+    - audit_date
+    - breach_status
+  construction_engineering:
+    - project_code
+    - permit_no
+    - phase
+    - milestone
+    - budget
+    - subcontractor
+    - material_type
+    - safety_score
+    - inspection_id
+  retail_ecommerce_advertising:
+    - sku
+    - campaign_id
+    - ad_channel
+    - ctr
+    - conversion_rate
+    - order_no
+    - customer_id
+    - payment_status
+    - region
+    - return_rate
+  agriculture_food_systems:
+    - farm_id
+    - field_no
+    - crop_type
+    - input_type
+    - harvest_date
+    - yield_kg
+    - moisture_pct
+    - soil_pH
+    - weather_condition
+    - sensor_id
+ai_parameters:
+  - ai.insights
+  - ai.pattern_score
+  - ai.embedding
+  - human.validation.confirmed
+  - explainability

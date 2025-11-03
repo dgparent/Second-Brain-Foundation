@@ -1,6 +1,8 @@
 # Second Brain Foundation
 
-**An open-source framework for AI-augmented personal knowledge management that respects your privacy and works with your favorite tools.**
+**Version 2.0 - Enhanced Graph-Based Architecture**
+
+An open-source framework for AI-augmented personal knowledge management with context-aware privacy, typed semantic relationships, and enterprise-grade extensibility.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
