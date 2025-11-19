@@ -16,5 +16,7 @@ const records = JSON.parse(raw);
 const index = new InMemoryVectorIndex();
 index.upsert(records);
 const qVec = embed(question);
-const results = index.query(qVec, 5);
+// Optional security level upper bound from argv[4]
+const secBound = process.argv[4] ? Number(process.argv[4]) : undefined;
+const results = index.query(qVec, 5, secBound !== undefined ? { security_level: secBound } : undefined);
 console.log(JSON.stringify(results, null, 2));
