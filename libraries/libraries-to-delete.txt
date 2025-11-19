@@ -1,0 +1,10 @@
+text-generation-webui
+jan
+foam
+vnote
+obsidian-textgenerator-plugin
+milkdown
+rich-markdown-editor
+react-md-editor
+tldraw
+excalidraw

@@ -1,0 +1,11 @@
+/**
+ * Search Indexer
+ */
+
+import { Entity } from '../types';
+
+export interface IndexerInterface {
+  index(entity: Entity): Promise<void>;
+  search(query: string): Promise<Entity[]>;
+  rebuild(): Promise<void>;
+}

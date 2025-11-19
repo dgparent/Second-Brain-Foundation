@@ -1,0 +1,53 @@
+# Canadian Defence Opportunity Analysis Framework
+
+## Research Areas to Investigate:
+
+### 1. Canadian Defence Procurement & Innovation Programs
+- IDEaS (Innovation for Defence Excellence and Security) program requirements
+- Defence Procurement Strategy timelines and priority areas
+- Canadian Surface Combatant project cyber requirements
+- NORAD modernization cyber components
+- Arctic security technology needs
+- Current DND cyber capability gaps
+
+### 2. Government of Canada Cyber Security Initiatives
+- National Cyber Security Strategy priorities
+- CSE (Communications Security Establishment) modernization
+- Shared Services Canada (SSC) security mandates
+- Protected B/Secret cloud hosting requirements
+- Canadian Centre for Cyber Security (CCCS) partnerships
+
+### 3. Market Analysis
+- Current DND spending on cyber threat intelligence ($)
+- Competitor landscape (Palantir, IBM, General Dynamics contracts)
+- Canadian defence tech company success rates
+- Five Eyes intelligence sharing platform requirements
+- NATO cyber defence commitments
+
+### 4. Technical Fit Assessment
+- DND IT infrastructure (DRMIS, DVPNI, SECRET network)
+- Existing knowledge management systems in CAF
+- ITIL/COBIT adoption in Canadian military
+- AI/ML acceptance and governance in defence
+- Data sovereignty and classification requirements
+
+### 5. Go-to-Market Barriers
+- Security clearance requirements (Reliability, Secret, Top Secret)
+- Controlled Goods Program registration
+- ITAR/ITARx considerations
+- Procurement process timelines (RFP → contract: 18-36 months)
+- Minimum viable defence contractor requirements
+
+### 6. Strategic Partnerships
+- Defence primes with knowledge management needs
+- Systems integrators (CGI, IBM Canada, Accenture)
+- Academic partnerships (RMC, Dalhousie, UofT)
+- Crown corporations (MDA, CAE)
+
+### 7. Competitive Positioning
+- SecondBrain vs Palantir Gotham/Foundry
+- SecondBrain vs IBM Watson for Defense
+- SecondBrain vs Microsoft Azure Government + OpenAI
+- SecondBrain vs homegrown DND solutions
+
+Let me rate each solution across key dimensions...

@@ -1,0 +1,8 @@
+/**
+ * Frontmatter Parser
+ */
+
+export interface FrontmatterInterface {
+  parse(markdown: string): Promise<{ data: any; content: string }>;
+  stringify(data: any, content: string): Promise<string>;
+}

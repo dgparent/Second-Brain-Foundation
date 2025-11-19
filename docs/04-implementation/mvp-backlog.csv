@@ -1,0 +1,53 @@
+Issue Type,Epic Link,Summary,Description,Story Points,Priority
+Epic,,EPIC 1: Vault & File Infrastructure,Create Obsidian-compatible markdown vault with schema validation and templates.,,High
+Story,EPIC 1,Vault Bootstrapping & Templates,"Initialize folder structure, templates, and default metadata for vault.",5,High
+Task,Vault Bootstrapping & Templates,Implement `aei init-vault` CLI command,Create vault folder structure with templates.,2,Medium
+Task,Vault Bootstrapping & Templates,Define YAML entity templates,"Create default entity types (People, Projects, Topics).",2,Medium
+Task,Vault Bootstrapping & Templates,Schema JSON validation,Use Pydantic to validate YAML files.,3,Medium
+Story,EPIC 1,UID & Schema Management,Ensure UID uniqueness and YAML validation consistency.,5,High
+Task,UID & Schema Management,UID generator module,Implement deterministic UID creation.,2,Medium
+Task,UID & Schema Management,CLI validator,Add CLI `aei validate` for YAML structure.,3,Medium
+Epic,,EPIC 2: AEI Core Backend,"Build FastAPI service managing events, agents, and retrieval operations.",,High
+Story,EPIC 2,API Skeleton,"Implement FastAPI skeleton with endpoints `/organize`, `/queue`, `/ask`, `/graph`, `/tools`, `/audit`.",8,High
+Task,API Skeleton,WebSocket Streaming,Implement WS endpoints for chat and events.,3,Medium
+Story,EPIC 2,File Watcher,Real-time vault change detection with debounced event emission.,5,High
+Task,File Watcher,Integrate Watchdog library,File event monitoring and debounce implementation.,3,Medium
+Story,EPIC 2,Structured Extractor,Entity/relationship extraction with confidence scoring.,8,High
+Task,Structured Extractor,Prompt-template system,Develop consistent extraction prompts.,3,Medium
+Task,Structured Extractor,Confidence scoring,Implement thresholds for auto/apply/manual.,2,Medium
+Story,EPIC 2,Orchestrator,"Agent orchestrator to coordinate Librarian, Researcher, QA agents.",8,High
+Task,Orchestrator,Async orchestration graph,LangGraph async orchestrator with retries.,5,High
+Epic,,EPIC 3: Data Retrieval & Indexing,Hybrid BM25/vector search and automatic embedding pipeline.,,High
+Story,EPIC 3,Indexer,Automatic embedding and indexing of notes and entities.,8,High
+Task,Indexer,Chroma integration,Integrate local Chroma for vector indexing.,3,Medium
+Task,Indexer,Rebuild command,CLI to reindex entire vault on demand.,2,Medium
+Story,EPIC 3,Retriever & Re-ranker,Combine BM25 and vector retrieval with re-ranking.,8,High
+Task,Retriever & Re-ranker,Tantivy integration,Keyword search integration.,3,Medium
+Task,Retriever & Re-ranker,Re-ranker module,Local re-ranker (bge-small).,2,Medium
+Epic,,EPIC 4: Human-in-the-Loop Control,Queue approval and audit system for transparency and reversibility.,,High
+Story,EPIC 4,Organization Queue,Approval queue for entity and relation diffs.,8,High
+Task,Organization Queue,Queue schema design,Define schema and CRUD API.,3,Medium
+Task,Organization Queue,Undo mechanism,Reverse patches and rollback.,3,Medium
+Story,EPIC 4,Audit Logger,Immutable audit trail of all AI actions and approvals.,8,High
+Task,Audit Logger,Audit API,Implement `/audit` endpoint.,3,Medium
+Task,Audit Logger,Redaction mechanism,Ensure no sensitive data in logs.,2,Medium
+Epic,,EPIC 5: Privacy & Routing,Sensitivity tagging and provider routing policy engine.,,High
+Story,EPIC 5,Sensitivity Rules,Mark notes as confidential; enforce no-cloud policy.,5,High
+Task,Sensitivity Rules,Sensitivity parser,Parse YAML sensitivity field.,2,Medium
+Story,EPIC 5,Provider Router,Dynamic routing between local and cloud LLMs.,8,High
+Task,Provider Router,LiteLLM integration,Setup LiteLLM for multiple providers.,3,Medium
+Epic,,EPIC 6: Tooling & Automation,Deterministic workflows through MCP tools and n8n automations.,,High
+Story,EPIC 6,MCP Tool Registry,Allow AEI to register and execute external tools.,5,High
+Task,MCP Tool Registry,Tool registry schema,JSON schema for MCP tool contracts.,2,Medium
+Story,EPIC 6,n8n Automations,Automation bridge between AEI and n8n.,5,High
+Task,n8n Automations,Webhook events,Publish events like `entity.created` to n8n.,3,Medium
+Epic,,EPIC 7: UI / UX,Frontend desktop and web app integration.,,High
+Story,EPIC 7,Frontend React App,"Implement Chat, Queue, Graph, Settings views.",8,High
+Task,Frontend React App,Graph visualization,D3.js-based relationship explorer.,3,Medium
+Story,EPIC 7,Desktop Shell,Tauri desktop app with local API integration.,5,High
+Task,Desktop Shell,Auto-start AEI Core,Start FastAPI process with UI.,3,Medium
+Epic,,EPIC 8: QA & CI/CD,Test automation and release pipelines.,,High
+Story,EPIC 8,Test Framework,"Automated unit, integration, and regression tests.",8,High
+Task,Test Framework,Pytest setup,Backend test suite configuration.,3,Medium
+Story,EPIC 8,CI/CD Pipeline,Automated builds and releases with GitHub Actions.,5,High
+Task,CI/CD Pipeline,Artifact packaging,Docker + Tauri builds.,3,Medium

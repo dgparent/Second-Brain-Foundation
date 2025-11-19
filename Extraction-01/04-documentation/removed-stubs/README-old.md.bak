@@ -1,0 +1,141 @@
+# Extraction-01 Workspace
+
+**Purpose:** Extract and refactor UI components from open-source libraries into Second Brain Foundation MVP application  
+**Status:** 🟡 Setup Phase - Awaiting Technical Decisions  
+**Architect:** Winston  
+**Created:** 2025-11-14
+
+---
+
+## Quick Start
+
+### Current Status
+
+⏳ **Awaiting clarifications** on 5 critical technical decisions before proceeding with extraction.
+
+**See:** [EXTRACTION-TECHNICAL-PLAN.md](./EXTRACTION-TECHNICAL-PLAN.md) for complete details.
+
+---
+
+## What is Extraction-01?
+
+This workspace is where we:
+1. **Extract** UI components from 26 reference libraries
+2. **Refactor** them to match SBF architecture (UIDs, typed relationships, privacy-first)
+3. **Integrate** into a cohesive React + TypeScript + Electron application
+
+---
+
+## Critical Questions Needing Answers ⚠️
+
+Before extraction begins, please decide:
+
+### 1. Scope
+- **Option A (Recommended):** P0 components only (Chat, Queue, Editor, Desktop Shell, Entity Mgmt)
+- **Option B:** P0 + P1 (add File Browser, Settings, Search)
+
+### 2. Desktop Framework
+- **Option A (Recommended):** Electron (proven, more examples)
+- **Option B:** Tauri (modern, lighter)
+
+### 3. Editor Framework
+- **Option A (Recommended):** @mdxeditor/editor (production-ready npm package)
+- **Option B:** Tiptap (more flexible, steeper curve)
+
+### 4. Backend Scope
+- **Option A (Recommended):** UI-only extraction, simple Node.js backend later
+- **Option B:** Extract full backend from libraries
+
+### 5. Extraction Approach
+- **Option A (Recommended):** Phased (validate as you go)
+- **Option B:** Batch (extract everything upfront)
+
+**Action Required:** Review [EXTRACTION-TECHNICAL-PLAN.md](./EXTRACTION-TECHNICAL-PLAN.md) and provide answers.
+
+---
+
+## Folder Structure (Once Extraction Begins)
+
+```
+Extraction-01/
+├── README.md                       # This file
+├── EXTRACTION-TECHNICAL-PLAN.md   # Complete technical plan
+├── EXTRACTION-LOG.md              # Daily progress tracking
+│
+├── 00-analysis/                   # Pre-extraction decisions
+├── 01-extracted-raw/              # Unmodified library code
+├── 02-refactored/                 # SBF-adapted components
+│   ├── sbf-core/                  # Business logic
+│   ├── sbf-ui/                    # React components
+│   └── sbf-desktop/               # Electron/Tauri shell
+├── 03-integration/                # Assembled application
+├── 04-documentation/              # Extraction documentation
+└── scripts/                       # Automation scripts
+```
+
+---
+
+## Reference Documentation
+
+**Architecture & Requirements:**
+- `../docs/02-product/prd.md` - Product requirements
+- `../docs/03-architecture/architecture-v2-enhanced.md` - System architecture
+- `../docs/03-architecture/frontend-spec.md` - UI/UX specification
+
+**Library Analysis:**
+- `../libraries/EXTRACTION-GUIDE.md` - Component extraction guide
+- `../libraries/README.md` - Library catalog
+- `../libraries/TRANSFER-COMPLETION-REPORT.md` - Library transfer status
+
+---
+
+## Tech Stack (Recommended)
+
+| Layer | Technology |
+|-------|-----------|
+| Desktop | Electron 28+ |
+| UI | React 18 + TypeScript 5.3+ |
+| Editor | @mdxeditor/editor |
+| State | Zustand 4+ |
+| Styling | Tailwind CSS 3+ |
+| Build | Vite 5+ |
+| Testing | Vitest + RTL |
+| Package Manager | pnpm |
+
+See [EXTRACTION-TECHNICAL-PLAN.md](./EXTRACTION-TECHNICAL-PLAN.md#recommended-technology-stack) for full justification.
+
+---
+
+## Estimated Timeline
+
+| Phase | Duration |
+|-------|----------|
+| Setup & Decisions | 2-3 days |
+| P0 Component Extraction | 14-19 days |
+| P1 Component Extraction | 6-8 days (if included) |
+| Integration | 5-7 days |
+| **TOTAL** | **5-7 weeks** |
+
+---
+
+## Next Steps
+
+1. ✅ Review [EXTRACTION-TECHNICAL-PLAN.md](./EXTRACTION-TECHNICAL-PLAN.md)
+2. ⏳ Answer 5 critical questions
+3. ⏳ Approve recommended tech stack (or provide alternatives)
+4. ⏳ Create folder structure and package scaffolds
+5. ⏳ Begin Phase 0 (Setup & Analysis)
+6. ⏳ Proceed with Phase 1 (P0 Component Extraction)
+
+---
+
+## Contact
+
+**Questions?** Discuss with Winston (Architect) before proceeding.
+
+**Ready to start?** Confirm technical decisions and we'll begin extraction immediately.
+
+---
+
+**Last Updated:** 2025-11-14  
+**Status:** 🟡 Awaiting Decisions

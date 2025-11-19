@@ -1,0 +1,8 @@
+/**
+ * Lifecycle Engine
+ */
+
+export interface LifecycleEngineInterface {
+  checkTransitions(): Promise<void>;
+  scheduleReview(uid: string, reviewDate: string): Promise<void>;
+}

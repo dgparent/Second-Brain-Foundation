@@ -1,0 +1,15 @@
+/**
+ * Graph View Styles
+ */
+
+.graph-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.graph-content {
+  flex: 1;
+  overflow: hidden;
+}

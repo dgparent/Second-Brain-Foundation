@@ -1,0 +1,53 @@
+{
+  "name": "sbf-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Second Brain Foundation - AI-Enabled Interface Monorepo",
+  "author": "Second Brain Foundation Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "node start.js",
+    "dev": "pnpm --filter \"@sbf/*\" dev",
+    "build": "pnpm --filter \"@sbf/*\" build",
+    "test": "pnpm --filter \"@sbf/*\" test",
+    "lint": "pnpm --filter \"@sbf/*\" lint",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "type-check": "pnpm --filter \"@sbf/*\" type-check",
+    "clean": "pnpm --filter \"@sbf/*\" clean && rm -rf node_modules",
+    "server": "pnpm --filter @sbf/server dev",
+    "ui": "pnpm --filter @sbf/ui dev"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "react-hot-toast": "^2.6.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.0",
+    "remark-gfm": "^4.0.1"
+  }
+}

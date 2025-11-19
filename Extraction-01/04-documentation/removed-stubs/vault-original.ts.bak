@@ -1,0 +1,248 @@
+/**
+ * Vault Operations
+ * File system management for SBF vault (markdown files with YAML frontmatter)
+ * 
+ * Patterns extracted from: anything-llm/server/utils/files/index.js
+ */
+
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import * as crypto from 'crypto';
+import grayMatter from 'gray-matter';
+
+export interface VaultEntry {
+  name: string;
+  type: 'file' | 'folder';
+  path: string;
+  items?: VaultEntry[];
+}
+
+export interface FileContent {
+  frontmatter: Record<string, any>;
+  content: string;
+  checksum?: string;
+}
+
+export class Vault {
+  private vaultPath: string;
+
+  constructor(vaultPath: string) {
+    this.vaultPath = path.resolve(vaultPath);
+  }
+
+  /**
+   * Initialize vault (create directory if needed)
+   */
+  async initialize(): Promise<void> {
+    try {
+      await fs.access(this.vaultPath);
+    } catch {
+      await fs.mkdir(this.vaultPath, { recursive: true });
+    }
+  }
+
+  /**
+   * Normalize path to prevent directory traversal attacks
+   * Extracted from anything-llm pattern
+   */
+  private normalizePath(filepath: string): string {
+    const normalized = path.normalize(filepath);
+    // Remove leading ../ or ..\
+    return normalized.replace(/^(\.\.[\/\\])+/, '');
+  }
+
+  /**
+   * Ensure child path is within parent directory
+   * Security check extracted from anything-llm
+   */
+  private isWithin(parent: string, child: string): boolean {
+    const relative = path.relative(parent, child);
+    return !relative.startsWith('..') && !path.isAbsolute(relative);
+  }
+
+  /**
+   * Read markdown file with frontmatter parsing
+   */
+  async readFile(filePath: string): Promise<FileContent | null> {
+    const fullPath = path.join(this.vaultPath, this.normalizePath(filePath));
+
+    // Security check
+    if (!this.isWithin(this.vaultPath, fullPath)) {
+      throw new Error('Path traversal detected');
+    }
+
+    // Check if file exists
+    try {
+      await fs.access(fullPath);
+    } catch {
+      return null;
+    }
+
+    // Read and parse
+    const markdown = await fs.readFile(fullPath, 'utf8');
+    const { data, content } = grayMatter(markdown);
+
+    // Calculate checksum
+    const checksum = this.calculateChecksum(markdown);
+
+    return {
+      frontmatter: data,
+      content: content.trim(),
+      checksum,
+    };
+  }
+
+  /**
+   * Write markdown file with frontmatter
+   * Uses atomic write pattern (temp file + rename)
+   */
+  async writeFile(
+    filePath: string,
+    frontmatter: Record<string, any>,
+    content: string
+  ): Promise<void> {
+    const fullPath = path.join(this.vaultPath, this.normalizePath(filePath));
+
+    // Security check
+    if (!this.isWithin(this.vaultPath, fullPath)) {
+      throw new Error('Path traversal detected');
+    }
+
+    // Ensure parent directory exists
+    const dirPath = path.dirname(fullPath);
+    await fs.mkdir(dirPath, { recursive: true });
+
+    // Stringify frontmatter + content
+    const markdown = grayMatter.stringify(content, frontmatter);
+
+    // Atomic write: write to temp file, then rename
+    const tempPath = `${fullPath}.tmp`;
+    await fs.writeFile(tempPath, markdown, 'utf8');
+    await fs.rename(tempPath, fullPath);
+  }
+
+  /**
+   * Delete file
+   */
+  async deleteFile(filePath: string): Promise<void> {
+    const fullPath = path.join(this.vaultPath, this.normalizePath(filePath));
+
+    if (!this.isWithin(this.vaultPath, fullPath)) {
+      throw new Error('Path traversal detected');
+    }
+
+    await fs.unlink(fullPath);
+  }
+
+  /**
+   * List files and folders recursively
+   * Pattern extracted from anything-llm/viewLocalFiles
+   */
+  async listFiles(folderPath: string = ''): Promise<VaultEntry> {
+    const targetPath = folderPath
+      ? path.join(this.vaultPath, this.normalizePath(folderPath))
+      : this.vaultPath;
+
+    const entry: VaultEntry = {
+      name: path.basename(targetPath) || 'vault',
+      type: 'folder',
+      path: targetPath,
+      items: [],
+    };
+
+    const files = await fs.readdir(targetPath);
+
+    for (const file of files) {
+      // Skip hidden files and .git
+      if (file.startsWith('.')) continue;
+
+      const fullPath = path.join(targetPath, file);
+      const stats = await fs.lstat(fullPath);
+
+      if (stats.isDirectory()) {
+        // Recursively scan subdirectories
+        const subPath = folderPath ? `${folderPath}/${file}` : file;
+        const subEntry = await this.listFiles(subPath);
+        entry.items!.push(subEntry);
+      } else if (file.endsWith('.md')) {
+        // Only include markdown files
+        entry.items!.push({
+          name: file,
+          type: 'file',
+          path: fullPath,
+        });
+      }
+    }
+
+    return entry;
+  }
+
+  /**
+   * Create folder
+   */
+  async createFolder(folderPath: string): Promise<void> {
+    const fullPath = path.join(this.vaultPath, this.normalizePath(folderPath));
+
+    if (!this.isWithin(this.vaultPath, fullPath)) {
+      throw new Error('Path traversal detected');
+    }
+
+    await fs.mkdir(fullPath, { recursive: true });
+  }
+
+  /**
+   * Update frontmatter of existing file
+   */
+  async updateFrontmatter(
+    filePath: string,
+    updates: Record<string, any>
+  ): Promise<void> {
+    const fileContent = await this.readFile(filePath);
+    if (!fileContent) {
+      throw new Error(`File not found: ${filePath}`);
+    }
+
+    const newFrontmatter = { ...fileContent.frontmatter, ...updates };
+    await this.writeFile(filePath, newFrontmatter, fileContent.content);
+  }
+
+  /**
+   * Calculate SHA-256 checksum of file content
+   */
+  private calculateChecksum(content: string): string {
+    return crypto.createHash('sha256').update(content).digest('hex');
+  }
+
+  /**
+   * Get checksum of file
+   */
+  async getChecksum(filePath: string): Promise<string | null> {
+    const fileContent = await this.readFile(filePath);
+    return fileContent?.checksum || null;
+  }
+
+  /**
+   * Check if file exists
+   */
+  async exists(filePath: string): Promise<boolean> {
+    const fullPath = path.join(this.vaultPath, this.normalizePath(filePath));
+
+    if (!this.isWithin(this.vaultPath, fullPath)) {
+      return false;
+    }
+
+    try {
+      await fs.access(fullPath);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+}
+
+// Legacy interface for compatibility
+export interface VaultInterface {
+  initialize(path: string): Promise<void>;
+  readFile(path: string): Promise<string>;
+  writeFile(path: string, content: string): Promise<void>;
+}

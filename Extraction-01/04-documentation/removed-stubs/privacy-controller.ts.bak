@@ -1,0 +1,9 @@
+/**
+ * Privacy Controller
+ */
+
+export interface PrivacyControllerInterface {
+  canUseCloudAI(uid: string): Promise<boolean>;
+  canUseLocalAI(uid: string): Promise<boolean>;
+  canExport(uid: string): Promise<boolean>;
+}

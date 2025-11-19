@@ -1,0 +1,13 @@
+/**
+ * Entity Manager
+ */
+
+import { Entity } from '../types';
+
+export interface EntityManagerInterface {
+  create(entity: Entity): Promise<string>; // Returns UID
+  read(uid: string): Promise<Entity | null>;
+  update(uid: string, updates: Partial<Entity>): Promise<void>;
+  delete(uid: string): Promise<void>;
+  list(type?: string): Promise<Entity[]>;
+}
