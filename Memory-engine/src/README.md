@@ -16,7 +16,8 @@ Purpose: Provide AEI memory engine that couples vault entities to a vector index
 Vault Scan -> Entity Normalize -> computeAeiCode -> Embedding (if allowed) -> Index Upsert -> Query -> Filter -> Traceback -> Response.
 
 ## Next Steps
-- Add Vault Adapter (scan + basic front-matter parser if templates use YAML).
-- Add interface IVectorIndex and stub implementation (in-memory) for dev.
-- Add embedding stub that returns deterministic dummy vectors for now.
-- Implement ingest script and simple query script.
+- Integrate evolution.ts into ingest or scheduled maintenance pass.
+- Add persistence layer for index & entity state.
+- Add visibility/group filters & export gate.
+- Implement traceback resolver returning masked content for META.
+- Add CLI commands: memory-evolve, memory-query.
