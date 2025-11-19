@@ -40,9 +40,30 @@ export function scanVault(vaultRoot: string): VaultEntity[] {
         walk(full);
       } else if (entry.toLowerCase().endsWith('.md')) {
         const content = fs.readFileSync(full, 'utf8');
-        // TODO: parse YAML front-matter for memory/security fields.
-        const memory_level: MemoryLevel = 'transitory';
-        const sensitivity = defaultSensitivity();
+        // Front-matter parse (--- yaml ---). If absent, use defaults.
+        let memory_level: MemoryLevel = 'transitory';
+        let sensitivity: Sensitivity = defaultSensitivity();
+        const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+        if (fmMatch) {
+          try {
+            const yamlBlock = fmMatch[1];
+            const parsed: any = parseSimpleYaml(yamlBlock);
+            if (parsed.memory_level && typeof parsed.memory_level === 'string') memory_level = parsed.memory_level as MemoryLevel;
+            if (parsed.sensitivity && typeof parsed.sensitivity === 'object') {
+              sensitivity = {
+                level: parsed.sensitivity.level ?? sensitivity.level,
+                scope: parsed.sensitivity.scope,
+                privacy: {
+                  cloud_ai_allowed: parsed.sensitivity.privacy?.cloud_ai_allowed ?? sensitivity.privacy.cloud_ai_allowed,
+                  local_ai_allowed: parsed.sensitivity.privacy?.local_ai_allowed ?? sensitivity.privacy.local_ai_allowed,
+                  export_allowed: parsed.sensitivity.privacy?.export_allowed ?? sensitivity.privacy.export_allowed
+                },
+                visibility: parsed.sensitivity.visibility ?? sensitivity.visibility,
+                group_access: parsed.sensitivity.group_access
+              } as Sensitivity;
+            }
+          } catch { /* fall back to defaults */ }
+        }
         const aei_code = computeAeiCode(memory_level, sensitivity);
         entities.push({
           id: rel.replace(/\\/g, '/'),
@@ -58,4 +79,36 @@ export function scanVault(vaultRoot: string): VaultEntity[] {
   };
   walk(vaultRoot);
   return entities;
+}
+
+// Extremely small YAML subset parser (key: value, nested via indentation one level)
+function parseSimpleYaml(block: string): any {
+  const lines = block.split(/\r?\n/);
+  const root: any = {};
+  let currentParent: any = root;
+  const stack: { indent: number; obj: any }[] = [{ indent: -1, obj: root }];
+  for (const line of lines) {
+    if (!line.trim() || line.trim().startsWith('#')) continue;
+    const indent = line.match(/^ */)![0].length;
+    const kv = line.split(':');
+    if (kv.length < 2) continue;
+    const key = kv[0].trim();
+    const valueRaw = kv.slice(1).join(':').trim();
+    while (stack.length && indent <= stack[stack.length - 1].indent) stack.pop();
+    currentParent = stack[stack.length - 1].obj;
+    if (valueRaw === '') { // new nested object
+      const obj: any = {};
+      currentParent[key] = obj;
+      stack.push({ indent, obj });
+    } else {
+      let val: any = valueRaw;
+      if (val === 'true') val = true; else if (val === 'false') val = false;
+      else if (!isNaN(Number(val))) val = Number(val);
+      else if (val.startsWith('[') && val.endsWith(']')) {
+        val = val.slice(1, -1).split(',').map(v => v.trim()).filter(v => v);
+      }
+      currentParent[key] = val;
+    }
+  }
+  return root;
 }
