@@ -48,16 +48,16 @@
 | Document | Purpose |
 |----------|---------|
 | **[PROJECT-STATUS.md](PROJECT-STATUS.md)** | Overall project status |
-| **[MVP-COMPLETE.md](MVP-COMPLETE.md)** | MVP completion summary |
 | **[README.md](README.md)** | Project overview |
 
-### Phase Completion Reports
+### Phase Completion Reports (Archived)
 | Document | Phase | Status |
 |----------|-------|--------|
-| **[PHASE-1-UX-COMPLETE.md](PHASE-1-UX-COMPLETE.md)** | Critical UX Fixes | ✅ Complete |
-| **[PHASE-2-DISCOVERABILITY-COMPLETE.md](PHASE-2-DISCOVERABILITY-COMPLETE.md)** | Discoverability | ✅ Complete |
-| **[PHASE-3-COMPLETE.md](PHASE-3-COMPLETE.md)** | Polish & Entity Browser | ✅ Complete |
-| **[PHASE-4-COMPLETE.md](PHASE-4-COMPLETE.md)** | Settings & Documentation | ✅ Complete |
+| **[MVP-COMPLETE.md](docs/08-archive/phases/MVP-COMPLETE.md)** | MVP Completion | ✅ Complete |
+| **[PHASE-1-UX-COMPLETE.md](docs/08-archive/phases/PHASE-1-UX-COMPLETE.md)** | Critical UX Fixes | ✅ Complete |
+| **[PHASE-2-DISCOVERABILITY-COMPLETE.md](docs/08-archive/phases/PHASE-2-DISCOVERABILITY-COMPLETE.md)** | Discoverability | ✅ Complete |
+| **[PHASE-3-COMPLETE.md](docs/08-archive/phases/PHASE-3-COMPLETE.md)** | Polish & Entity Browser | ✅ Complete |
+| **[PHASE-4-COMPLETE.md](docs/08-archive/phases/PHASE-4-COMPLETE.md)** | Settings & Documentation | ✅ Complete |
 
 ---
 
@@ -139,8 +139,8 @@
 
 ### Project Status
 - Current Status: `PROJECT-STATUS.md`
-- MVP Summary: `MVP-COMPLETE.md`
-- Phase Reports: `PHASE-*-COMPLETE.md`
+- MVP Summary: `docs/08-archive/phases/MVP-COMPLETE.md`
+- Phase Reports: `docs/08-archive/phases/` (archived)
 
 ---
 
@@ -159,13 +159,13 @@
 ### Contributing
 - 🤝 [Contributing Guide](CONTRIBUTING.md) - How to contribute
 - 📊 [Project Status](PROJECT-STATUS.md) - Current status
-- ✅ [MVP Complete](MVP-COMPLETE.md) - Completion summary
 
-### Phase Reports
-- ✅ [Phase 1 Complete](PHASE-1-UX-COMPLETE.md) - UX fixes
-- ✅ [Phase 2 Complete](PHASE-2-DISCOVERABILITY-COMPLETE.md) - Discoverability
-- ✅ [Phase 3 Complete](PHASE-3-COMPLETE.md) - Polish & Browser
-- ✅ [Phase 4 Complete](PHASE-4-COMPLETE.md) - Settings & Docs
+### Phase Reports (Archived)
+- ✅ [MVP Complete](docs/08-archive/phases/MVP-COMPLETE.md) - Completion summary
+- ✅ [Phase 1 Complete](docs/08-archive/phases/PHASE-1-UX-COMPLETE.md) - UX fixes
+- ✅ [Phase 2 Complete](docs/08-archive/phases/PHASE-2-DISCOVERABILITY-COMPLETE.md) - Discoverability
+- ✅ [Phase 3 Complete](docs/08-archive/phases/PHASE-3-COMPLETE.md) - Polish & Browser
+- ✅ [Phase 4 Complete](docs/08-archive/phases/PHASE-4-COMPLETE.md) - Settings & Docs
 
 ---
 
