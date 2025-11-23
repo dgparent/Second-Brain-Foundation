@@ -1,4 +1,4 @@
-import { KnowledgeNodeEntity, KnowledgeNodeMetadata } from '@sbf/knowledge-tracking';
+import { KnowledgeNodeEntity, KnowledgeNodeMetadata, createKnowledgeNode } from '@sbf/knowledge-tracking';
 
 export interface InsightMetadata extends KnowledgeNodeMetadata {
   insight_type: 'connection' | 'realization' | 'question' | 'idea' | 'pattern';
@@ -14,7 +14,6 @@ export interface InsightMetadata extends KnowledgeNodeMetadata {
 }
 
 export interface InsightEntity extends KnowledgeNodeEntity {
-  type: 'highlights.insight';
   metadata: InsightMetadata;
 }
 
@@ -24,28 +23,27 @@ export function createInsight(
   insightType: 'connection' | 'realization' | 'question' | 'idea' | 'pattern',
   options: Partial<InsightMetadata> = {}
 ): InsightEntity {
-  const now = new Date().toISOString();
+  const baseNode = createKnowledgeNode(
+    title,
+    'insight',
+    {
+      body,
+      ...options
+    }
+  );
   
   return {
-    uid: `ins-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    type: 'highlights.insight',
-    title,
+    ...baseNode,
     metadata: {
-      content_type: 'insight',
+      ...baseNode.metadata,
       insight_type: insightType,
       body,
-      tags: [],
-      status: 'active',
-      times_reviewed: 0,
-      created_date: now,
-      modified_date: now,
-      ease_factor: 2.5,
-      interval_days: 1,
-      consecutive_correct: 0,
-      mastery_level: 0,
-      confidence_level: 'medium',
-      actionable: false,
-      ...options
+      confidence_level: options.confidence_level || 'medium',
+      actionable: options.actionable || false,
+      action_items: options.action_items,
+      source_highlights: options.source_highlights,
+      triggered_by: options.triggered_by,
+      related_insights: options.related_insights
     }
   };
 }
@@ -56,6 +54,7 @@ export function linkToHighlights(
 ): InsightEntity {
   return {
     ...insight,
+    updated: new Date().toISOString(),
     metadata: {
       ...insight.metadata,
       source_highlights: highlightUids,
@@ -70,6 +69,7 @@ export function makeActionable(
 ): InsightEntity {
   return {
     ...insight,
+    updated: new Date().toISOString(),
     metadata: {
       ...insight.metadata,
       actionable: true,

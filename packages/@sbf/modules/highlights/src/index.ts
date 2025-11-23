@@ -5,8 +5,8 @@ export * from './InsightEntity.js';
 export {
   KnowledgeGraphWorkflow,
   SpacedRepetitionWorkflow,
-  extractHighlights,
-  searchNodes,
-  categorizeByTopic,
-  formatNodeSummary
+  ProgressTrackingWorkflow,
+  createKnowledgeNode,
+  updateNodeMastery,
+  markNodeReviewed
 } from '@sbf/knowledge-tracking';

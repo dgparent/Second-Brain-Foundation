@@ -1,4 +1,4 @@
-import { KnowledgeNodeEntity, KnowledgeNodeMetadata } from '@sbf/knowledge-tracking';
+import { KnowledgeNodeEntity, KnowledgeNodeMetadata, createKnowledgeNode } from '@sbf/knowledge-tracking';
 
 export interface HighlightMetadata extends KnowledgeNodeMetadata {
   highlight_text: string;
@@ -23,7 +23,6 @@ export interface HighlightMetadata extends KnowledgeNodeMetadata {
 }
 
 export interface HighlightEntity extends KnowledgeNodeEntity {
-  type: 'highlights.highlight';
   metadata: HighlightMetadata;
 }
 
@@ -33,29 +32,30 @@ export function createHighlight(
   sourceType: 'book' | 'article' | 'video' | 'podcast' | 'webpage' | 'document',
   options: Partial<HighlightMetadata> = {}
 ): HighlightEntity {
-  const now = new Date().toISOString();
+  const baseNode = createKnowledgeNode(
+    highlightText.substring(0, 60) + (highlightText.length > 60 ? '...' : ''),
+    'highlight',
+    {
+      source_title: sourceTitle,
+      ...options
+    }
+  );
   
   return {
-    uid: `hl-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    type: 'highlights.highlight',
-    title: highlightText.substring(0, 60) + (highlightText.length > 60 ? '...' : ''),
+    ...baseNode,
     metadata: {
-      content_type: 'highlight',
+      ...baseNode.metadata,
       highlight_text: highlightText,
       location: {
-        source_type: sourceType
+        source_type: sourceType,
+        ...options.location
       },
-      source_title: sourceTitle,
-      tags: [],
-      status: 'to-review',
-      times_reviewed: 0,
-      created_date: now,
-      modified_date: now,
-      ease_factor: 2.5,
-      interval_days: 1,
-      consecutive_correct: 0,
-      mastery_level: 0,
-      ...options
+      color: options.color || 'yellow',
+      is_favorite: options.is_favorite || false,
+      personal_note: options.personal_note,
+      connections: options.connections || [],
+      imported_from: options.imported_from,
+      import_date: options.import_date
     }
   };
 }
@@ -66,6 +66,7 @@ export function addPersonalNote(
 ): HighlightEntity {
   return {
     ...highlight,
+    updated: new Date().toISOString(),
     metadata: {
       ...highlight.metadata,
       personal_note: note,
@@ -84,6 +85,7 @@ export function linkHighlights(
   
   return {
     ...highlight,
+    updated: new Date().toISOString(),
     metadata: {
       ...highlight.metadata,
       connections: newConnections,
