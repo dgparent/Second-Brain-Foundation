@@ -20,7 +20,7 @@ LLM Orchestration:
 Automation:
   apscheduler: MVP (embedded, zero dependencies)
   prefect: Production (observability, retries)
-  n8n: Optional plugin (visual workflows)
+  n8n: Optional module (visual workflows)
 ```
 
 ### Data Storage
@@ -192,7 +192,7 @@ focus: Scale, multi-agent, advanced features
 | Learning | Easy | Easy | Hard | Hard |
 | Visual UI | ✅ Optional | ✅✅ Core | ✅ | ✅ |
 | Complexity | Low | Low | High | High |
-| **Verdict** | **Primary** | **Plugin** | Overkill | Overkill |
+| **Verdict** | **Primary** | **module** | Overkill | Overkill |
 
 ### Memory Systems
 | Feature | Letta | Mem0 | SQLite |
@@ -308,7 +308,7 @@ prefect deploy --all
 prefect worker start --pool default
 ```
 
-### Optional n8n Plugin
+### Optional n8n module
 ```bash
 # Install n8n
 docker run -d -p 5678:5678 n8nio/n8n
@@ -334,7 +334,7 @@ Use this matrix to choose technologies:
 | **Multi-modal embeddings** | LanceDB | Future-proof |
 | **Graph queries** | SQLite + FTS5 | Simple, embedded |
 | **Core automation** | APScheduler → Prefect | MVP → Production |
-| **User workflows** | n8n (plugin) | Visual customization |
+| **User workflows** | n8n (module) | Visual customization |
 | **Local LLM** | Ollama | Easy setup |
 | **Voice processing** | faster-whisper + LocalAI | Multi-modal |
 | **File watching** | watchfiles | Rust performance |

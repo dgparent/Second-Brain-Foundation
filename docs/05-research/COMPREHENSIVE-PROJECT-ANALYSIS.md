@@ -198,7 +198,7 @@ docs/
 |---------|-------|---------|----------------|--------|----------|
 | **MDX-Editor** | 3.0K | Lexical MD editor | ✅ IN USE | Active | Keep using |
 | **TipTap** | 29.2K | Headless editor | Alternative to MDX | Backup | Keep as fallback |
-| **Milkdown** | 9.0K | Plugin-based editor | Alternative | Backup | Keep as fallback |
+| **Milkdown** | 9.0K | module-based editor | Alternative | Backup | Keep as fallback |
 | **Rich-MD-Editor** | 2.9K | Prosemirror (archived) | Reference only | Reference | Keep for patterns |
 | **React-MD-Editor** | 2.7K | Simple editor | Simpler alternative | Backup | Keep as fallback |
 | **EditorJS** | 28.8K | Block-style editor | Different paradigm | Future | Maybe use later |
@@ -274,13 +274,13 @@ docs/
 | Library | Stars | Purpose | Why Not Used | Decision |
 |---------|-------|---------|-------------|----------|
 | **obsidian-textgenerator** | 1.8K | AI settings UI | Phase 3+ (settings panel) | Use in Phase 3 |
-| **obsidian-textgenerator-plugin** | Same | Duplicate/variant | Duplicate | Can delete |
+| **obsidian-textgenerator-module** | Same | Duplicate/variant | Duplicate | Can delete |
 
 **Business Impact:** Medium. Settings panel is Phase 3 priority.
 
 **Recommendation:** 
 - Use obsidian-textgenerator patterns for Phase 3 settings panel
-- Delete obsidian-textgenerator-plugin (duplicate)
+- Delete obsidian-textgenerator-module (duplicate)
 
 ---
 
@@ -444,7 +444,7 @@ docs/
 - Jan (similar to our Ollama impl)
 - Foam (already using wikilinks)
 - VNote (Qt desktop, not React)
-- obsidian-textgenerator-plugin (duplicate)
+- obsidian-textgenerator-module (duplicate)
 
 **ROI:** ⭐ Very low value
 **Recommendation:** SAFE TO DELETE if repo cleanup needed
@@ -480,7 +480,7 @@ docs/
 - Jan (duplicate functionality)
 - Foam (already have wikilinks)
 - VNote (wrong UI framework)
-- obsidian-textgenerator-plugin (duplicate)
+- obsidian-textgenerator-module (duplicate)
 - Milkdown (have MDX-Editor)
 - Rich-MD-Editor (archived, reference only)
 - React-MD-Editor (have MDX-Editor)
@@ -633,7 +633,7 @@ docs/
 - Jan (duplicate)
 - Foam (duplicate functionality)
 - VNote (wrong framework)
-- obsidian-textgenerator-plugin (duplicate)
+- obsidian-textgenerator-module (duplicate)
 - Milkdown (have MDX-Editor)
 - Rich-MD-Editor (archived)
 - React-MD-Editor (have MDX-Editor)
@@ -959,7 +959,7 @@ By contributing, you agree to MIT license terms.
 
 #### Document 4: api-documentation.md (IMPORTANT)
 
-**Target Audience:** Integrators and plugin developers  
+**Target Audience:** Integrators and module developers  
 **Estimated Time:** 4-6 hours  
 **Priority:** 🟡 IMPORTANT
 
@@ -1314,7 +1314,7 @@ Ask in [Discussions](https://github.com/.../discussions) or [Discord](https://di
 8. Graph Visualization
 9. Streaming Responses
 10. Desktop Packaging
-11. Plugin System
+11. module System
 
 ---
 
@@ -1379,7 +1379,7 @@ Ask in [Discussions](https://github.com/.../discussions) or [Discord](https://di
 5. 🟡 Cytoscape/Reagraph (Phase 4 Graph)
 
 ### Safe to Delete Libraries
-- text-generation-webui, Jan, Foam, VNote, obsidian-textgenerator-plugin, Milkdown, Rich-MD-Editor, React-MD-Editor, tldraw, Excalidraw (10 libraries, ~1.5GB)
+- text-generation-webui, Jan, Foam, VNote, obsidian-textgenerator-module, Milkdown, Rich-MD-Editor, React-MD-Editor, tldraw, Excalidraw (10 libraries, ~1.5GB)
 
 ### Next Phase Checklist
 - [ ] Install UX libraries

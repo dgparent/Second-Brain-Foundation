@@ -80,7 +80,7 @@ Conduct comprehensive competitive intelligence analysis of the Personal Knowledg
    - Common tool combinations and workflows
    - Import/export format support across tools
    - API availability and third-party integrations
-   - Community plugins and extensions
+   - Community modules and extensions
 
 8. **What is the competitive landscape for AI-powered note organization specifically?**
    - Emerging startups focused on AI organization
@@ -122,7 +122,7 @@ Conduct comprehensive competitive intelligence analysis of the Personal Knowledg
 
 14. **What partnership and integration ecosystems exist around major PKM tools?**
    - Official integrations with other productivity tools
-   - Third-party plugin marketplaces
+   - Third-party module marketplaces
    - Academic and enterprise partnerships
    - Content creator and influencer ecosystems
 

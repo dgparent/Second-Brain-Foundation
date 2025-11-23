@@ -10,7 +10,7 @@
 - **Local‑first source of truth:** Obsidian‑style Markdown vault (.md + YAML front matter). All other stores (vector, keyword, graph) are **rebuildable caches**.
 - **Agentic by design:** Librarian, Researcher, QA, and Custom agents operate concurrently with deterministic policies and typed tool I/O.
 - **Policy‑routed inference:** Local by default; cloud by exception (sensitivity gates, cost/latency heuristics).
-- **Automation over inference:** Prefer deterministic Prefect/MCP tooling; use LLMs only where reasoning is needed. Optional n8n plugin for visual workflow customization.
+- **Automation over inference:** Prefer deterministic Prefect/MCP tooling; use LLMs only where reasoning is needed. Optional n8n module for visual workflow customization.
 - **Composable growth:** MVP monolith (A) that cleanly evolves to K8s microservices (C) and Graph‑primary mesh (D) without rewrites.
 
 ---
@@ -67,7 +67,7 @@ flowchart LR
     Prefect["Prefect Flows & Tasks"]
   end
   
-  subgraph Optional["Optional Plugin"]
+  subgraph Optional["Optional module"]
     n8n["n8n Workflows (User Custom)"]
   end
 
@@ -105,7 +105,7 @@ flowchart LR
 - **Event Bus Adapter:** Local in‑proc, NATS, or Kafka—same domain event schema across all stages.
 - **MCP Tools:** Versioned capability modules (HTTP, web, files, email, calendar, Git, custom connectors).
 - **Prefect (Core Automation):** Python-native workflow orchestration for lifecycle management, entity extraction, relationship updates. MVP uses APScheduler, production upgrades to Prefect.
-- **n8n (Optional Plugin):** Visual workflow builder for user customization. Triggers webhook → Prefect flows for multi-SaaS integrations (Email, Slack, Calendar).
+- **n8n (Optional module):** Visual workflow builder for user customization. Triggers webhook → Prefect flows for multi-SaaS integrations (Email, Slack, Calendar).
 
 ---
 
@@ -266,7 +266,7 @@ Returns entity or note with 1‑hop relations.
 - **Runtime:** Desktop (Electron/Tauri) + AEI Core (FastAPI) local.
 - **Stores:** Chroma (embedded), Tantivy (embedded), NetworkX (in‑proc).
 - **LLM:** Ollama; optional cloud via Router.
-- **Automation:** APScheduler (embedded) for core workflows. Optional Prefect server for observability. Optional n8n plugin for user customization.
+- **Automation:** APScheduler (embedded) for core workflows. Optional Prefect server for observability. Optional n8n module for user customization.
 - **Events:** in‑proc or single‑node NATS.
 
 ### 7.2 Profile A+ — Team Hub (3–20 users)
@@ -298,7 +298,7 @@ Returns entity or note with 1‑hop relations.
 - AEI Core monolith (FastAPI) with Watcher, Extractor, Orchestrator, RAG, Indexer, Queue, Policy, Audit.
 - Local caches: Chroma + Tantivy + NetworkX.
 - Provider Router to Ollama; optional cloud keys in settings.
-- Core automation with APScheduler (embedded); optional Prefect upgrade. Optional n8n plugin for user workflows.
+- Core automation with APScheduler (embedded); optional Prefect upgrade. Optional n8n module for user workflows.
 - MCP basic toolset (web.search, http.get, files.read/write).
 
 **Requirements**

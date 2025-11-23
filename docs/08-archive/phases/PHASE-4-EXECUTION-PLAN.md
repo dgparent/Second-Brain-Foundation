@@ -178,7 +178,7 @@
    - Jan
    - Foam
    - VNote
-   - obsidian-textgenerator-plugin
+   - obsidian-textgenerator-module
    - Milkdown
    - Rich-MD-Editor
    - React-MD-Editor
@@ -337,7 +337,7 @@
 ---
 
 #### Story 4.3.3: api-documentation.md (4-6 hours)
-**Goal:** API reference for integrators and plugin developers
+**Goal:** API reference for integrators and module developers
 
 **Location:** `docs/06-guides/api-documentation.md`
 
@@ -542,7 +542,7 @@ Remove-Item -Recurse -Force text-generation-webui
 Remove-Item -Recurse -Force jan
 Remove-Item -Recurse -Force Foam
 Remove-Item -Recurse -Force VNote
-Remove-Item -Recurse -Force obsidian-textgenerator-plugin
+Remove-Item -Recurse -Force obsidian-textgenerator-module
 Remove-Item -Recurse -Force Milkdown
 Remove-Item -Recurse -Force rich-markdown-editor
 Remove-Item -Recurse -Force react-md-editor

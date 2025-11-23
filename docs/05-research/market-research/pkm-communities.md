@@ -36,7 +36,7 @@ Find active communities interested in:
 - **Audience:** Technical users, privacy-conscious, already using PKM
 - **Post Strategy:** "I'm building AI-powered organization for Obsidian users - would you use this?"
 - **Best Days:** Tuesday-Thursday
-- **Risks:** Might prefer plugin over standalone app
+- **Risks:** Might prefer module over standalone app
 - **URL:** reddit.com/r/ObsidianMD
 
 #### r/PKMS (Personal Knowledge Management Systems)
@@ -221,7 +221,7 @@ Find active communities interested in:
 - **Members:** 50,000+
 - **Activity:** Very High
 - **Relevance:** 🔥🔥🔥🔥🔥 HIGHEST
-- **Channels:** #plugin-ideas, #show-and-tell, #general
+- **Channels:** #module-ideas, #show-and-tell, #general
 - **Strategy:** Share in #show-and-tell, ask for feedback in #general
 - **URL:** discord.gg/obsidianmd (check obsidian.md for invite)
 
@@ -275,7 +275,7 @@ Find active communities interested in:
 - **Members:** 25,000+
 - **Activity:** High
 - **Relevance:** 🔥🔥🔥🔥🔥 HIGHEST
-- **Strategy:** Post in "Tools & Plugins" discussions
+- **Strategy:** Post in "Tools & modules" discussions
 - **URL:** Search "Obsidian Users" on Facebook
 
 #### Personal Knowledge Management (PKM)
@@ -336,7 +336,7 @@ Find active communities interested in:
 - **Frequency:** Weekly
 - **Relevance:** 🔥🔥🔥🔥🔥 HIGHEST
 - **Contact:** Submit to Obsidian Roundup via their website
-- **Strategy:** Get featured in "New Plugins" or "Community Showcase"
+- **Strategy:** Get featured in "New modules" or "Community Showcase"
 - **URL:** obsidianroundup.org
 
 #### Forte Labs (Tiago Forte's Blog)
@@ -645,7 +645,7 @@ Technical stack (if I build it):
 - Chroma (vector DB), NetworkX (graph)
 
 Questions I'm trying to answer:
-1. Is this differentiated enough from Obsidian + plugins?
+1. Is this differentiated enough from Obsidian + modules?
 2. Would people pay $99-$149 for this?
 3. Is local AI support a real differentiator or just nice-to-have?
 
@@ -709,9 +709,9 @@ Currently seeking validation before full build. Reserve early bird pricing ($79 
 
 ### Community Feedback Concerns
 
-**Red Flag 1:** "This is just Obsidian with plugins"
+**Red Flag 1:** "This is just Obsidian with modules"
 - **Response:** Clarify differentiation (privacy dashboard, progressive automation)
-- **If persistent:** Consider pivot to Obsidian plugin instead
+- **If persistent:** Consider pivot to Obsidian module instead
 
 **Red Flag 2:** "Why not just use [existing tool]?"
 - **Response:** Highlight unique combo (privacy + AI + local)

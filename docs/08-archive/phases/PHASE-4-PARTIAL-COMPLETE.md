@@ -17,7 +17,7 @@
   2. jan (0 MB)
   3. foam (63 MB)
   4. vnote (24 MB)
-  5. obsidian-textgenerator-plugin (1 MB)
+  5. obsidian-textgenerator-module (1 MB)
   6. milkdown (2 MB)
   7. rich-markdown-editor (1 MB)
   8. react-md-editor (0.3 MB)

@@ -52,17 +52,17 @@ git clone https://github.com/oobabooga/text-generation-webui.git libraries/text-
 #### 2. **obsidian-releases** ⭐ 13.4K
 **Repository:** https://github.com/obsidianmd/obsidian-releases  
 **Language:** TypeScript  
-**Why Important:** Community plugins and theme repository
+**Why Important:** Community modules and theme repository
 
 **Key Features:**
 - Theme showcase
-- Plugin discovery
+- module discovery
 - Release management
 - Community standards
 
 **Components to Extract:**
 - Theme structure
-- Plugin architecture patterns
+- module architecture patterns
 - Community contribution workflow
 
 **Clone Command:**
@@ -105,15 +105,15 @@ git clone https://github.com/MODSetter/SurfSense.git libraries/SurfSense
 
 ### Tier 2: Highly Relevant (2K-10K stars)
 
-#### 4. **obsidian-excalidraw-plugin** ⭐ 5.7K
-**Repository:** https://github.com/zsviczian/obsidian-excalidraw-plugin  
+#### 4. **obsidian-excalidraw-module** ⭐ 5.7K
+**Repository:** https://github.com/zsviczian/obsidian-excalidraw-module  
 **Language:** TypeScript  
 **Why Important:** Visual/diagram editing in knowledge management
 
 **Key Features:**
 - Drawing canvas integration
 - Rich editing capabilities
-- Plugin architecture example
+- module architecture example
 - Modal/dialog patterns
 
 **Components to Extract:**
@@ -123,7 +123,7 @@ git clone https://github.com/MODSetter/SurfSense.git libraries/SurfSense
 
 **Clone Command:**
 ```bash
-git clone https://github.com/zsviczian/obsidian-excalidraw-plugin.git libraries/obsidian-excalidraw
+git clone https://github.com/zsviczian/obsidian-excalidraw-module.git libraries/obsidian-excalidraw
 ```
 
 ---
@@ -173,25 +173,25 @@ git clone https://github.com/SilentVoid13/Templater.git libraries/Templater
 
 ---
 
-#### 7. **obsidian-sample-plugin** ⭐ 3.5K
-**Repository:** https://github.com/obsidianmd/obsidian-sample-plugin  
+#### 7. **obsidian-sample-module** ⭐ 3.5K
+**Repository:** https://github.com/obsidianmd/obsidian-sample-module  
 **Language:** TypeScript  
-**Why Important:** Official plugin template - best practices
+**Why Important:** Official module template - best practices
 
 **Key Features:**
 - Build configuration
 - Development patterns
-- Plugin API examples
+- module API examples
 - TypeScript setup
 
 **Components to Extract:**
-- Plugin architecture
+- module architecture
 - Build system
 - TypeScript config
 
 **Clone Command:**
 ```bash
-git clone https://github.com/obsidianmd/obsidian-sample-plugin.git libraries/obsidian-sample-plugin
+git clone https://github.com/obsidianmd/obsidian-sample-module.git libraries/obsidian-sample-module
 ```
 
 ---
@@ -210,7 +210,7 @@ git clone https://github.com/obsidianmd/obsidian-sample-plugin.git libraries/obs
 **Components to Extract:**
 - Editor component
 - Toolbar design
-- Plugin system
+- module system
 
 **Clone Command:**
 ```bash
@@ -357,8 +357,8 @@ git clone https://github.com/erew123/alltalk_tts.git libraries/alltalk_tts
 
 ---
 
-#### 15. **obsidian-calendar-plugin** ⭐ 2.0K
-**Repository:** https://github.com/liamcain/obsidian-calendar-plugin  
+#### 15. **obsidian-calendar-module** ⭐ 2.0K
+**Repository:** https://github.com/liamcain/obsidian-calendar-module  
 **Language:** TypeScript  
 **Why Important:** Calendar widget for daily notes
 
@@ -373,13 +373,13 @@ git clone https://github.com/erew123/alltalk_tts.git libraries/alltalk_tts
 
 **Clone Command:**
 ```bash
-git clone https://github.com/liamcain/obsidian-calendar-plugin.git libraries/obsidian-calendar
+git clone https://github.com/liamcain/obsidian-calendar-module.git libraries/obsidian-calendar
 ```
 
 ---
 
-#### 16. **obsidian-textgenerator-plugin** ⭐ 1.8K
-**Repository:** https://github.com/nhaouari/obsidian-textgenerator-plugin  
+#### 16. **obsidian-textgenerator-module** ⭐ 1.8K
+**Repository:** https://github.com/nhaouari/obsidian-textgenerator-module  
 **Language:** TypeScript  
 **Why Important:** AI text generation in Obsidian
 
@@ -396,7 +396,7 @@ git clone https://github.com/liamcain/obsidian-calendar-plugin.git libraries/obs
 
 **Clone Command:**
 ```bash
-git clone https://github.com/nhaouari/obsidian-textgenerator-plugin.git libraries/obsidian-textgenerator
+git clone https://github.com/nhaouari/obsidian-textgenerator-module.git libraries/obsidian-textgenerator
 ```
 
 ---
@@ -528,7 +528,7 @@ git clone https://github.com/elias-sundqvist/obsidian-annotator.git libraries/ob
 ### Knowledge Graph/Entity Patterns
 
 **Best Examples:**
-1. **obsidian-sample-plugin** - Plugin architecture
+1. **obsidian-sample-module** - module architecture
 2. **Templater** - Entity templates
 3. **obsidian-day-planner** - Entity views
 
@@ -573,7 +573,7 @@ git clone https://github.com/mdx-editor/editor.git mdx-editor
 
 # Tier 2 - Chat & AI
 git clone https://github.com/ohmplatform/FreedomGPT.git
-git clone https://github.com/nhaouari/obsidian-textgenerator-plugin.git
+git clone https://github.com/nhaouari/obsidian-textgenerator-module.git
 
 # Tier 2 - Editor
 git clone https://github.com/outline/rich-markdown-editor.git
@@ -585,13 +585,13 @@ git clone https://github.com/uiwjs/react-md-editor.git
 cd C:/!Projects/SecondBrainFoundation/libraries
 
 # Obsidian architecture
-git clone https://github.com/obsidianmd/obsidian-sample-plugin.git
+git clone https://github.com/obsidianmd/obsidian-sample-module.git
 git clone https://github.com/obsidianmd/obsidian-releases.git
 
 # Obsidian UI patterns
 git clone https://github.com/mgmeyers/obsidian-style-settings.git
 git clone https://github.com/ivan-lednev/obsidian-day-planner.git
-git clone https://github.com/liamcain/obsidian-calendar-plugin.git
+git clone https://github.com/liamcain/obsidian-calendar-module.git
 ```
 
 ### Phase 3: Advanced Components (Optional)
@@ -599,7 +599,7 @@ git clone https://github.com/liamcain/obsidian-calendar-plugin.git
 cd C:/!Projects/SecondBrainFoundation/libraries
 
 # Specialized
-git clone https://github.com/zsviczian/obsidian-excalidraw-plugin.git
+git clone https://github.com/zsviczian/obsidian-excalidraw-module.git
 git clone https://github.com/elias-sundqvist/obsidian-annotator.git
 git clone https://github.com/run-llama/notebookllama.git
 git clone https://github.com/souzatharsis/podcastfy.git
@@ -653,7 +653,7 @@ Adapt for:
 - Quick capture interface
 ```
 
-### From Obsidian Plugins
+### From Obsidian modules
 ```
 Extract:
 - Settings UI patterns
@@ -685,7 +685,7 @@ Adapt for:
 - ✅ rich-markdown-editor (React + Prosemirror)
 - ✅ react-md-editor (React)
 - ✅ FreedomGPT (React + Electron)
-- ✅ All Obsidian plugins (TypeScript)
+- ✅ All Obsidian modules (TypeScript)
 
 **Need Adaptation (Python/Gradio):**
 - ⚠️ text-generation-webui (Gradio → React conversion needed)
@@ -693,7 +693,7 @@ Adapt for:
 - ⚠️ podcastfy (Python → backend only)
 
 **Reference Only:**
-- 📚 Obsidian plugins (architecture patterns, not direct code reuse)
+- 📚 Obsidian modules (architecture patterns, not direct code reuse)
 
 ---
 
@@ -745,7 +745,7 @@ cd C:/!Projects/SecondBrainFoundation
 ## Resources
 
 ### Documentation
-- [Obsidian Plugin API](https://docs.obsidian.md/)
+- [Obsidian module API](https://docs.obsidian.md/)
 - [Lexical Editor](https://lexical.dev/)
 - [Prosemirror](https://prosemirror.net/)
 - [Gradio](https://gradio.app/docs/)

@@ -331,7 +331,7 @@ SecondBrainFoundation/
      - Daily backup to git
      - Weekly statistics generation
    - Optional: Prefect integration (for observability)
-   - Optional: n8n plugin support (webhook endpoints)
+   - Optional: n8n module support (webhook endpoints)
    - Example webhook workflows:
      - entity.created → Slack notification
      - low_confidence → Manual review
@@ -349,7 +349,7 @@ SecondBrainFoundation/
 **Deliverables:**
 - ✅ Agents can call web.search and get results
 - ✅ APScheduler runs lifecycle checks every 6 hours
-- ✅ Webhook endpoints ready for optional n8n plugin
+- ✅ Webhook endpoints ready for optional n8n module
 - ✅ Desktop app runs on Windows/Mac
 - ✅ Backend starts automatically with UI
 - ✅ Installable packages (.exe, .dmg, .AppImage)

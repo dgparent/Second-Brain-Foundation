@@ -31,6 +31,13 @@ tmp/
 temp/
 *.tmp
 
+# Workspace - temporary working documents
+.temp-workspace/sessions/
+.temp-workspace/troubleshooting/
+# Keep planning and archive in git for reference
+# .temp-workspace/planning/
+# .temp-workspace/archive/
+
 # OS files
 Thumbs.db
 desktop.ini

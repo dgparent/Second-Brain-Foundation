@@ -1,5 +1,5 @@
 # Automation Integration Architecture
-## Prefect + Optional n8n Plugin Strategy
+## Prefect + Optional n8n module Strategy
 
 **Version:** 1.0  
 **Date:** 2025-11-13  
@@ -14,7 +14,7 @@
 - [Architecture Diagram](#architecture-diagram)
 - [Component Responsibilities](#component-responsibilities)
   - [Core Automation (Prefect)](#1-core-automation-prefect)
-  - [Optional n8n Plugin](#2-optional-n8n-plugin)
+  - [Optional n8n module](#2-optional-n8n-module)
 - [Implementation Phases](#implementation-phases)
 - [Deployment Architecture](#deployment-architecture)
 - [Technology Decisions](#technology-decisions)
@@ -35,7 +35,7 @@
 
 Second Brain Foundation uses a **dual-automation strategy**:
 - **Prefect** (Python-native) for core automation workflows
-- **n8n** (optional plugin) for user-customizable visual workflows
+- **n8n** (optional module) for user-customizable visual workflows
 
 This architecture provides **developer control** (Prefect) while enabling **user flexibility** (n8n) without adding Node.js to the critical path.
 
@@ -94,7 +94,7 @@ flowchart TB
   end
 
   subgraph Optional["Optional User Customization"]
-    n8nPlugin["n8n Plugin<br/>(Visual Workflows)"]
+    n8nPlugin["n8n module<br/>(Visual Workflows)"]
     
     subgraph n8nFlows["Pre-built n8n Templates"]
       EmailFlow["Email → Daily Note"]
@@ -259,9 +259,9 @@ Deployment.build_from_flow(
 
 ---
 
-### 2. Optional n8n Plugin
+### 2. Optional n8n module
 
-**Why n8n as Plugin (not primary):**
+**Why n8n as module (not primary):**
 - Visual workflow builder for non-technical users
 - 400+ pre-built integrations
 - Great for multi-SaaS orchestration (Email, Slack, Notion, etc.)
@@ -430,7 +430,7 @@ prefect deployment apply
 
 ### Phase 3: User Customization (Future)
 
-**Add n8n Plugin (Optional):**
+**Add n8n module (Optional):**
 
 1. **User installs n8n** (Docker or npm)
 ```bash
@@ -600,7 +600,7 @@ function AutomationSettings() {
 
 ---
 
-### Optional Plugin: n8n ✅
+### Optional module: n8n ✅
 
 **Reasons:**
 1. **User empowerment** - Non-technical users can build workflows
@@ -646,7 +646,7 @@ automation:
       destination: git  # or 's3', 'local'
   
   n8n:
-    enabled: false  # Optional plugin
+    enabled: false  # Optional module
     webhook_base: http://localhost:5678/webhook
     auto_detect: true  # Check if n8n is running
     templates_path: ~/.secondbrain/n8n-templates/
@@ -695,7 +695,7 @@ prefect deployment build ./flows.py:lifecycle_flow -n production
 prefect deployment apply lifecycle_flow-deployment.yaml
 ```
 
-### Step 4: Add n8n Plugin (Optional, Future)
+### Step 4: Add n8n module (Optional, Future)
 ```bash
 # User installs n8n
 docker run -d -p 5678:5678 n8nio/n8n
@@ -893,7 +893,7 @@ def batch_process_notes(notes: list[str]):
 | Date | Decision | Rationale |
 |------|----------|-----------|
 | 2025-11-13 | Use Prefect as primary automation | Python-native, code-first, easy migration from APScheduler |
-| 2025-11-13 | n8n as optional plugin | User empowerment without adding complexity to core |
+| 2025-11-13 | n8n as optional module | User empowerment without adding complexity to core |
 | 2025-11-13 | Start with APScheduler for MVP | Zero dependencies, prove concept first |
 | 2025-11-13 | Prefect Cloud free tier for teams | Hosted UI, team collaboration, generous limits |
 

@@ -257,7 +257,7 @@ second-brain-foundation/
 - **Local Service/Daemon:** File watcher and AEI processing engine running on user's machine
 - **No Backend Required:** All processing happens locally unless user opts in to cloud AI
 - **Architecture Pattern:** Event-driven with file system watcher triggering AEI processing
-- **Plugin System:** Extensibility through plugin architecture for custom workflows
+- **module System:** Extensibility through module architecture for custom workflows
 
 **Rationale:**
 - Privacy and data sovereignty require local-first approach
@@ -319,7 +319,7 @@ second-brain-foundation/
 - Documentation on best practices for git workflows with note collections
 
 **Extension Points:**
-- Plugin system for custom entity types beyond People, Places, Topics, Projects
+- module system for custom entity types beyond People, Places, Topics, Projects
 - Custom sensitivity levels and permission models
 - User-defined organization rules and filing patterns
 - Integration hooks for third-party tools and services
@@ -730,7 +730,7 @@ so that **I can build the AEI system efficiently following best practices**.
 
 1. Implementation guide (packages/core/algorithms/implementation-guide.md) provides: technology recommendations, library suggestions, architecture patterns, testing strategies
 2. Guide recommends: NLP libraries (spaCy, NLTK for rule-based; transformers for ML), file watching approaches, LLM integration patterns
-3. Architecture patterns are documented: pipeline architecture for processing, event-driven for file watching, plugin system for extensibility
+3. Architecture patterns are documented: pipeline architecture for processing, event-driven for file watching, module system for extensibility
 4. Testing strategies include: unit testing algorithms with sample inputs, integration testing with file system, validation against hand-labeled dataset
 5. Performance considerations: batch processing strategies, incremental updates, caching approaches, optimization targets
 6. Guide includes: code structure recommendations, separation of concerns, modular design for testability
@@ -757,8 +757,8 @@ so that **I can use my preferred editor without compatibility issues**.
 4. Frontmatter metadata is recognized by Obsidian's properties panel
 5. Tags render correctly in Obsidian's tag pane and are searchable
 6. Graph view displays entity relationships correctly
-7. Dataview plugin compatibility: entity templates work with dataview queries (e.g., listing all People, filtering Projects by status)
-8. Documentation includes: Obsidian setup recommendations, useful plugin suggestions (Dataview, Templater), known limitations
+7. Dataview module compatibility: entity templates work with dataview queries (e.g., listing all People, filtering Projects by status)
+8. Documentation includes: Obsidian setup recommendations, useful module suggestions (Dataview, Templater), known limitations
 9. Example vault demonstrates framework in Obsidian with sample notes
 10. Screenshots show proper rendering of entity pages, relationships, and metadata
 

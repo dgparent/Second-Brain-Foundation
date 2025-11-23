@@ -1,0 +1,28 @@
+{
+  "name": "@sbf/activepieces-piece-sbf",
+  "version": "0.1.0",
+  "description": "Second Brain Foundation piece for Activepieces",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "activepieces",
+    "sbf",
+    "second-brain",
+    "automation",
+    "va",
+    "virtual-assistant"
+  ],
+  "author": "SBF Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0"
+  }
+}

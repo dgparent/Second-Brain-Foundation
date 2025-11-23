@@ -219,7 +219,7 @@
 - Probe: Why that approach?
 - Reveals: Workflow preference, time management
 
-**Q29: "What tools or plugins do you use to help with organization?"**
+**Q29: "What tools or modules do you use to help with organization?"**
 - Listen for: Automation attempts, technical sophistication
 - Probe: How well do they work?
 - Reveals: Current solutions, gaps
@@ -327,7 +327,7 @@
 - Probe: Why did it fail?
 - Reveals: Pitfalls to avoid
 
-**Q47: "What plugin or tool did you try that disappointed you?"**
+**Q47: "What module or tool did you try that disappointed you?"**
 - Listen for: Unmet expectations
 - Probe: What did you expect vs what happened?
 - Reveals: Expectations, evaluation criteria
@@ -862,7 +862,7 @@
 - Probe: Would they likely add it?
 - Reveals: Competitive moat
 
-**Q138: "If I built this as an Obsidian plugin vs standalone app, which would you prefer?"**
+**Q138: "If I built this as an Obsidian module vs standalone app, which would you prefer?"**
 - Listen for: Form factor preference
 - Probe: Why?
 - Reveals: Platform decision

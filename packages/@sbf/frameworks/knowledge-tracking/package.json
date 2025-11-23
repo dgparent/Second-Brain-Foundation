@@ -1,0 +1,32 @@
+{
+  "name": "@sbf/knowledge-tracking",
+  "version": "0.1.0",
+  "description": "Knowledge & Learning Tracking Framework for Second Brain Foundation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc",
+    "clean": "rimraf dist",
+    "test": "npx -p jest jest --config jest.config.cjs",
+    "test:watch": "jest --watch --config jest.config.cjs",
+    "test:coverage": "jest --coverage --config jest.config.cjs",
+    "test:ci": "jest --ci --coverage --maxWorkers=2 --config jest.config.cjs"
+  },
+  "keywords": [
+    "second-brain",
+    "knowledge-management",
+    "learning",
+    "spaced-repetition",
+    "knowledge-graph"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/aei": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "rimraf": "^5.0.0"
+  }
+}

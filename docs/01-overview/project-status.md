@@ -259,7 +259,7 @@ packages/cli/                    # ⚠️ Directory does not exist yet
 - [ ] Set up Discord/Reddit communities
 - [ ] Gather user feedback
 - [ ] Iterate on specifications
-- [ ] Build Obsidian plugin (community contribution)
+- [ ] Build Obsidian module (community contribution)
 
 ### **Phase 2: AI-Enabled Interface (AEI)**
 
@@ -280,7 +280,7 @@ packages/cli/                    # ⚠️ Directory does not exist yet
 - [ ] Team collaboration
 - [ ] Multi-vault support
 - [ ] Advanced search
-- [ ] Plugin API
+- [ ] module API
 - [ ] Mobile companion app
 - [ ] Self-hosted server option
 

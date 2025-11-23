@@ -105,7 +105,7 @@
 21. **BMAD-inspired AEI architecture** - similar installation and engagement patterns
 22. **Service-agnostic AI integration** - OpenAI, Anthropic, local AI models
 23. **Native NotebookLM and AnythingLLM compatibility**
-24. **Obsidian plugin** as nice-to-have if feasible (not critical path)
+24. **Obsidian module** as nice-to-have if feasible (not critical path)
 25. **Daily notes as entry point** - all new notes are date-anchored captures
 26. **48-hour conversation lifecycle** - stay intact, then summarize & dissolve into entities
 27. **Timestamp metadata** showing when data entered persistent knowledge base

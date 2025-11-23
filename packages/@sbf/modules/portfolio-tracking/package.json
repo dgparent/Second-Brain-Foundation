@@ -1,0 +1,29 @@
+{
+  "name": "@sbf/plugins-portfolio-tracking",
+  "version": "0.1.0",
+  "description": "Portfolio and investment tracking plugin for SBF",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "keywords": [
+    "sbf",
+    "plugin",
+    "portfolio",
+    "investments",
+    "finance"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/frameworks-financial-tracking": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

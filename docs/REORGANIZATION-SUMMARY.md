@@ -68,7 +68,7 @@ docs/
 │   └── technology-research/
 │       ├── open-source-research.md
 │       ├── tech-stack-decision.md
-│       ├── scenario-obsidian-plugin.md
+│       ├── scenario-obsidian-module.md
 │       ├── scenario-deep-dive.md
 │       └── schema-review-prompt.md
 │

@@ -51,7 +51,7 @@ Phase 4 has been **successfully completed**! Most of the planned work was alread
 2. ✅ jan
 3. ✅ foam
 4. ✅ vnote
-5. ✅ obsidian-textgenerator-plugin
+5. ✅ obsidian-textgenerator-module
 6. ✅ milkdown
 7. ✅ rich-markdown-editor
 8. ✅ react-md-editor
@@ -68,7 +68,7 @@ Phase 4 has been **successfully completed**! Most of the planned work was alread
 - letta
 - logseq
 - mdx-editor
-- obsidian-textgenerator (different from plugin)
+- obsidian-textgenerator (different from module)
 - open-webui
 - reagraph
 - sigmajs
@@ -413,7 +413,7 @@ If you want to prepare for public release:
    - Vector search (ChromaDB)
    - Mobile app
    - Cloud sync (optional)
-   - Plugin system
+   - module system
 
 ---
 

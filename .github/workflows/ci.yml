@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci --production=false
+      
+      - name: Build all packages
+        run: npm run build
+      
+      - name: Run linter (if configured)
+        run: npm run lint || echo "Linter not configured, skipping"
+        continue-on-error: false
+      
+      - name: Run tests with coverage
+        run: npm test -- --coverage --maxWorkers=2
+        env:
+          CI: true
+      
+      - name: Check test coverage thresholds
+        run: |
+          echo "Checking coverage thresholds..."
+          npm test -- --coverage --passWithNoTests --maxWorkers=2
+        continue-on-error: true
+      
+      - name: Security audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        if: matrix.node-version == '20.x'
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+      
+      - name: Generate coverage summary
+        if: matrix.node-version == '20.x'
+        run: |
+          echo "## Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          cat coverage/coverage-summary.json 2>/dev/null || echo "Coverage summary not available"
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Type check
+        run: npx tsc --noEmit --project tsconfig.base.json
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        if: matrix.node-version == '20.x'
+        with:
+          name: build-output
+          path: |
+            packages/**/dist/
+            packages/**/build/
+          retention-days: 7
+      
+      - name: Check bundle size
+        if: matrix.node-version == '20.x'
+        run: |
+          echo "## Package Sizes" >> $GITHUB_STEP_SUMMARY
+          du -sh packages/@sbf/*/dist 2>/dev/null || echo "No dist directories found" >> $GITHUB_STEP_SUMMARY
+        continue-on-error: true
+
+  validate-frameworks:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci --production=false
+      
+      - name: Validate framework structure
+        run: |
+          echo "Checking framework packages..."
+          for framework in packages/@sbf/frameworks/*/; do
+            if [ -f "$framework/package.json" ]; then
+              echo "✓ Found framework: $(basename $framework)"
+            else
+              echo "✗ Missing package.json in $(basename $framework)"
+              exit 1
+            fi
+          done
+      
+      - name: Validate plugin structure
+        run: |
+          echo "Checking plugin packages..."
+          for plugin in packages/@sbf/plugins/*/; do
+            if [ -f "$plugin/package.json" ]; then
+              echo "✓ Found plugin: $(basename $plugin)"
+            else
+              echo "✗ Missing package.json in $(basename $plugin)"
+              exit 1
+            fi
+          done

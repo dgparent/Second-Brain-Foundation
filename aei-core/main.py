@@ -15,7 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
 
-from api import vault, queue, ask, audit
+from api import vault, queue, ask, audit, va
 from services.watcher import FileWatcher
 
 
@@ -81,7 +81,8 @@ async def readiness_check():
     }
 
 
-# API routers (to be implemented)
+# API routers
+app.include_router(va.router, prefix="/api/v1", tags=["va-automation"])
 # app.include_router(vault.router, prefix="/api/v1/vault", tags=["vault"])
 # app.include_router(queue.router, prefix="/api/v1/queue", tags=["queue"])
 # app.include_router(ask.router, prefix="/api/v1/ask", tags=["rag"])

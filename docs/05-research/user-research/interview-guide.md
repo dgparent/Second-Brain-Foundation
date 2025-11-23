@@ -248,7 +248,7 @@ Great! Let's start with some background...
 "What have you tried to solve this problem already?"
 
 **Listen for:**
-- Obsidian plugins (Dataview, Templater, etc.)
+- Obsidian modules (Dataview, Templater, etc.)
 - Other tools (Capacities, Reflect, Notion AI)
 - Manual workflows (tagging systems, folder structures)
 - Nothing (they've given up)
@@ -521,7 +521,7 @@ Thanks so much for your time! This really helps.
 **Action:**
 - Refine value proposition (clearer messaging)
 - Pick a narrower target audience (developers vs researchers)
-- Test Obsidian plugin approach instead of desktop app
+- Test Obsidian module approach instead of desktop app
 - Do 10 more interviews with refined pitch
 - Re-assess after additional data
 
@@ -606,7 +606,7 @@ Thanks so much for your time! This really helps.
 1. Refine messaging based on feedback
 2. Do 10 more interviews with refined pitch
 3. A/B test landing page messaging
-4. Consider plugin vs desktop app pivot
+4. Consider module vs desktop app pivot
 5. Re-assess after 30 total interviews
 
 **If RED LIGHT:**

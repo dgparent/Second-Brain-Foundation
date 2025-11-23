@@ -263,7 +263,7 @@ Since Second Brain Foundation is designed as an open-source framework for commun
   - Obsidian is great but manual organization is tedious
   - Don't trust cloud AI with personal notes
   - Want AI help but need local option
-- No clear solution exists - people cobbling together plugins
+- No clear solution exists - people cobbling together modules
 
 **"Has anyone built a system that organizes notes automatically?"**
 - Discussions about using Claude/ChatGPT to organize notes
@@ -287,11 +287,11 @@ Since Second Brain Foundation is designed as an open-source framework for commun
 
 **Relevant Discussions:**
 
-**"AI-powered organization for Obsidian - plugins vs external tools"**
-- Many users trying different AI plugins (Smart Connections, Text Generator, etc.)
+**"AI-powered organization for Obsidian - modules vs external tools"**
+- Many users trying different AI modules (Smart Connections, Text Generator, etc.)
 - Frustration with fragmentation and inconsistency
 - Desire for unified AI organization approach
-- Privacy concerns with cloud-based plugins
+- Privacy concerns with cloud-based modules
 
 **"Using Obsidian with multiple tools - workflow sharing"**
 - Growing trend of using Obsidian + other tools
@@ -409,7 +409,7 @@ Since Second Brain Foundation is designed as an open-source framework for commun
 
 **Medium Potential:**
 
-6. **Obsidian Plugin Community** - Could create plugin implementing framework
+6. **Obsidian module Community** - Could create module implementing framework
 7. **Zettelkasten Community** - Methodology alignment, audience overlap
 8. **r/PKMS Community** - Active users seeking exactly what Second Brain Foundation offers
 
@@ -461,7 +461,7 @@ Second Brain Foundation is the **only open-source framework combining:**
 **1. GitHub Strategy:**
 - Position as **framework**, not competing tool
 - Open development, RFC process for major features
-- Encourage implementations (plugins, integrations, tools)
+- Encourage implementations (modules, integrations, tools)
 - Reference implementations rather than "the" implementation
 
 **2. Reddit Engagement:**
@@ -475,7 +475,7 @@ Second Brain Foundation is the **only open-source framework combining:**
 - **Logseq:** Propose frontmatter standard, compatibility
 - **Foam:** Discuss VS Code implementation
 - **Jan.ai / Ollama:** Local AI integration
-- **Obsidian Plugin Devs:** Framework adoption for plugins
+- **Obsidian module Devs:** Framework adoption for modules
 
 **4. Differentiate from Commercial Projects:**
 - Emphasize: "Not building a product to sell, building a standard to share"
@@ -517,9 +517,9 @@ Second Brain Foundation is the **only open-source framework combining:**
 
 ### Priority 2: Community Engagement
 
-4. **Obsidian Plugin Developers**
-   - Multiple developers building organization plugins
-   - Could implement Second Brain Foundation as Obsidian plugin
+4. **Obsidian module Developers**
+   - Multiple developers building organization modules
+   - Could implement Second Brain Foundation as Obsidian module
    - Engaged through Obsidian Discord and forums
 
 5. **PKMS Reddit Community Leaders**

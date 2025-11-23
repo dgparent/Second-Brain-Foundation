@@ -1,0 +1,32 @@
+{
+  "name": "@sbf/frameworks-financial-tracking",
+  "version": "0.1.0",
+  "description": "Financial tracking framework for SBF plugins - supports budgeting, portfolio, income, and expense tracking",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "keywords": [
+    "sbf",
+    "framework",
+    "financial",
+    "budgeting",
+    "portfolio",
+    "transactions"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/aei": "*",
+    "@sbf/core": "*",
+    "@sbf/memory-engine": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

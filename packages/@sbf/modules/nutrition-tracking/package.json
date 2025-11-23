@@ -1,0 +1,29 @@
+{
+  "name": "@sbf/plugins-nutrition-tracking",
+  "version": "0.1.0",
+  "description": "Nutrition and diet tracking plugin for SBF",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "keywords": [
+    "sbf",
+    "plugin",
+    "nutrition",
+    "diet",
+    "health"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/frameworks-health-tracking": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

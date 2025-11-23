@@ -374,7 +374,7 @@ and let it run automatically?"
 - Verification needs
 
 **Probe:**
-- "Rank these: open source, plugin review, gradual permissions, audit logs"
+- "Rank these: open source, module review, gradual permissions, audit logs"
 
 **Why this question:**
 - Tests trust factors
@@ -650,9 +650,9 @@ pay $99 TODAY if you had it. This solves my exact problem."
 → Differentiation isn't valued
 → PIVOT: Focus on automation, drop privacy angle
 
-**Signal 4: "Just make it an Obsidian plugin"**
+**Signal 4: "Just make it an Obsidian module"**
 → Form factor preference clear
-→ PIVOT: Plugin first, desktop later
+→ PIVOT: module first, desktop later
 
 **Signal 5: "This is cool but I already have a solution"**
 → Switching cost too high

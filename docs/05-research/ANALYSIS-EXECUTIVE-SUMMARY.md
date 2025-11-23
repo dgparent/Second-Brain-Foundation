@@ -149,7 +149,7 @@
 #### 5. MDX-Editor ✅ **100% LIBRARY USE**
 **What Was Used:**
 - Complete markdown editor → Direct dependency via npm
-- Plugin system → For future extensions
+- module system → For future extensions
 
 **What Was NOT Used:** N/A (using library directly)
 
@@ -240,7 +240,7 @@
 ---
 
 #### Configuration/Settings (2 repos) - **0% USED**
-**Repos:** obsidian-textgenerator, obsidian-textgenerator-plugin
+**Repos:** obsidian-textgenerator, obsidian-textgenerator-module
 
 **Why Not Used YET:**
 - **Phase 3 feature** - Settings panel planned but not implemented
@@ -253,13 +253,13 @@
 ---
 
 #### Duplicates/Low Value (4 repos) - **0% USED**
-**Repos:** Jan, Foam, VNote, obsidian-textgenerator-plugin
+**Repos:** Jan, Foam, VNote, obsidian-textgenerator-module
 
 **Why Not Used:**
 - **Jan:** Duplicate of our Ollama implementation
 - **Foam:** We already use wikilinks without needing this
 - **VNote:** Qt/C++ desktop app (wrong framework for React)
-- **obsidian-textgenerator-plugin:** Duplicate of main textgenerator
+- **obsidian-textgenerator-module:** Duplicate of main textgenerator
 
 **When Will Be Used:** Never (can safely delete)
 
@@ -347,7 +347,7 @@ Delete 10 unused libraries:
 Safe to delete:
 - text-generation-webui
 - Jan, Foam, VNote
-- obsidian-textgenerator-plugin
+- obsidian-textgenerator-module
 - Milkdown, Rich-MD-Editor, React-MD-Editor
 - tldraw, Excalidraw
 

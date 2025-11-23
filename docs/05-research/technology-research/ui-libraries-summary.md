@@ -41,7 +41,7 @@
 **What to Review:**
 - `/src/` - Editor components
 - Toolbar implementation
-- Plugin system
+- module system
 - Lexical integration
 
 ---
@@ -61,11 +61,11 @@
 
 ### 5. obsidian-textgenerator ⭐ 1.8K
 **Path:** `libraries/obsidian-textgenerator/`  
-**Size:** ~Small (TypeScript plugin)  
+**Size:** ~Small (TypeScript module)  
 **Focus:** AI provider integration
 
 **What to Review:**
-- `/src/` - Plugin architecture
+- `/src/` - module architecture
 - Provider configuration
 - Settings UI
 - Template system
@@ -271,7 +271,7 @@ C:/!Projects/SecondBrainFoundation/
 │   ├── SurfSense/                     # RAG UI
 │   ├── mdx-editor/                    # Editor
 │   ├── FreedomGPT/                    # Electron
-│   ├── obsidian-textgenerator/        # Plugin
+│   ├── obsidian-textgenerator/        # module
 │   ├── rich-markdown-editor/          # WYSIWYG
 │   └── react-md-editor/               # Split view
 │

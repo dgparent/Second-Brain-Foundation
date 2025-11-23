@@ -94,7 +94,7 @@ This competitive analysis serves multiple strategic objectives:
 
 **Market Dynamics:**
 - **User Polarization:** Technical users gravitate to Obsidian/Logseq (local-first), non-technical to Notion (cloud convenience)
-- **Plugin Ecosystems:** Community plugins driving differentiation (especially Obsidian)
+- **module Ecosystems:** Community modules driving differentiation (especially Obsidian)
 - **Methodology Tribalism:** Strong user identity around organizational methods (Zettelkasten, PARA, Johnny Decimal)
 - **Privacy Awakening:** Growing concern about AI provider data access driving local-first adoption
 
@@ -108,7 +108,7 @@ This competitive analysis serves multiple strategic objectives:
 
 #### Priority 1 (Core Competitors - High Market Share + High Threat)
 
-1. **Obsidian** - Dominant local-first tool, large community, plugin ecosystem
+1. **Obsidian** - Dominant local-first tool, large community, module ecosystem
 2. **Notion** - Market leader overall, cloud-first convenience, team collaboration strength
 3. **Roam Research** - Pioneered bidirectional linking, cult following, declining but influential
 
@@ -150,19 +150,19 @@ This competitive analysis serves multiple strategic objectives:
 - **Target Market:** Technical knowledge workers, researchers, developers, writers, academics
 - **Value Proposition:** "Your second brain, for you forever" - local-first, markdown, privacy-focused, extensible
 - **Go-to-Market Strategy:** Community-driven, no traditional marketing, strong word-of-mouth
-- **Strategic Focus:** Plugin ecosystem, mobile experience improvement, stability over feature velocity
+- **Strategic Focus:** module ecosystem, mobile experience improvement, stability over feature velocity
 
 #### Product/Service Analysis
 
-- **Core Offerings:** Desktop and mobile markdown editor with graph view, backlinking, plugin system
+- **Core Offerings:** Desktop and mobile markdown editor with graph view, backlinking, module system
 - **Key Features:** 
   - Local-first file storage (plain markdown files)
   - Bidirectional linking with graph visualization
-  - 1,000+ community plugins (Dataview, Templater, Canvas, etc.)
+  - 1,000+ community modules (Dataview, Templater, Canvas, etc.)
   - Vim mode, customizable themes and CSS
   - Daily notes, tags, search, outline view
 - **User Experience:** Power-user focused, steep learning curve, highly customizable, keyboard-driven
-- **Technology Stack:** Electron app, CodeMirror editor, JavaScript/TypeScript for plugins
+- **Technology Stack:** Electron app, CodeMirror editor, JavaScript/TypeScript for modules
 - **Pricing:** 
   - Core app: Free
   - Sync: $4/month ($10/month for commercial use)
@@ -173,7 +173,7 @@ This competitive analysis serves multiple strategic objectives:
 
 **Strengths:**
 - Strongest local-first commitment in market - true data ownership
-- Massive plugin ecosystem (1,000+ plugins) - community solves most feature gaps
+- Massive module ecosystem (1,000+ modules) - community solves most feature gaps
 - Markdown-native with no vendor lock-in
 - Active, passionate community (Discord 80K+ members, Reddit 150K+)
 - Performance and stability even with large vaults (10K+ notes)
@@ -182,11 +182,11 @@ This competitive analysis serves multiple strategic objectives:
 
 **Weaknesses:**
 - Steep learning curve - intimidating for non-technical users
-- No built-in AI features (plugins exist but fragmented)
+- No built-in AI features (modules exist but fragmented)
 - Collaboration features limited and awkward
 - Mobile app still catching up to desktop experience
 - No automatic organization - fully manual folder/tag management
-- Plugin quality varies widely - configuration burden on users
+- module quality varies widely - configuration burden on users
 
 #### Market Position & Performance
 
@@ -291,7 +291,7 @@ This competitive analysis serves multiple strategic objectives:
 - **Target Market:** Technical users, privacy advocates, open-source enthusiasts, researchers
 - **Value Proposition:** "Privacy-first, open-source knowledge base" - local-first, outliner-based, free
 - **Go-to-Market Strategy:** Open-source community, GitHub presence, forum engagement
-- **Strategic Focus:** Core stability, plugin system, mobile apps, sustainability
+- **Strategic Focus:** Core stability, module system, mobile apps, sustainability
 
 #### Product/Service Analysis
 
@@ -303,7 +303,7 @@ This competitive analysis serves multiple strategic objectives:
   - Daily journal workflow
   - PDF annotation
   - Flashcards and spaced repetition
-  - Plugin system (smaller than Obsidian)
+  - module system (smaller than Obsidian)
 - **User Experience:** Outliner paradigm is polarizing (love it or hate it), clean UI, decent learning curve
 - **Technology Stack:** ClojureScript, Electron, open-source on GitHub
 - **Pricing:** Free and open-source
@@ -320,7 +320,7 @@ This competitive analysis serves multiple strategic objectives:
 
 **Weaknesses:**
 - Outliner paradigm not for everyone - limits adoption
-- Smaller plugin ecosystem than Obsidian
+- Smaller module ecosystem than Obsidian
 - Less mature and stable than Obsidian
 - Business model uncertainty - sustainability concerns
 - Mobile apps still developing
@@ -332,7 +332,7 @@ This competitive analysis serves multiple strategic objectives:
 - **Customer Base:** 100K-500K users (estimate), GitHub 28K+ stars
 - **Growth Trajectory:** Growing steadily, but slower than hoped
 - **Recent Developments:**
-  - Plugin marketplace improvements
+  - module marketplace improvements
   - Sync service exploration
   - Mobile app enhancements
   - Whiteboards feature
@@ -480,7 +480,7 @@ This competitive analysis serves multiple strategic objectives:
 |---|---|---|---|---|---|
 | **Organization Approach** |
 | Manual Organization | ✓ (MVP) | ✓ | ✓ | ✓ | Limited |
-| AI-Assisted Organization | ✓ (Phase 2) | ✗ (plugins only) | Limited (Notion AI) | ✗ | ✓✓ |
+| AI-Assisted Organization | ✓ (Phase 2) | ✗ (modules only) | Limited (Notion AI) | ✗ | ✓✓ |
 | Progressive Organization | ✓✓ (unique) | ✗ | ✗ | ✗ | Partial |
 | Entity-Based Knowledge | ✓✓ | Manual | Databases | Manual | ✓ (Objects) |
 | **Privacy & Data Sovereignty** |
@@ -490,17 +490,17 @@ This competitive analysis serves multiple strategic objectives:
 | Data Portability | ✓✓ (markdown) | ✓✓ (markdown) | Partial | ✓✓ (markdown) | Limited |
 | No Vendor Lock-in | ✓✓ | ✓✓ | ✗ | ✓✓ | ✗ |
 | **AI Features** |
-| Entity Extraction | ✓ (Phase 2) | Plugin | Limited | ✗ | ✓ |
+| Entity Extraction | ✓ (Phase 2) | module | Limited | ✗ | ✓ |
 | Relationship Detection | ✓ (Phase 2) | Manual | Manual | Manual | ✓ |
-| LLM Integration | ✓ (multi-provider) | Plugin | Proprietary | Plugin | Proprietary |
-| Local AI Support | ✓✓ (first-class) | Plugin | ✗ | Plugin | ✗ |
-| Cloud AI Support | ✓ (optional) | Plugin | ✓ (Notion AI) | Plugin | ✓ |
+| LLM Integration | ✓ (multi-provider) | module | Proprietary | module | Proprietary |
+| Local AI Support | ✓✓ (first-class) | module | ✗ | module | ✗ |
+| Cloud AI Support | ✓ (optional) | module | ✓ (Notion AI) | module | ✓ |
 | **Interoperability** |
 | Pure Markdown | ✓✓ | ✓✓ | Partial | ✓✓ | ✗ |
 | Multi-Tool Compatible | ✓✓ (design goal) | Partial | ✗ | Partial | ✗ |
 | Frontmatter Metadata | ✓✓ | ✓ (Properties) | Limited | ✓ | ✗ |
 | Wikilinks | ✓ | ✓✓ | Limited | ✓✓ | ✗ |
-| API Access | Planned | Plugin API | ✓ | Limited | Limited |
+| API Access | Planned | module API | ✓ | Limited | Limited |
 | **Platform Support** |
 | Desktop (Win/Mac/Linux) | ✓ (Phase 2) | ✓✓ | ✓ (web) | ✓✓ | ✓ (web) |
 | Mobile (iOS/Android) | Planned | ✓ | ✓ | ✓ | iOS only |
@@ -508,11 +508,11 @@ This competitive analysis serves multiple strategic objectives:
 | Offline-First | ✓✓ | ✓✓ | ✗ | ✓✓ | Limited |
 | **Pricing** |
 | Free Tier | ✓ (open-source) | ✓ (core app) | ✓ (limited) | ✓ (fully free) | ✓ (limited) |
-| Paid Plans | Future (plugins?) | $4-20/mo | $8-15/mo | Exploring | ~$10/mo |
+| Paid Plans | Future (modules?) | $4-20/mo | $8-15/mo | Exploring | ~$10/mo |
 | Enterprise | Not planned | ✓ | ✓✓ | ✗ | TBD |
 | **Community & Ecosystem** |
 | Open Source | ✓✓ | ✗ | ✗ | ✓✓ | ✗ |
-| Plugin System | Planned | ✓✓✓ (1000+) | ✗ | ✓ (100+) | ✗ |
+| module System | Planned | ✓✓✓ (1000+) | ✗ | ✓ (100+) | ✗ |
 | Community Size | TBD | ✓✓✓ (huge) | ✓✓✓ (huge) | ✓ (medium) | ✓ (small) |
 | Documentation | TBD | ✓✓ | ✓✓✓ | ✓ | ✓ |
 
@@ -570,7 +570,7 @@ This competitive analysis serves multiple strategic objectives:
 - Entity system as first-class feature (Obsidian uses manual frontmatter)
 
 **Competitive Disadvantages (Obsidian advantages):**
-- Massive existing community and ecosystem (1000+ plugins)
+- Massive existing community and ecosystem (1000+ modules)
 - Mature, stable product with years of refinement
 - Strong brand and market presence
 - Beautiful graph view and UI polish
@@ -653,7 +653,7 @@ Low Data Sovereignty
 #### Vulnerable Points (Competitors)
 
 **Obsidian:**
-- **Weakness:** No built-in AI organization - relies on fragmented plugins
+- **Weakness:** No built-in AI organization - relies on fragmented modules
 - **Opportunity:** Obsidian users want AI but distrust cloud solutions - Second Brain Foundation's local AI support addresses this
 - **Attack Vector:** "AI-augmented Obsidian" messaging
 
@@ -775,7 +775,7 @@ Low Data Sovereignty
 #### Offensive Strategies (Gaining Market Share)
 
 **1. Target Obsidian's AI Gap**
-- **Tactic:** Create content comparing AI organization approaches; highlight Obsidian's plugin fragmentation
+- **Tactic:** Create content comparing AI organization approaches; highlight Obsidian's module fragmentation
 - **Message:** "Love Obsidian? Add intelligent organization without sacrificing privacy"
 - **Risk:** Obsidian could add first-party AI; mitigation: move fast on MVP and Phase 2
 
@@ -821,9 +821,9 @@ Low Data Sovereignty
 **High-Priority Partnerships:**
 
 **1. Obsidian Integration**
-- **Type:** Deep compatibility, potential plugin
+- **Type:** Deep compatibility, potential module
 - **Rationale:** Largest technical user base; natural fit
-- **Approach:** Ensure flawless Obsidian compatibility; consider official plugin
+- **Approach:** Ensure flawless Obsidian compatibility; consider official module
 - **Risk:** Obsidian sees as competitive; mitigation: frame as complementary framework
 
 **2. NotebookLM Compatibility**
@@ -848,12 +848,12 @@ Low Data Sovereignty
 
 5. **Readwise** - Import highlights and annotations
 6. **Zotero** - Academic research management
-7. **Obsidian Plugin Developers** - Ecosystem engagement
+7. **Obsidian module Developers** - Ecosystem engagement
 8. **LLM Providers** - OpenAI, Anthropic, Ollama official support
 
 **Ecosystem Development:**
 
-- **Plugin System (Phase 3+):** Enable community extensions
+- **module System (Phase 3+):** Enable community extensions
 - **Template Marketplace:** Community-created entity templates
 - **Integration Directory:** Document compatible tools and workflows
 - **Developer Advocacy:** Support third-party developers building on Second Brain Foundation
@@ -865,7 +865,7 @@ Low Data Sovereignty
 ### Key Competitors to Track
 
 **Tier 1 - Weekly Monitoring:**
-1. **Obsidian** - Feature releases, plugin ecosystem, community sentiment
+1. **Obsidian** - Feature releases, module ecosystem, community sentiment
 2. **Capacities** - AI feature development, positioning changes, funding news
 3. **Notion** - AI capabilities, pricing, enterprise push
 
@@ -974,7 +974,7 @@ Low Data Sovereignty
 
 - **Product Documentation:** Obsidian.md, Notion.so, Capacities.io, Logseq.com, Reflect.app, RoamResearch.com
 - **Community Forums:** Reddit r/ObsidianMD (150K members), r/Notion (500K), r/PKMS (30K), r/Zettelkasten (20K)
-- **GitHub:** Logseq (28K stars), Obsidian community plugins repos, Foam, Athens
+- **GitHub:** Logseq (28K stars), Obsidian community modules repos, Foam, Athens
 - **Product Reviews:** YouTube channels (Linking Your Thinking, Ali Abdaal, Keep Productive), Product Hunt
 - **Market Analysis:** Personal testing, community discussions, brainstorming session insights, project brief context
 

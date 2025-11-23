@@ -10,13 +10,13 @@
 ## 🚨 Current Situation: Analysis Paralysis
 
 **What You Said:**
-1. **Q1 (Excitement):** "I am worried that if I focus on an Obsidian plugin, then perhaps I will have a harder time to have a native application."
+1. **Q1 (Excitement):** "I am worried that if I focus on an Obsidian module, then perhaps I will have a harder time to have a native application."
 2. **Q2 (Partner):** "They should be good with it, as long as they can recover their time and efforts in money eventually."
 3. **Q3 (Decision):** "I am not sure anymore."
 
 **What I Hear:**
 - You want the **native application** (Scenario E - Desktop App)
-- You're considering the **plugin** (Scenario D) as a compromise/shortcut
+- You're considering the **module** (Scenario D) as a compromise/shortcut
 - You're **uncertain** which path actually gets you to your vision
 - You're **worried** about getting stuck in the wrong path
 
@@ -41,11 +41,11 @@ Because right now, you have three different visions competing:
 - Educational/reference material
 - **Product:** Templates, docs, methodology
 
-### Vision B: The Plugin (Scenario D - compromise)
+### Vision B: The module (Scenario D - compromise)
 - Enhancement to existing tool (Obsidian)
 - Faster to market, existing users
 - Limited by Obsidian's roadmap
-- **Product:** Obsidian plugin with AI features
+- **Product:** Obsidian module with AI features
 
 ### Vision C: The Platform (What you actually want?)
 - Standalone native application
@@ -59,36 +59,36 @@ Because right now, you have three different visions competing:
 
 ## 🔍 Deep Dive: Your True Concern
 
-### "I'm worried Obsidian plugin makes native app harder"
+### "I'm worried Obsidian module makes native app harder"
 
 **This is a VALID concern. Here's why:**
 
 #### Scenario D → E Transition Problems:
 
 1. **Brand Dilution**
-   - "Second Brain Foundation" becomes known as "that Obsidian plugin"
+   - "Second Brain Foundation" becomes known as "that Obsidian module"
    - Hard to reposition as standalone app later
    - Users ask: "Why leave Obsidian?"
 
 2. **Audience Mismatch**
-   - Obsidian plugin users **chose Obsidian** (love it, won't switch)
+   - Obsidian module users **chose Obsidian** (love it, won't switch)
    - Native app needs users who **want something different**
    - You're building wrong audience first
 
 3. **Feature Cannibalization**
-   - Plugin solves 70% of user's problems
+   - module solves 70% of user's problems
    - Native app needs to be 10x better to justify switch
-   - Users say: "Plugin is good enough, why pay more?"
+   - Users say: "module is good enough, why pay more?"
 
 4. **Technical Debt**
-   - TypeScript plugin codebase ≠ Desktop app codebase
+   - TypeScript module codebase ≠ Desktop app codebase
    - Can't reuse code, must rebuild from scratch
    - Two products to maintain instead of one
 
 5. **Opportunity Cost**
-   - 3-4 months building plugin = 3-4 months NOT building app
-   - Plugin revenue ($25K/year) isn't enough to fund app development
-   - You're stuck maintaining plugin while wanting to build app
+   - 3-4 months building module = 3-4 months NOT building app
+   - module revenue ($25K/year) isn't enough to fund app development
+   - You're stuck maintaining module while wanting to build app
 
 **Your gut is RIGHT to be worried.**
 
@@ -98,7 +98,7 @@ Because right now, you have three different visions competing:
 
 Let me be brutally honest as your analyst:
 
-**You don't actually want Scenario D (Obsidian Plugin).**
+**You don't actually want Scenario D (Obsidian module).**
 
 **You want Scenario E (Desktop App).**
 
@@ -108,11 +108,11 @@ Let me be brutally honest as your analyst:
 3. **The risk** (What if nobody wants it?)
 4. **The commitment** (12+ months of your life)
 
-**So you're considering the plugin as a "safe bet" / "stepping stone"**
+**So you're considering the module as a "safe bet" / "stepping stone"**
 
 **But here's the problem:**
 
-> **The plugin ISN'T a stepping stone to the app.**  
+> **The module ISN'T a stepping stone to the app.**  
 > **It's an entirely different product that leads you AWAY from your vision.**
 
 ---
@@ -137,14 +137,14 @@ Before we go further, answer this honestly:
 
 ---
 
-### Option B: Successful Plugin Ecosystem
-- Similar to Obsidian plugin developers (small side income)
-- Revenue: $50K-$150K/year from plugin + services
-- You're a plugin developer in someone else's ecosystem
+### Option B: Successful module Ecosystem
+- Similar to Obsidian module developers (small side income)
+- Revenue: $50K-$150K/year from module + services
+- You're a module developer in someone else's ecosystem
 - The "product" is enhancement to existing tool
 
 **If this is your vision:**
-- Scenario D (Obsidian Plugin)
+- Scenario D (Obsidian module)
 - Accept you're building for Obsidian users
 - Revenue is real but capped
 - Partner gets paid, but not life-changing money
@@ -167,7 +167,7 @@ Before we go further, answer this honestly:
 
 ## 🚦 Decision Matrix: Which Vision Fits You?
 
-| Factor | Framework (A) | Plugin (B) | Platform (C) |
+| Factor | Framework (A) | module (B) | Platform (C) |
 |--------|---------------|------------|--------------|
 | **Your Time Commitment** | 10-15 hrs/week | 15-20 hrs/week | 40+ hrs/week |
 | **Financial Risk** | Very Low | Low | High |
@@ -216,10 +216,10 @@ Before we go further, answer this honestly:
 
 ---
 
-### PATH 2: Accept the Plugin is NOT a Stepping Stone
+### PATH 2: Accept the module is NOT a Stepping Stone
 
 **What this means:**
-- Build Scenario D (Obsidian Plugin) as THE product
+- Build Scenario D (Obsidian module) as THE product
 - Accept this is your offering, not a stepping stone
 - Native app is OFF the table (at least for 2-3 years)
 - You're an Obsidian ecosystem player
@@ -230,9 +230,9 @@ Before we go further, answer this honestly:
    - Build for Obsidian users exclusively
    - Embrace the ecosystem
 
-2. **Optimize for plugin success**
-   - Best-in-class Obsidian plugin
-   - Integrate with other popular plugins
+2. **Optimize for module success**
+   - Best-in-class Obsidian module
+   - Integrate with other popular modules
    - Participate in Obsidian development
 
 3. **Build services revenue**
@@ -241,7 +241,7 @@ Before we go further, answer this honestly:
    - Training/workshops
 
 **Realistic outcome:**
-- Year 1: $25K-$50K (plugin + services)
+- Year 1: $25K-$50K (module + services)
 - Year 3: $100K-$200K
 - Lifestyle business, not venture-scale
 
@@ -276,12 +276,12 @@ Before we go further, answer this honestly:
 3. **Week 7+:** If you hit target → Build it
    - If you DON'T hit target → Pivot or abandon
 
-**Option 3C: Obsidian Plugin as "Lead Magnet"**
-1. **Months 1-4:** Build FREE Obsidian plugin (basic version)
+**Option 3C: Obsidian module as "Lead Magnet"**
+1. **Months 1-4:** Build FREE Obsidian module (basic version)
    - Drive users to landing page for "full platform"
-   - Plugin = marketing tool, not the product
+   - module = marketing tool, not the product
 2. **Months 5-6:** Collect wait list for desktop app
-   - Target: 5,000 plugin users → 500 app signups
+   - Target: 5,000 module users → 500 app signups
 3. **Months 7-12:** Build desktop app for waitlist
 
 **Which staging approach feels right?**
@@ -298,7 +298,7 @@ Let's be real about what "recover their time" means:
 
 ### Partner Math:
 
-**Scenario D (Obsidian Plugin):**
+**Scenario D (Obsidian module):**
 - Investment: 400 hours
 - Market rate: $50/hr = $20,000
 - Realistic Year 1 revenue: $25,000
@@ -373,12 +373,12 @@ Based on everything you've told me, here's what I think:
 ### 1. You Want the Desktop App (Scenario E)
 
 **Evidence:**
-- You're worried plugin limits you
+- You're worried module limits you
 - You've documented enterprise-scale architecture
 - You keep saying "native application"
-- Plugin feels like settling
+- module feels like settling
 
-**Accept this truth:** You want to build a real product, not a plugin.
+**Accept this truth:** You want to build a real product, not a module.
 
 ---
 
@@ -410,7 +410,7 @@ Based on everything you've told me, here's what I think:
 **Step 1: Validate Desktop App Demand (4 weeks)**
 
 **Week 1-2:**
-- Build landing page for DESKTOP APP (not plugin)
+- Build landing page for DESKTOP APP (not module)
 - Clear value proposition, features, pricing
 - Email capture + "Reserve early bird: $79"
 
@@ -459,17 +459,17 @@ I need you to make ONE decision before we continue:
 
 **Option A:** Desktop app is the goal, everything else is distraction
 - → I'll help you validate demand and restructure partner deal
-- → We abandon Scenario D (plugin) entirely
+- → We abandon Scenario D (module) entirely
 - → We focus on pre-sales and market validation
 
-**Option B:** I'm willing to accept plugin as THE product
+**Option B:** I'm willing to accept module as THE product
 - → I'll help you commit fully to Obsidian ecosystem
 - → We optimize Scenario D for maximum success
 - → We abandon native app dream (for now)
 
 **Option C:** I need to validate before deciding
 - → I'll help you run 4-week validation experiment
-- → We test both plugin AND desktop app demand
+- → We test both module AND desktop app demand
 - → We pick path based on data, not fear
 
 **Option D:** I'm not ready to build anything yet
@@ -492,7 +492,7 @@ I need you to make ONE decision before we continue:
 **What does success look like?**
 
 - [ ] You're known as the creator of Second Brain Framework (like PARA Method)
-- [ ] You have a thriving Obsidian plugin with 10K users and $100K/year income
+- [ ] You have a thriving Obsidian module with 10K users and $100K/year income
 - [ ] You have a successful desktop app with 5K users and $500K/year revenue
 - [ ] You tried, failed, learned, and moved on to something else
 - [ ] Something else: _______________

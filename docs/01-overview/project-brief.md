@@ -86,7 +86,7 @@ The architecture supports individual users today and scales to enterprise needs 
 - React frontend (chat, queue, graph, settings)
 - Local LLM support (Ollama, LMStudio)
 - Cloud LLM option (OpenAI, Anthropic)
-- Automated workflows (Prefect core, optional n8n plugin)
+- Automated workflows (Prefect core, optional n8n module)
 - Multi-modal input (text, voice transcripts)
 
 **What's NOT Included in MVP:**
@@ -146,7 +146,7 @@ The architecture supports individual users today and scales to enterprise needs 
 ## Competitive Positioning
 
 ### vs. Obsidian
-- **Them:** Manual organization, plugin-based AI
+- **Them:** Manual organization, module-based AI
 - **Us:** AI-native progressive organization, built-in automation
 - **Advantage:** Eliminates manual burden while maintaining compatibility
 
@@ -197,7 +197,7 @@ The architecture supports individual users today and scales to enterprise needs 
 **Data:** Markdown files + SQLite + LanceDB  
 **AI:** Local (Ollama) + Cloud (OpenAI/Anthropic)  
 **Desktop:** Electron or Tauri  
-**Automation:** Prefect (core) + n8n (optional plugin)
+**Automation:** Prefect (core) + n8n (optional module)
 
 See [Technical Architecture](../03-architecture/architecture.md) for details.
 

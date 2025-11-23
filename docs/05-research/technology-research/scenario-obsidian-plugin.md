@@ -1,16 +1,16 @@
-# Scenario D: Obsidian Plugin - Exploration Document
+# Scenario D: Obsidian module - Exploration Document
 **Second Brain Foundation - VC Partnership**
 
 **Date:** November 8, 2025  
 **Analyst:** Mary (Business Analyst)  
-**Scenario:** D - Obsidian Plugin with AI Features  
+**Scenario:** D - Obsidian module with AI Features  
 **Status:** Exploration Phase  
 
 ---
 
 ## 🎯 Quick Overview
 
-**The Pitch:** A premium Obsidian plugin that brings Second Brain Foundation's context-aware privacy and progressive organization to the 1M+ Obsidian user base.
+**The Pitch:** A premium Obsidian module that brings Second Brain Foundation's context-aware privacy and progressive organization to the 1M+ Obsidian user base.
 
 **Timeline:** 2-3 months to public launch  
 **Investment:** 320-480 developer hours  
@@ -19,14 +19,14 @@
 
 ---
 
-## 📊 Why Obsidian Plugin Makes Sense
+## 📊 Why Obsidian module Makes Sense
 
 ### The Obsidian Ecosystem (Real Data)
 
 **Market Size:**
 - **Active Users:** 1,000,000+ (as of 2024)
-- **Community Plugins:** 1,500+ available
-- **Most Downloaded Plugins:** 
+- **Community modules:** 1,500+ available
+- **Most Downloaded modules:** 
   - Dataview: 500,000+ downloads
   - Templater: 400,000+ downloads
   - Calendar: 350,000+ downloads
@@ -36,17 +36,17 @@
 - **Tech-savvy:** 70%+ developers, researchers, writers
 - **Privacy-conscious:** Primary reason for choosing Obsidian
 - **Willing to pay:** Obsidian itself is $50 one-time (or $25/year for Sync)
-- **Plugin supporters:** Active community of plugin developers and supporters
+- **module supporters:** Active community of module developers and supporters
 
 **Monetization Precedents:**
-- Several developers successfully monetize Obsidian plugins
+- Several developers successfully monetize Obsidian modules
 - Typical pricing: $3-10/month or $20-50 one-time
 - Ko-fi/Patreon donations common ($1-5/month)
-- Some plugins have 1000+ paying supporters
+- Some modules have 1000+ paying supporters
 
 ### Your Unique Position
 
-**What Makes This Different from Existing Plugins:**
+**What Makes This Different from Existing modules:**
 
 1. **Context-Aware Privacy** (No one does this)
    - Visual indicators for sensitivity levels
@@ -70,18 +70,18 @@
 
 **The Gap in the Market:**
 - Obsidian's graph view is visual but not semantic
-- No plugins handle privacy-aware AI integration
-- No plugins automate progressive organization lifecycle
-- Most plugins are single-purpose (tags, tasks, calendars)
+- No modules handle privacy-aware AI integration
+- No modules automate progressive organization lifecycle
+- Most modules are single-purpose (tags, tasks, calendars)
 
 **Your Differentiator:**
-> "The first Obsidian plugin that lets you use AI to organize your vault while maintaining granular privacy control"
+> "The first Obsidian module that lets you use AI to organize your vault while maintaining granular privacy control"
 
 ---
 
 ## 🔍 Detailed Feature Breakdown
 
-### Free Tier (Community Plugin)
+### Free Tier (Community module)
 
 **Purpose:** Build user base, drive upgrades, community goodwill
 
@@ -271,7 +271,7 @@
 
 **Alternatives Considered:**
 - **$4.99/month:** Too cheap, leaves money on table
-- **$9.99/month:** Too expensive for plugin vs full app
+- **$9.99/month:** Too expensive for module vs full app
 - **One-time $79:** Limits long-term revenue, no recurring
 
 ### Market Size & Conversion Estimates
@@ -279,10 +279,10 @@
 **Total Addressable Market (TAM):**
 - Obsidian users: 1,000,000+
 - Privacy-conscious subset: 700,000 (70%)
-- Use plugins: 600,000 (60% of total users)
+- Use modules: 600,000 (60% of total users)
 
 **Serviceable Addressable Market (SAM):**
-- Would consider paid plugins: 300,000 (30%)
+- Would consider paid modules: 300,000 (30%)
 - Match our target persona: 100,000 (10%)
 
 **Serviceable Obtainable Market (SOM) - Year 1:**
@@ -307,31 +307,31 @@
 - Growth: 40% monthly for first 3 months, 15% thereafter
 - Annual subscriptions: 30% of paid users (prefer annual)
 
-### Comparable Plugin Pricing
+### Comparable module Pricing
 
-**Data from Obsidian Plugin Ecosystem:**
+**Data from Obsidian module Ecosystem:**
 
-1. **Dataview Plugin** (free, donations)
+1. **Dataview module** (free, donations)
    - 500K+ users
    - Ko-fi supporters: ~2,000 ($3-5/month)
    - Revenue estimate: $6K-10K/year (donations)
 
-2. **Templater Plugin** (free, donations)
+2. **Templater module** (free, donations)
    - 400K+ users
    - GitHub sponsors: ~500 ($1-10/month)
    - Revenue estimate: $3K-5K/year
 
-3. **Excalidraw Plugin** (free + paid integration)
-   - Free plugin + Excalidraw.com hosting ($5/month)
+3. **Excalidraw module** (free + paid integration)
+   - Free module + Excalidraw.com hosting ($5/month)
    - Dual monetization model
 
-4. **Local REST API Plugin** (free, tips)
-   - Niche technical plugin
+4. **Local REST API module** (free, tips)
+   - Niche technical module
    - ~100 GitHub sponsors
    - Revenue estimate: $1K-2K/year
 
 **Key Insights:**
-- Most plugins are free with donations (not sustainable for full-time dev)
+- Most modules are free with donations (not sustainable for full-time dev)
 - Premium features can command $5-10/month
 - Users respect quality and ongoing development
 - Obsidian community supports developers who deliver value
@@ -449,7 +449,7 @@
 
 ## 🏆 Competitive Analysis
 
-### Direct Competitors (Obsidian Plugins)
+### Direct Competitors (Obsidian modules)
 
 #### 1. Dataview
 **What it does:** Query and display data from frontmatter  
@@ -470,7 +470,7 @@
 #### 3. Smart Connections
 **What it does:** AI-powered note similarity and chat  
 **Price:** Free + paid tiers (recently launched)  
-**Users:** 50,000+ (newer plugin)  
+**Users:** 50,000+ (newer module)  
 **Strengths:** AI integration, semantic search  
 **Weaknesses:** No privacy controls, cloud-only AI, generic prompts  
 **Our Advantage:** Privacy-aware, local AI support, structured entity system
@@ -512,10 +512,10 @@
 ### Competitive Positioning
 
 **Our Unique Position:**
-> "The only Obsidian plugin that combines AI-powered organization with granular privacy controls and local AI support"
+> "The only Obsidian module that combines AI-powered organization with granular privacy controls and local AI support"
 
 **Positioning Statement:**
-> For privacy-conscious knowledge workers who use Obsidian, Second Brain Foundation is an AI-powered organization plugin that respects your data sovereignty. Unlike Smart Connections or cloud AI tools, we give you complete control over which notes AI can access and support local AI processing.
+> For privacy-conscious knowledge workers who use Obsidian, Second Brain Foundation is an AI-powered organization module that respects your data sovereignty. Unlike Smart Connections or cloud AI tools, we give you complete control over which notes AI can access and support local AI processing.
 
 **Key Differentiators:**
 1. **Context-Aware Privacy** - No one else does this
@@ -544,7 +544,7 @@
 
 **Week 3-4: Content Creation**
 - [ ] Create GitHub repository (public development)
-- [ ] Write blog post: "Why I'm Building a Privacy-First AI Plugin"
+- [ ] Write blog post: "Why I'm Building a Privacy-First AI module"
 - [ ] Record 2-min demo video (rough prototype)
 - [ ] Share on r/ObsidianMD
 
@@ -562,9 +562,9 @@
 
 ### Phase 2: Launch Week
 
-**Day 1: Community Plugin Submission**
-- [ ] Submit to Obsidian Community Plugins
-- [ ] Post on r/ObsidianMD: "I built a privacy-first AI plugin"
+**Day 1: Community module Submission**
+- [ ] Submit to Obsidian Community modules
+- [ ] Post on r/ObsidianMD: "I built a privacy-first AI module"
 - [ ] Share in Obsidian Discord
 - [ ] Tweet with demo video
 
@@ -608,7 +608,7 @@
 
 **Partnerships:**
 - Collaborate with Dataview/Templater devs (cross-promotion)
-- Reach out to Obsidian for featured plugin status
+- Reach out to Obsidian for featured module status
 - Partner with PKM courses (offer discount code)
 
 **Metrics to Track:**
@@ -621,7 +621,7 @@
 ### Channels & Tactics
 
 **High-Leverage Channels:**
-1. **Obsidian Community Plugins** - Primary distribution
+1. **Obsidian Community modules** - Primary distribution
 2. **r/ObsidianMD** - 100K+ subscribers, highly engaged
 3. **Obsidian Discord** - 50K+ members, daily activity
 4. **Obsidian Roundup** - Weekly newsletter, 20K+ subscribers
@@ -643,21 +643,21 @@
 
 ## ⚙️ Technical Implementation
 
-### Obsidian Plugin Architecture
+### Obsidian module Architecture
 
 **Technology Stack:**
 - **Language:** TypeScript (required by Obsidian)
-- **Framework:** Obsidian Plugin API
+- **Framework:** Obsidian module API
 - **State Management:** MobX or Zustand
 - **AI Integration:** LangChain (JS/TS version)
 - **Visualization:** D3.js (for graph panel)
-- **Storage:** Obsidian's data.json (plugin settings)
+- **Storage:** Obsidian's data.json (module settings)
 
-**Plugin Structure:**
+**module Structure:**
 ```
 second-brain-foundation/
 ├── src/
-│   ├── main.ts                 # Plugin entry point
+│   ├── main.ts                 # module entry point
 │   ├── settings.ts             # Settings tab
 │   ├── commands/               # Command palette commands
 │   │   ├── create-entity.ts
@@ -680,7 +680,7 @@ second-brain-foundation/
 │   │   └── privacy-checker.ts
 │   └── styles/                 # CSS
 │       └── main.css
-├── manifest.json               # Plugin metadata
+├── manifest.json               # module metadata
 ├── package.json
 └── README.md
 ```
@@ -699,7 +699,7 @@ second-brain-foundation/
    - Solution: D3.js with Web Workers for large graphs (1000+ nodes)
    - Lazy loading for entity details
 
-4. **Plugin Settings Storage**
+4. **module Settings Storage**
    - Solution: Obsidian's data.json (encrypted if sensitive)
    - Separate API keys per AI provider
 
@@ -708,7 +708,7 @@ second-brain-foundation/
 **Phase 1: Free Tier (Weeks 1-5)**
 
 **Week 1-2: Project Setup**
-- [ ] Set up TypeScript + Obsidian plugin boilerplate
+- [ ] Set up TypeScript + Obsidian module boilerplate
 - [ ] Configure ESLint, Prettier, testing (Jest)
 - [ ] Create GitHub repo with CI/CD
 - [ ] Design settings UI
@@ -731,7 +731,7 @@ second-brain-foundation/
 - [ ] Settings for color customization
 - [ ] Documentation
 
-**Deliverable:** Community Plugin submission (free tier)
+**Deliverable:** Community module submission (free tier)
 
 ---
 
@@ -801,7 +801,7 @@ second-brain-foundation/
 - [ ] Marketing content
 
 **Planned v1.1 Features (Months 4-6):**
-- [ ] Mobile plugin support (Obsidian Mobile)
+- [ ] Mobile module support (Obsidian Mobile)
 - [ ] Voice transcript processing
 - [ ] Multi-vault sync
 - [ ] Advanced graph layouts (hierarchical, circular)
@@ -940,7 +940,7 @@ second-brain-foundation/
 - [ ] 10,000+ free users
 - [ ] 400 paid users ($2,796 MRR)
 - [ ] <5% monthly churn
-- [ ] Featured Obsidian plugin
+- [ ] Featured Obsidian module
 
 ### Year 1 Metrics
 
@@ -979,10 +979,10 @@ second-brain-foundation/
 
 **Risk 1: Obsidian API Changes**
 - **Probability:** Medium (Obsidian actively developed)
-- **Impact:** High (could break plugin)
+- **Impact:** High (could break module)
 - **Mitigation:** 
   - Follow Obsidian dev updates closely
-  - Join plugin developer Discord
+  - Join module developer Discord
   - Build with stable APIs only
 - **Contingency:** Rapid updates, version compatibility
 
@@ -1008,14 +1008,14 @@ second-brain-foundation/
 
 **Risk 1: Obsidian Adds Built-In AI Features**
 - **Probability:** Medium-High (likely in 1-2 years)
-- **Impact:** Very High (could make plugin obsolete)
+- **Impact:** Very High (could make module obsolete)
 - **Mitigation:**
   - Focus on privacy differentiators (they likely won't do local AI)
   - Build community moat (loyal users)
   - Pivot to complementary features
 - **Contingency:** Partner with Obsidian or pivot to other tools
 
-**Risk 2: Smart Connections Plugin Adds Privacy Features**
+**Risk 2: Smart Connections module Adds Privacy Features**
 - **Probability:** Low (not their focus currently)
 - **Impact:** Medium (reduces differentiation)
 - **Mitigation:**
@@ -1024,8 +1024,8 @@ second-brain-foundation/
   - Patent or open-source model
 - **Contingency:** Compete on quality and trust
 
-**Risk 3: Users Don't Want to Pay for Plugins**
-- **Probability:** Medium (most plugins are free)
+**Risk 3: Users Don't Want to Pay for modules**
+- **Probability:** Medium (most modules are free)
 - **Impact:** High (no revenue)
 - **Mitigation:**
   - Pre-launch validation (survey 100 users)
@@ -1066,7 +1066,7 @@ second-brain-foundation/
 
 ## ✅ Decision Checklist
 
-Before committing to Scenario D (Obsidian Plugin), validate these assumptions:
+Before committing to Scenario D (Obsidian module), validate these assumptions:
 
 ### Market Validation
 - [ ] Survey 20+ Obsidian users: Would you pay $6.99/month for this?
@@ -1075,8 +1075,8 @@ Before committing to Scenario D (Obsidian Plugin), validate these assumptions:
 - [ ] Build landing page, drive 100 visitors, measure email signups
 
 ### Technical Validation
-- [ ] Partner has TypeScript + Obsidian plugin experience (or can learn)
-- [ ] Test Obsidian Plugin API capabilities (can we build what we need?)
+- [ ] Partner has TypeScript + Obsidian module experience (or can learn)
+- [ ] Test Obsidian module API capabilities (can we build what we need?)
 - [ ] Prototype AI integration (LangChain + OpenAI) in 1 week
 - [ ] Confirm Ollama local AI works in Obsidian context
 
@@ -1088,9 +1088,9 @@ Before committing to Scenario D (Obsidian Plugin), validate these assumptions:
 
 ### Risk Validation
 - [ ] You're okay with Obsidian potentially adding AI features later
-- [ ] You have backup plan if plugin doesn't gain traction
+- [ ] You have backup plan if module doesn't gain traction
 - [ ] You can pivot to different monetization if needed (donations, etc.)
-- [ ] You've read Obsidian plugin developer docs and community guidelines
+- [ ] You've read Obsidian module developer docs and community guidelines
 
 ### Personal Validation
 - [ ] You're excited about this specific scenario (not just "a product")
@@ -1119,7 +1119,7 @@ Before committing to Scenario D (Obsidian Plugin), validate these assumptions:
 4. Create shared project management (Notion, Linear, etc.)
 
 **Week 3-4: Development Kickoff**
-1. Set up TypeScript + Obsidian plugin boilerplate
+1. Set up TypeScript + Obsidian module boilerplate
 2. Partner implements entity template generator (first feature)
 3. You write blog post: "Why I'm building this"
 4. Create GitHub repo and recruit beta testers
@@ -1128,7 +1128,7 @@ Before committing to Scenario D (Obsidian Plugin), validate these assumptions:
 1. Implement all free features (templates, UID, validation, indicators)
 2. Test with 10 beta users
 3. Iterate based on feedback
-4. Submit to Obsidian Community Plugins
+4. Submit to Obsidian Community modules
 
 **Week 15-26: Build Pro Tier**
 1. Implement AI features (entity extraction, relationships, graph)

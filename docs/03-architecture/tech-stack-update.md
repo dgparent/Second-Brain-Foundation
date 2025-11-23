@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Based on comprehensive research, the Second Brain Foundation automation strategy has been updated from **n8n-primary** to a **Prefect-primary with optional n8n plugin** approach. This change provides better alignment with the Python backend stack while preserving user customization flexibility.
+Based on comprehensive research, the Second Brain Foundation automation strategy has been updated from **n8n-primary** to a **Prefect-primary with optional n8n module** approach. This change provides better alignment with the Python backend stack while preserving user customization flexibility.
 
 ---
 
@@ -29,7 +29,7 @@ Based on comprehensive research, the Second Brain Foundation automation strategy
 ### 2. n8n Role Redefined
 
 **Previous:** Primary automation platform  
-**Updated:** Optional plugin for user customization
+**Updated:** Optional module for user customization
 
 **Rationale:**
 - Core workflows are code-heavy (LLM calls, Pydantic validation)
@@ -112,7 +112,7 @@ automation:
 ```yaml
 automation:
   primary: Prefect (reliable, tested core workflows)
-  optional: n8n plugin (visual customization)
+  optional: n8n module (visual customization)
   integration: n8n triggers webhooks → Prefect flows
   templates:
     - Email → Daily Note
@@ -151,7 +151,7 @@ The new integration architecture shows:
               │ HTTP Webhooks
               │
 ┌─────────────────────────────────────┐
-│   n8n Plugin (Optional)             │
+│   n8n module (Optional)             │
 │                                     │
 │   - User-defined workflows          │
 │   - Visual customization            │
@@ -173,7 +173,7 @@ The new integration architecture shows:
 ### User Benefits
 ✅ **Faster startup** - APScheduler embedded, zero external services  
 ✅ **Better observability** - Prefect UI shows workflow execution  
-✅ **Customization option** - n8n plugin for power users  
+✅ **Customization option** - n8n module for power users  
 ✅ **Reliability** - Prefect handles retries and error recovery  
 ✅ **Future-proof** - Easy to scale with Prefect Cloud
 
@@ -193,12 +193,12 @@ The new integration architecture shows:
 - **Remove:** n8n as primary automation
 - **Add:** APScheduler for MVP
 - **Add:** Prefect for production
-- **Add:** Optional n8n plugin support
+- **Add:** Optional n8n module support
 
 ### Implementation Timeline
 - **Week 1-4:** APScheduler embedded workflows
 - **Week 5-8:** Prefect upgrade (add decorators)
-- **Week 9+:** n8n plugin templates (optional)
+- **Week 9+:** n8n module templates (optional)
 
 ---
 
@@ -226,7 +226,7 @@ The new integration architecture shows:
 
 **Prefect Weaknesses:**
 - Python-only (not a con for our stack)
-- Fewer pre-built integrations (n8n plugin solves this)
+- Fewer pre-built integrations (n8n module solves this)
 
 **Conclusion:** Use **Prefect for core reliability**, offer **n8n for user flexibility**.
 
@@ -246,7 +246,7 @@ The new integration architecture shows:
 | Deployment | Docker 🔶 | Embedded ✅ | Prefect |
 | Cost | Free ✅ | Free ✅ | Tie |
 
-**Winner:** Prefect for core + n8n as optional plugin = Best of both worlds
+**Winner:** Prefect for core + n8n as optional module = Best of both worlds
 
 ---
 
@@ -333,7 +333,7 @@ The new integration architecture shows:
 - **Instructor:** https://python.useinstructor.com/
 - **LlamaIndex:** https://docs.llamaindex.ai/
 - **LanceDB:** https://lancedb.github.io/lancedb/
-- **n8n:** https://docs.n8n.io/ (for plugin integration)
+- **n8n:** https://docs.n8n.io/ (for module integration)
 
 ### Code Examples
 - `aei-core/flows/` - Prefect flow implementations
@@ -363,7 +363,7 @@ The new integration architecture shows:
 4. Document observability features
 
 ### Phase 3 (Future)
-1. Create n8n plugin templates
+1. Create n8n module templates
 2. Document webhook integration
 3. Build community template library
 4. Gather user feedback

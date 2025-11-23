@@ -204,7 +204,7 @@ A personal knowledge management ecosystem where:
 - Scheduled knowledge base enrichment (auto-search for topic updates)
 - Multi-tool translation layer
 - Natural organization principles engine (computational models)
-- Obsidian plugin
+- Obsidian module
 - Web interface or GUI tools
 - Mobile applications
 - Collaborative/federated features
@@ -257,7 +257,7 @@ The MVP is successful if:
 ### Expansion Opportunities
 
 - **Enterprise Edition**: Team knowledge bases with role-based access control
-- **Plugin Ecosystem**: Community-developed extensions for specific workflows or integrations
+- **module Ecosystem**: Community-developed extensions for specific workflows or integrations
 - **Premium AEI Models**: Fine-tuned models for specialized domains (academic research, software development, creative writing)
 - **Knowledge Graph Visualization**: Visual exploration of entity relationships and knowledge structure
 - **Migration Tools**: Import from existing PKM systems (Notion, Evernote, OneNote) with intelligent conversion
@@ -304,7 +304,7 @@ The MVP is successful if:
 **Service Architecture:**
 - Local service/daemon for AEI background processing
 - File watcher for detecting changes and triggering organization
-- Plugin architecture for extensibility
+- module architecture for extensibility
 
 **Integration Requirements:**
 - Obsidian: Compatible markdown syntax, support for `[[wikilinks]]` and tags

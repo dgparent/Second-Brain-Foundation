@@ -47,7 +47,7 @@
 | 23 | **Jan** | Duplicate functionality | 0 MB |
 | 24 | **Foam** | Duplicate functionality | 63 MB |
 | 25 | **VNote** | Wrong stack (Qt/C++) | 24 MB |
-| 26 | **obsidian-textgenerator-plugin** | Duplicate (have main repo) | 1 MB |
+| 26 | **obsidian-textgenerator-module** | Duplicate (have main repo) | 1 MB |
 | 27 | **Milkdown** | Have better alternative (MDX) | 2 MB |
 | 28 | **Rich-MD-Editor** | Archived/unmaintained | 1 MB |
 | 29 | **React-MD-Editor** | Have better alternative (MDX) | 0.3 MB |
@@ -237,7 +237,7 @@ packages/ui/src/styles/ (dark mode patterns)
 
 **What Won't Use:**
 - Obsidian-specific API
-- Plugin architecture
+- module architecture
 - Actual text generation (we have our own)
 
 **Estimated Integration:** 3-4 hours  
@@ -377,7 +377,7 @@ packages/ui/src/styles/ (dark mode patterns)
 
 ---
 
-#### 26. obsidian-textgenerator-plugin ⭐
+#### 26. obsidian-textgenerator-module ⭐
 **Reason:** Duplicate of obsidian-textgenerator  
 **Space:** ~50MB  
 **Decision:** ✅ DELETE - Exact duplicate
@@ -432,7 +432,7 @@ Remove-Item -Recurse -Force text-generation-webui
 Remove-Item -Recurse -Force jan
 Remove-Item -Recurse -Force Foam
 Remove-Item -Recurse -Force VNote
-Remove-Item -Recurse -Force obsidian-textgenerator-plugin
+Remove-Item -Recurse -Force obsidian-textgenerator-module
 Remove-Item -Recurse -Force Milkdown
 Remove-Item -Recurse -Force rich-markdown-editor
 Remove-Item -Recurse -Force react-md-editor

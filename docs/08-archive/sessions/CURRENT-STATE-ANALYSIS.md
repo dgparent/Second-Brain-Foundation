@@ -73,7 +73,7 @@ aei-core/
 
 | Library | Purpose | Value | Reason Not Used |
 |---------|---------|-------|----------------|
-| **Obsidian-TextGenerator** | LLM in Obsidian | 🟡 MED | Phase 4 plugin system |
+| **Obsidian-TextGenerator** | LLM in Obsidian | 🟡 MED | Phase 4 module system |
 | **Trilium** | Note backend | 🟢 LOW | Different architecture |
 | **Logseq** | Outliner | 🟢 LOW | Different paradigm |
 | **SilverBullet** | MD wiki | 🟢 LOW | Phase 4+ |
@@ -286,7 +286,7 @@ ls -la
 
 **Markdown Support:**
 - ✅ Use `react-markdown` + `remark-gfm`
-- ✅ Custom remark plugin for wikilinks
+- ✅ Custom remark module for wikilinks
 - ✅ Code block syntax highlighting
 
 **Notifications:**

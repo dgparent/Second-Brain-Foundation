@@ -23,7 +23,7 @@ Select and deeply analyze ONE scenario for your development partnership by exami
 
 Before we dive deep, here's my analytical view of all 5 scenarios:
 
-| Criteria | A: Templates | B: CLI Tools | C: Web AI | D: Obsidian Plugin | E: Desktop App |
+| Criteria | A: Templates | B: CLI Tools | C: Web AI | D: Obsidian module | E: Desktop App |
 |----------|-------------|--------------|-----------|-------------------|----------------|
 | **Dev Time** | 2-4 weeks | 6-8 weeks | 3-4 months | 2-3 months | 6-12 months |
 | **Dev Hours** | 40-80 | 120-200 | 480-800 | 320-480 | 1200-2400 |
@@ -37,7 +37,7 @@ Before we dive deep, here's my analytical view of all 5 scenarios:
 | **MVP Quality** | Low | Medium | Medium | **High** | High |
 
 **My Top 2 Recommendations:**
-1. **Scenario D (Obsidian Plugin)** - Fastest to market, existing user base, clear differentiation
+1. **Scenario D (Obsidian module)** - Fastest to market, existing user base, clear differentiation
 2. **Scenario C (Web AI Assistant)** - Highest differentiation, standalone product, premium pricing
 
 ---
@@ -45,9 +45,9 @@ Before we dive deep, here's my analytical view of all 5 scenarios:
 ## 🤔 Decision Framework
 
 **Question 1: What's your primary constraint?**
-- [ ] **Time** - Need revenue quickly (3-4 months) → Choose D (Obsidian Plugin)
+- [ ] **Time** - Need revenue quickly (3-4 months) → Choose D (Obsidian module)
 - [ ] **Differentiation** - Must be unique vs competition → Choose C (Web AI) or E (Desktop)
-- [ ] **Risk** - Can't afford to fail → Choose B (CLI) or D (Obsidian Plugin)
+- [ ] **Risk** - Can't afford to fail → Choose B (CLI) or D (Obsidian module)
 - [ ] **Market Size** - Need large addressable market → Choose D (Obsidian) or E (Desktop)
 
 **Question 2: What's your unfair advantage?**

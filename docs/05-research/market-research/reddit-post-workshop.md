@@ -26,9 +26,9 @@
 **Who They Are:**
 - Technical users (developers, researchers, writers)
 - Privacy-conscious (chose Obsidian for local-first)
-- Plugin enthusiasts (average user has 10+ plugins)
+- module enthusiasts (average user has 10+ modules)
 - Methodology-driven (PARA, Zettelkasten, LYT followers)
-- Willing to pay (paid for Obsidian Sync, premium plugins)
+- Willing to pay (paid for Obsidian Sync, premium modules)
 
 **What They Care About:**
 - ✅ Privacy and data sovereignty
@@ -45,7 +45,7 @@
 - ❌ Self-promotion without value
 
 **Recent Hot Topics (from browsing subreddit):**
-- AI integration discussions (canvas, plugins)
+- AI integration discussions (canvas, modules)
 - Privacy concerns with AI note-taking tools
 - Local AI (Ollama) integration
 - Automation workflows
@@ -156,7 +156,7 @@ Thanks for reading 🙏
 
 **Edit:** Wow, didn't expect this much engagement! Reading every comment. A few FAQs:
 
-- **Q: Why not just a plugin?** A: Great question. Honestly debating this. Standalone app gives more control over AI integration, but plugin has faster adoption. Open to pivoting based on feedback.
+- **Q: Why not just a module?** A: Great question. Honestly debating this. Standalone app gives more control over AI integration, but module has faster adoption. Open to pivoting based on feedback.
 
 - **Q: Pricing?** A: Thinking $99-$149 one-time or $7-10/month. But validation first, pricing later.
 
@@ -251,7 +251,7 @@ sensitivity:
 - File watcher (monitors vault changes)
 - Chroma (vector DB), NetworkX (graph DB)
 
-**Option B - Obsidian Plugin:**
+**Option B - Obsidian module:**
 - TypeScript (required by Obsidian)
 - LangChain.js
 - D3.js for graph viz
@@ -260,8 +260,8 @@ sensitivity:
 
 ## Questions for Technical Users
 
-1. **Architecture:** Desktop app vs Obsidian plugin?
-   - Plugin = faster to market, existing user base
+1. **Architecture:** Desktop app vs Obsidian module?
+   - module = faster to market, existing user base
    - Desktop app = full control, works with other tools
    
 2. **Local AI:** Is Ollama/LMStudio performance good enough?
@@ -330,7 +330,7 @@ I tried:
 **I wanted AI organization without compromising privacy.**
 
 Current tools make me choose:
-- Obsidian plugins → No AI organization
+- Obsidian modules → No AI organization
 - Notion AI → Cloud-only, vendor lock-in
 - Capacities → Cloud-only, proprietary format
 - Reflect → Cloud-only, expensive
@@ -478,7 +478,7 @@ Even if you think this is a terrible idea, tell me. Better to know now.
 
 ---
 
-P.S. For the technical folks wondering "why not just a plugin?" - I'm honestly debating this. Standalone app gives more flexibility, but plugin has better adoption. Open to pivoting based on feedback.
+P.S. For the technical folks wondering "why not just a module?" - I'm honestly debating this. Standalone app gives more flexibility, but module has better adoption. Open to pivoting based on feedback.
 ```
 
 ---
@@ -637,7 +637,7 @@ Edit: Holy crap, didn't expect this response!
 
 I'm reading every single comment. A few updates:
 
-1. **Plugin vs Desktop App:** Based on feedback, leaning toward Obsidian plugin first. Faster to market, you already trust Obsidian.
+1. **module vs Desktop App:** Based on feedback, leaning toward Obsidian module first. Faster to market, you already trust Obsidian.
 
 2. **Pricing:** Seeing a lot of "$5-7/month" or "$50 one-time" suggestions. That's super helpful.
 
@@ -656,13 +656,13 @@ Keep the feedback coming! This is incredibly valuable.
 Edit: Really appreciating the honest feedback - both positive and critical.
 
 **Main concerns I'm hearing:**
-1. "This is just Obsidian + plugins" → Fair point. I need to clarify the differentiation.
+1. "This is just Obsidian + modules" → Fair point. I need to clarify the differentiation.
 2. "Privacy and AI don't mix" → This is exactly why local AI support is critical.
 3. "I don't have this problem" → Good to know! Helps me understand market size.
 
 **What I'm learning:**
 - Privacy control resonates with ~30% of you
-- Plugin approach > desktop app (faster adoption)
+- module approach > desktop app (faster adoption)
 - Pricing sensitivity is real ($7/mo feels right)
 
 I'll update the landing page based on this feedback. Keep it coming!
@@ -773,7 +773,7 @@ Trying to understand if the problem doesn't exist or if my solution misses the m
 - Common objections (what are barriers?)
 - Feature requests (what's missing?)
 - Willingness to pay signals (pricing validation)
-- Plugin vs app preferences (architecture decision)
+- module vs app preferences (architecture decision)
 
 ### Analysis Framework
 

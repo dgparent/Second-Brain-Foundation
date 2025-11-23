@@ -129,7 +129,7 @@ Complete execution plan including:
 - Jan
 - Foam
 - VNote
-- obsidian-textgenerator-plugin
+- obsidian-textgenerator-module
 - Milkdown
 - Rich-MD-Editor
 - React-MD-Editor

@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-11-21T20:55:24.400Z",
+  "count": 8,
+  "plugins": [
+    {
+      "id": "@sbf/plugins-budgeting",
+      "name": "@sbf/plugins-budgeting",
+      "version": "0.1.0",
+      "description": "Budgeting and cash flow management plugin for SBF",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "plugin",
+        "budgeting",
+        "finance",
+        "transactions",
+        "cash-flow"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.397Z"
+    },
+    {
+      "id": "@sbf/plugins-fitness-tracking",
+      "name": "@sbf/plugins-fitness-tracking",
+      "version": "0.1.0",
+      "description": "Fitness and training tracking plugin for SBF",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "plugin",
+        "fitness",
+        "workout",
+        "health"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.398Z"
+    },
+    {
+      "id": "@sbf/highlights",
+      "name": "@sbf/highlights",
+      "version": "0.1.0",
+      "description": "Highlights & Notes Plugin for Second Brain Foundation",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "second-brain",
+        "highlights",
+        "notes",
+        "insights",
+        "reading"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.398Z"
+    },
+    {
+      "id": "@sbf/learning-tracker",
+      "name": "@sbf/learning-tracker",
+      "version": "0.1.0",
+      "description": "Learning & Skill Tracker Plugin for Second Brain Foundation",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "second-brain",
+        "learning",
+        "skills",
+        "courses",
+        "goals"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.399Z"
+    },
+    {
+      "id": "@sbf/plugins-medication-tracking",
+      "name": "@sbf/plugins-medication-tracking",
+      "version": "0.1.0",
+      "description": "Medication management and tracking plugin for SBF",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "plugin",
+        "medication",
+        "health",
+        "adherence"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.399Z"
+    },
+    {
+      "id": "@sbf/plugins-nutrition-tracking",
+      "name": "@sbf/plugins-nutrition-tracking",
+      "version": "0.1.0",
+      "description": "Nutrition and diet tracking plugin for SBF",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "plugin",
+        "nutrition",
+        "diet",
+        "health"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.399Z"
+    },
+    {
+      "id": "@sbf/plugins-portfolio-tracking",
+      "name": "@sbf/plugins-portfolio-tracking",
+      "version": "0.1.0",
+      "description": "Portfolio and investment tracking plugin for SBF",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "plugin",
+        "portfolio",
+        "investments",
+        "finance"
+      ],
+      "license": "MIT",
+      "published": "2025-11-21T20:55:24.400Z"
+    },
+    {
+      "id": "@sbf/plugin-va-dashboard",
+      "name": "@sbf/plugin-va-dashboard",
+      "version": "0.1.0",
+      "description": "Virtual Assistant Dashboard Plugin for Second Brain Foundation",
+      "keywords": [
+        "second-brain",
+        "virtual-assistant",
+        "va",
+        "client-management",
+        "task-automation"
+      ],
+      "published": "2025-11-21T20:55:24.400Z"
+    }
+  ]
+}

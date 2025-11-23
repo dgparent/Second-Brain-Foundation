@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Components Demo - Second Brain Foundation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f0f0f;
+      color: #E0E0E0;
+      overflow-x: hidden;
+    }
+
+    .app-header {
+      background: #1a1a1a;
+      border-bottom: 1px solid #3a3a3a;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .app-header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #4CAF50;
+    }
+
+    .tab-navigation {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      background: #1a1a1a;
+      border-bottom: 1px solid #3a3a3a;
+      position: sticky;
+      top: 60px;
+      z-index: 99;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      color: #E0E0E0;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: #333;
+      border-color: #4CAF50;
+    }
+
+    .tab-btn.active {
+      background: #4CAF50;
+      border-color: #4CAF50;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      min-height: calc(100vh - 120px);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .graph-container {
+      height: 800px;
+      background: #1a1a1a;
+      margin: 2rem;
+      border-radius: 8px;
+      border: 1px solid #3a3a3a;
+      position: relative;
+    }
+
+    .graph-controls {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .graph-controls button,
+    .graph-controls input {
+      padding: 0.5rem 1rem;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 4px;
+      color: #E0E0E0;
+      font-size: 0.875rem;
+    }
+
+    .graph-controls button {
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .graph-controls button:hover {
+      background: #333;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .loading-overlay.hidden {
+      display: none;
+    }
+
+    .loading-spinner {
+      text-align: center;
+    }
+
+    .spinner {
+      border: 4px solid #333;
+      border-top: 4px solid #4CAF50;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      background: #F44336;
+      color: white;
+      padding: 1rem 2rem;
+      margin: 2rem;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-header">
+    <h1>📊 Second Brain Foundation - Dashboard Demo</h1>
+  </div>
+
+  <div class="tab-navigation">
+    <button class="tab-btn active" data-tab="dashboard">Productivity Dashboard</button>
+    <button class="tab-btn" data-tab="graph">Knowledge Graph</button>
+    <button class="tab-btn" data-tab="analytics">Analytics Charts</button>
+    <button class="tab-btn" data-tab="plugins">Plugin Metrics</button>
+  </div>
+
+  <div class="error-message" id="error-message"></div>
+
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading dashboard components...</p>
+    </div>
+  </div>
+
+  <div id="dashboard-tab" class="tab-content active">
+    <div id="productivity-dashboard"></div>
+  </div>
+
+  <div id="graph-tab" class="tab-content">
+    <div class="graph-container" id="knowledge-graph-container">
+      <div class="graph-controls">
+        <input type="text" id="graph-search" placeholder="Search nodes..." />
+        <button id="reset-zoom">Reset Zoom</button>
+        <button id="refresh-graph">Refresh</button>
+      </div>
+      <div id="knowledge-graph"></div>
+    </div>
+  </div>
+
+  <div id="analytics-tab" class="tab-content">
+    <div id="analytics-charts"></div>
+  </div>
+
+  <div id="plugins-tab" class="tab-content">
+    <div id="plugin-metrics"></div>
+  </div>
+
+  <script type="module">
+    import { ProductivityDashboard, KnowledgeGraphViz, AnalyticsCharts, PluginMetrics } from './components/dashboard/index.js';
+
+    let dashboard = null;
+    let graphViz = null;
+    let charts = null;
+    let metrics = null;
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.dataset.tab;
+        
+        // Update buttons
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Update content
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        document.getElementById(`${tabName}-tab`).classList.add('active');
+        
+        // Initialize component if needed
+        if (tabName === 'graph' && !graphViz) {
+          initializeGraph();
+        }
+      });
+    });
+
+    // Initialize dashboard
+    async function initializeDashboard() {
+      try {
+        showLoading();
+        
+        dashboard = new ProductivityDashboard('productivity-dashboard');
+        await dashboard.initialize();
+        
+        hideLoading();
+      } catch (error) {
+        showError('Failed to initialize dashboard: ' + error.message);
+      }
+    }
+
+    // Initialize graph
+    async function initializeGraph() {
+      try {
+        showLoading();
+        
+        graphViz = new KnowledgeGraphViz('knowledge-graph');
+        await graphViz.initialize();
+        
+        // Attach controls
+        document.getElementById('graph-search').addEventListener('input', (e) => {
+          graphViz.search(e.target.value);
+        });
+        
+        document.getElementById('reset-zoom').addEventListener('click', () => {
+          graphViz.resetZoom();
+        });
+        
+        document.getElementById('refresh-graph').addEventListener('click', async () => {
+          await graphViz.initialize();
+        });
+        
+        hideLoading();
+      } catch (error) {
+        showError('Failed to initialize knowledge graph: ' + error.message);
+      }
+    }
+
+    // Initialize charts
+    async function initializeCharts() {
+      try {
+        charts = new AnalyticsCharts('analytics-charts');
+        await charts.initialize();
+      } catch (error) {
+        showError('Failed to initialize charts: ' + error.message);
+      }
+    }
+
+    // Initialize metrics
+    async function initializeMetrics() {
+      try {
+        metrics = new PluginMetrics('plugin-metrics');
+        await metrics.initialize();
+      } catch (error) {
+        showError('Failed to initialize metrics: ' + error.message);
+      }
+    }
+
+    // Utility functions
+    function showLoading() {
+      document.getElementById('loading-overlay').classList.remove('hidden');
+    }
+
+    function hideLoading() {
+      document.getElementById('loading-overlay').classList.add('hidden');
+    }
+
+    function showError(message) {
+      const errorEl = document.getElementById('error-message');
+      errorEl.textContent = message;
+      errorEl.classList.add('show');
+      hideLoading();
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Initialize all components in parallel
+        await Promise.all([
+          initializeDashboard(),
+          initializeCharts(),
+          initializeMetrics()
+        ]);
+      } catch (error) {
+        console.error('Initialization error:', error);
+        showError('Failed to initialize application: ' + error.message);
+      }
+    });
+
+    // Expose to window for debugging
+    window.dashboardComponents = {
+      dashboard,
+      graphViz,
+      charts,
+      metrics
+    };
+  </script>
+</body>
+</html>

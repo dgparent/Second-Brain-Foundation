@@ -1,0 +1,64 @@
+name: Validate Plugins
+
+on:
+  pull_request:
+    paths:
+      - 'packages/@sbf/plugins/**'
+      - 'packages/@sbf/frameworks/**'
+
+jobs:
+  validate-plugin-metadata:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      
+      - name: Validate plugin manifest
+        run: |
+          echo "Validating plugin manifests..."
+          
+          # Check each plugin has required files
+          for plugin_dir in packages/@sbf/plugins/*/; do
+            plugin_name=$(basename "$plugin_dir")
+            echo "Checking plugin: $plugin_name"
+            
+            # Check for package.json
+            if [ ! -f "$plugin_dir/package.json" ]; then
+              echo "✗ Missing package.json in $plugin_name"
+              exit 1
+            fi
+            
+            # Check for README.md
+            if [ ! -f "$plugin_dir/README.md" ]; then
+              echo "⚠ Warning: Missing README.md in $plugin_name"
+            fi
+            
+            # Check for src/index.ts
+            if [ ! -f "$plugin_dir/src/index.ts" ]; then
+              echo "✗ Missing src/index.ts in $plugin_name"
+              exit 1
+            fi
+            
+            echo "✓ $plugin_name structure valid"
+          done
+      
+      - name: Check framework dependencies
+        run: |
+          echo "Validating framework dependencies..."
+          
+          for plugin_dir in packages/@sbf/plugins/*/; do
+            plugin_name=$(basename "$plugin_dir")
+            
+            # Check if plugin declares framework dependencies
+            if grep -q "@sbf/frameworks" "$plugin_dir/package.json"; then
+              echo "✓ $plugin_name uses framework dependencies"
+            else
+              echo "⚠ Warning: $plugin_name doesn't use any frameworks"
+            fi
+          done

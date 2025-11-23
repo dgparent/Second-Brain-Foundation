@@ -304,7 +304,7 @@ User experience is polished:
 ### Future Enhancements (Post-MVP)
 - Graph visualization (Cytoscape/Reagraph)
 - Vector search (ChromaDB)
-- Plugin system
+- module system
 - Mobile app
 - Cloud sync (optional)
 - Collaboration features

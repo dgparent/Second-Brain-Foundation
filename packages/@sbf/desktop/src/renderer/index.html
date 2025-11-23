@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Brain Foundation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #2d2d2d;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #404040;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #242424;
+      border-right: 1px solid #404040;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .plugin-list {
+      list-style: none;
+    }
+
+    .plugin-item {
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      background: #2d2d2d;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .plugin-item:hover {
+      background: #3d3d3d;
+    }
+
+    .plugin-item.active {
+      background: #0066cc;
+    }
+
+    .welcome {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .welcome h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .welcome p {
+      color: #999;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #0052a3;
+    }
+
+    .status {
+      padding: 1rem;
+      background: #2d2d2d;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 Second Brain Foundation</h1>
+  </header>
+  
+  <main>
+    <aside class="sidebar">
+      <h3>Plugins</h3>
+      <ul class="plugin-list" id="pluginList">
+        <li class="plugin-item">📊 Dashboard</li>
+        <li class="plugin-item">💰 Finance</li>
+        <li class="plugin-item">💪 Health</li>
+        <li class="plugin-item">📚 Knowledge</li>
+        <li class="plugin-item">✅ Tasks</li>
+      </ul>
+    </aside>
+    
+    <div class="content">
+      <div class="welcome">
+        <h2>Welcome to Second Brain Foundation</h2>
+        <p>Your AI-augmented personal knowledge management system. Select a plugin from the sidebar to get started.</p>
+        <button class="btn" onclick="loadPlugins()">Load Plugins</button>
+        
+        <div class="status" id="status" style="display: none;">
+          <h3>System Status</h3>
+          <p id="statusMessage">Ready</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Access the exposed API
+    const { sbfAPI } = window;
+
+    async function loadPlugins() {
+      const statusEl = document.getElementById('status');
+      const statusMsg = document.getElementById('statusMessage');
+      
+      statusEl.style.display = 'block';
+      statusMsg.textContent = 'Loading plugins...';
+      
+      try {
+        const plugins = await sbfAPI.plugins.list();
+        statusMsg.textContent = `Loaded ${plugins.length} plugins`;
+        
+        // Update plugin list
+        const listEl = document.getElementById('pluginList');
+        if (plugins.length > 0) {
+          listEl.innerHTML = plugins.map(p => 
+            `<li class="plugin-item">${p.name}</li>`
+          ).join('');
+        }
+      } catch (error) {
+        statusMsg.textContent = 'Error loading plugins: ' + error.message;
+      }
+    }
+
+    // Add click handlers to plugin items
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('plugin-item')) {
+        document.querySelectorAll('.plugin-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        e.target.classList.add('active');
+      }
+    });
+
+    // Display system info
+    console.log('Platform:', sbfAPI.system.platform());
+    console.log('Electron Version:', sbfAPI.system.version());
+  </script>
+</body>
+</html>

@@ -55,7 +55,7 @@
    - Keep user messages as plain text
    - Test with various markdown formats
 
-4. Create custom remark plugin for wikilinks (30 min)
+4. Create custom remark module for wikilinks (30 min)
    - Parse `[[entity-name]]` syntax
    - Convert to clickable links
    - Navigate to entity detail on click
@@ -630,7 +630,7 @@ pnpm add -D @types/prismjs
 **Issue:** react-markdown doesn't natively support `[[wikilink]]` syntax
 
 **Solution:**
-- Create custom remark plugin to transform `[[name]]` to markdown links
+- Create custom remark module to transform `[[name]]` to markdown links
 - Handle in custom link component
 - Alternative: Pre-process content before rendering
 

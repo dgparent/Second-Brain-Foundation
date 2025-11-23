@@ -255,7 +255,7 @@ _[Demographics, pain points, current tools, willingness to pay]_
   
 - [ ] **Open Core Model**
   - Free: Framework (MIT license)
-  - Paid: Proprietary tools/plugins
+  - Paid: Proprietary tools/modules
   
 - [ ] **Services/Support**
   - Free: Self-service
@@ -409,24 +409,24 @@ Below are 3 potential MVP scopes. Rate each on:
 
 ---
 
-### Scenario D: "Obsidian Plugin Focus"
+### Scenario D: "Obsidian module Focus"
 **Scope:**
-- Forget standalone app - build Obsidian plugin instead
-- Plugin features:
+- Forget standalone app - build Obsidian module instead
+- module features:
   - One-click entity creation with templates
   - UID generation and validation
   - Sensitivity level indicators (color-coded)
   - Relationship graph panel
   - AI entity extraction (optional, requires API key)
-- Published to Obsidian Community Plugins
+- Published to Obsidian Community modules
 - GitHub repository with MIT license
 
 **Revenue Model:**
-- **Free Version:** Basic plugin (community plugins)
+- **Free Version:** Basic module (community modules)
 - **Pro Version ($6.99/month or $49/year):** AI features + premium templates
 - OR: Donation-based (Ko-fi, GitHub Sponsors)
 
-**Development Time:** 2-3 months (Obsidian plugin API + features)
+**Development Time:** 2-3 months (Obsidian module API + features)
 
 **Your Ratings:**
 - Feasibility: ____ / 10
@@ -635,7 +635,7 @@ _[Pricing and monetization strategy]_
 - Open-source core, monetize tooling (not the other way around)
 - Community building is 50% of the work (not an afterthought)
 
-**From Obsidian Plugin Ecosystem:**
+**From Obsidian module Ecosystem:**
 - Users will pay for convenience, not features they can build themselves
 - $5-10/month is sweet spot for indie tools
 - One-time purchase ($30-50) works better for single-purpose tools

@@ -103,7 +103,7 @@ Each entity can form `relations:` such as `depends_on`, `produces`, `complies_wi
 ### 5.3 Extensibility
 - Domain parameters can be activated contextually (manufacturing, healthcare, retail, etc.).  
 - YAML-driven definitions simplify schema updates.  
-- Designed for modular AI agents or plugins (CRM analytics, predictive maintenance, R&D correlation engines).  
+- Designed for modular AI agents or modules (CRM analytics, predictive maintenance, R&D correlation engines).  
 
 ---
 

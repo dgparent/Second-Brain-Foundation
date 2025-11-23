@@ -481,7 +481,7 @@ My journey through note-taking hell:
 
 **Obsidian (2021-2023):**
 - ✓ Local files, privacy, backlinks
-- ✓ Plugins for everything
+- ✓ modules for everything
 - ✗ Still have to organize manually
 - Verdict: Best tool, same problem
 
@@ -1318,7 +1318,7 @@ Privacy-aware AI organization for Obsidian users. You control what AI sees.
 
 **Vote on architecture:**
 - [ ] Desktop app (full control, more complex)
-- [ ] Obsidian plugin (easier, limited by API)
+- [ ] Obsidian module (easier, limited by API)
 
 **Vote on pricing model:**
 - [ ] One-time purchase ($99)
@@ -1540,7 +1540,7 @@ How do I earn trust when I'm asking to process your most personal data?
 
 **What I'm considering:**
 
-**Option 1: Obsidian Plugin**
+**Option 1: Obsidian module**
 - Vetted by Obsidian team
 - Code is public
 - Community can audit
@@ -1660,12 +1660,12 @@ Building privacy-aware AI organization. Can't decide between two approaches.
 
 ---
 
-### VERSION A: Obsidian Plugin
+### VERSION A: Obsidian module
 
 **Pros:**
 - ✅ Faster to build (2-3 months)
 - ✅ Works with existing Obsidian setup
-- ✅ Community trust (plugin review process)
+- ✅ Community trust (module review process)
 - ✅ Lower learning curve
 
 **Cons:**
@@ -1697,7 +1697,7 @@ Building privacy-aware AI organization. Can't decide between two approaches.
 
 **Vote:**
 
-Comment "A" for Plugin or "B" for Desktop App
+Comment "A" for module or "B" for Desktop App
 
 **Bonus:** Say why
 

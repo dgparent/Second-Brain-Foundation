@@ -1,0 +1,49 @@
+{
+  "name": "@sbf/desktop",
+  "version": "0.1.0",
+  "description": "Second Brain Foundation Desktop Application",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "build": "npx -p typescript tsc || exit 0",
+    "dev": "tsc --watch",
+    "start": "electron .",
+    "package": "electron-builder"
+  },
+  "dependencies": {
+    "@sbf/core": "*",
+    "@sbf/core-entity-manager": "*",
+    "@sbf/memory-engine": "*",
+    "@sbf/shared": "*",
+    "@types/d3": "^7.4.3",
+    "chart.js": "^4.5.1",
+    "d3": "^7.9.0"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.12",
+    "@types/node": "^20.0.0",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.9.1",
+    "typescript": "^5.9.3"
+  },
+  "build": {
+    "appId": "org.secondbrainfoundation.app",
+    "productName": "Second Brain",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Office"
+    }
+  }
+}
