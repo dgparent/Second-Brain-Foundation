@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "generated": "2025-11-21T20:55:24.400Z",
-  "count": 8,
-  "plugins": [
+  "generated": "2025-11-23T21:06:00.000Z",
+  "count": 11,
+  "modules": [
     {
       "id": "@sbf/plugins-budgeting",
       "name": "@sbf/plugins-budgeting",
@@ -129,6 +129,57 @@
         "task-automation"
       ],
       "published": "2025-11-21T20:55:24.400Z"
+    },
+    {
+      "id": "@sbf/hospitality-ops",
+      "name": "@sbf/hospitality-ops",
+      "version": "0.1.0",
+      "description": "Hospitality Operations Module - Hotels, resorts, housekeeping, and guest management",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "hospitality",
+        "hotel",
+        "housekeeping",
+        "guest-management",
+        "operations"
+      ],
+      "license": "MIT",
+      "published": "2025-11-23T21:06:00.000Z"
+    },
+    {
+      "id": "@sbf/logistics-ops",
+      "name": "@sbf/logistics-ops",
+      "version": "0.1.0",
+      "description": "Logistics Operations Module - Freight forwarding, customs, and supply chain management",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "logistics",
+        "freight",
+        "customs",
+        "supply-chain",
+        "operations"
+      ],
+      "license": "MIT",
+      "published": "2025-11-23T21:06:00.000Z"
+    },
+    {
+      "id": "@sbf/insurance-ops",
+      "name": "@sbf/insurance-ops",
+      "version": "0.1.0",
+      "description": "Insurance Operations Module - Claims processing, field inspections, and loss adjustment",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "insurance",
+        "claims",
+        "inspections",
+        "adjusters",
+        "operations"
+      ],
+      "license": "MIT",
+      "published": "2025-11-23T21:06:00.000Z"
     }
   ]
 }
