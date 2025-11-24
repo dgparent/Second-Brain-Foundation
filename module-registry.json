@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2025-11-23T21:06:00.000Z",
-  "count": 11,
+  "generated": "2025-11-24T03:24:33.381Z",
+  "count": 15,
   "modules": [
     {
       "id": "@sbf/plugins-budgeting",
@@ -114,7 +114,7 @@
         "finance"
       ],
       "license": "MIT",
-      "published": "2025-11-21T20:55:24.400Z"
+      "published": "2025-11-21T20:55:24.4Z"
     },
     {
       "id": "@sbf/plugin-va-dashboard",
@@ -128,7 +128,7 @@
         "client-management",
         "task-automation"
       ],
-      "published": "2025-11-21T20:55:24.400Z"
+      "published": "2025-11-21T20:55:24.4Z"
     },
     {
       "id": "@sbf/hospitality-ops",
@@ -145,7 +145,7 @@
         "operations"
       ],
       "license": "MIT",
-      "published": "2025-11-23T21:06:00.000Z"
+      "published": "2025-11-23T21:06:00Z"
     },
     {
       "id": "@sbf/logistics-ops",
@@ -162,7 +162,7 @@
         "operations"
       ],
       "license": "MIT",
-      "published": "2025-11-23T21:06:00.000Z"
+      "published": "2025-11-23T21:06:00Z"
     },
     {
       "id": "@sbf/insurance-ops",
@@ -179,7 +179,75 @@
         "operations"
       ],
       "license": "MIT",
-      "published": "2025-11-23T21:06:00.000Z"
+      "published": "2025-11-23T21:06:00Z"
+    },
+    {
+      "keywords": [
+        "sbf",
+        "construction",
+        "project-management",
+        "safety",
+        "quality-control",
+        "operations"
+      ],
+      "id": "@sbf/construction-ops",
+      "description": "Construction Operations Module - Project management, safety, and quality control",
+      "version": "0.1.0",
+      "published": "2025-11-24T03:24:33.376Z",
+      "name": "@sbf/construction-ops",
+      "author": "Second Brain Foundation",
+      "license": "MIT"
+    },
+    {
+      "keywords": [
+        "sbf",
+        "manufacturing",
+        "production",
+        "quality-control",
+        "maintenance",
+        "operations"
+      ],
+      "id": "@sbf/manufacturing-ops",
+      "description": "Manufacturing Operations Module - Production tracking, QC, and maintenance",
+      "version": "0.1.0",
+      "published": "2025-11-24T03:24:33.379Z",
+      "name": "@sbf/manufacturing-ops",
+      "author": "Second Brain Foundation",
+      "license": "MIT"
+    },
+    {
+      "keywords": [
+        "sbf",
+        "security",
+        "guards",
+        "patrol",
+        "incident-reporting",
+        "operations"
+      ],
+      "id": "@sbf/security-ops",
+      "description": "Security Operations Module - Guard management, patrol, and incident reporting",
+      "version": "0.1.0",
+      "published": "2025-11-24T03:24:33.379Z",
+      "name": "@sbf/security-ops",
+      "author": "Second Brain Foundation",
+      "license": "MIT"
+    },
+    {
+      "keywords": [
+        "sbf",
+        "renewable-energy",
+        "solar",
+        "wind",
+        "energy-monitoring",
+        "operations"
+      ],
+      "id": "@sbf/renewable-ops",
+      "description": "Renewable Energy Operations Module - Solar and wind energy monitoring and maintenance",
+      "version": "0.1.0",
+      "published": "2025-11-24T03:24:33.379Z",
+      "name": "@sbf/renewable-ops",
+      "author": "Second Brain Foundation",
+      "license": "MIT"
     }
   ]
 }
