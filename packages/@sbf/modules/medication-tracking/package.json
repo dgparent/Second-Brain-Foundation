@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-medication-tracking",
-  "version": "0.1.0",
+  "name": "@sbf/modules-medication-tracking",
+  "version": "1.0.0",
   "description": "Medication management and tracking plugin for SBF",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

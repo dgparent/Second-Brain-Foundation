@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/healthcare",
-  "version": "0.1.0",
+  "name": "@sbf/modules-healthcare",
+  "version": "1.0.0",
   "description": "Healthcare Module for Second Brain Foundation - Medical appointments, provider tracking, and health document management",
   "type": "module",
   "main": "dist/index.js",

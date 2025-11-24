@@ -1,5 +1,5 @@
 /**
- * @sbf/plugins-personal-tasks
+ * @sbf/modules-personal-tasks
  * Personal Task Management Plugin for Second Brain Foundation
  * 
  * Validates the Task Management Framework with personal productivity features:

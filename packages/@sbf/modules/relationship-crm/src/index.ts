@@ -1,5 +1,5 @@
 /**
- * @sbf/plugins-relationship-crm
+ * @sbf/modules-relationship-crm
  * 
  * CRM and Contact Management Plugin for Second Brain Foundation
  * 

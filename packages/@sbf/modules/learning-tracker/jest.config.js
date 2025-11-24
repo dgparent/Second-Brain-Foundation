@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 module.exports = {
-  displayName: '@sbf/learning-tracker',
+  displayName: '@sbf/modules-learning-tracker',
   preset: 'ts-jest',
   testEnvironment: 'node',
   rootDir: '.',

@@ -1,4 +1,4 @@
-import { KnowledgeNodeEntity, KnowledgeNodeMetadata, createKnowledgeNode } from '@sbf/knowledge-tracking';
+import { KnowledgeNodeEntity, KnowledgeNodeMetadata, createKnowledgeNode } from '@sbf/frameworks-knowledge-tracking';
 
 export interface HighlightMetadata extends KnowledgeNodeMetadata {
   highlight_text: string;

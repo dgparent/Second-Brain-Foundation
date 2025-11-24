@@ -10,4 +10,4 @@ export {
   categorizeByTopic,
   searchNodes,
   formatNodeSummary
-} from '@sbf/knowledge-tracking';
+} from '@sbf/frameworks-knowledge-tracking';

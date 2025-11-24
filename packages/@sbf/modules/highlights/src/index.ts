@@ -9,4 +9,4 @@ export {
   createKnowledgeNode,
   updateNodeMastery,
   markNodeReviewed
-} from '@sbf/knowledge-tracking';
+} from '@sbf/frameworks-knowledge-tracking';

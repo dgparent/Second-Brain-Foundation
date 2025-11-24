@@ -1,4 +1,4 @@
-# @sbf/legal-ops
+# @sbf/modules-legal-ops
 
 Legal operations module for law firms, legal departments, and solo practitioners.
 
@@ -17,7 +17,7 @@ Legal operations module for law firms, legal departments, and solo practitioners
 ## Installation
 
 ```bash
-npm install @sbf/legal-ops
+npm install @sbf/modules-legal-ops
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ npm install @sbf/legal-ops
 ### Legal Matter Management
 
 ```typescript
-import { createLegalMatter, getMattersByStatus } from '@sbf/legal-ops';
+import { createLegalMatter, getMattersByStatus } from '@sbf/modules-legal-ops';
 
 // Create a new matter
 const matter = createLegalMatter({
@@ -45,7 +45,7 @@ const activeMatters = getMattersByStatus(allMatters, 'active');
 ### Filing Deadlines
 
 ```typescript
-import { createFilingDeadline, getUpcomingDeadlines } from '@sbf/legal-ops';
+import { createFilingDeadline, getUpcomingDeadlines } from '@sbf/modules-legal-ops';
 
 // Create a filing deadline
 const deadline = createFilingDeadline({
@@ -64,7 +64,7 @@ const upcoming = getUpcomingDeadlines(allDeadlines, 30);
 ### Discovery Management
 
 ```typescript
-import { createDiscoveryRequest, getOverdueDiscovery } from '@sbf/legal-ops';
+import { createDiscoveryRequest, getOverdueDiscovery } from '@sbf/modules-legal-ops';
 
 // Create discovery request
 const request = createDiscoveryRequest({
@@ -83,7 +83,7 @@ const overdue = getOverdueDiscovery(allRequests);
 ### Evidence Management
 
 ```typescript
-import { createEvidenceItem, addChainOfCustody, authenticateEvidence } from '@sbf/legal-ops';
+import { createEvidenceItem, addChainOfCustody, authenticateEvidence } from '@sbf/modules-legal-ops';
 
 // Create evidence item
 let evidence = createEvidenceItem({
@@ -110,7 +110,7 @@ evidence = authenticateEvidence(evidence, 'expert-001');
 ### Time Tracking & Billing
 
 ```typescript
-import { createTimeEntry, createInvoiceRecord, calculateTotalBillableTime } from '@sbf/legal-ops';
+import { createTimeEntry, createInvoiceRecord, calculateTotalBillableTime } from '@sbf/modules-legal-ops';
 
 // Create time entry
 const entry = createTimeEntry({
@@ -140,7 +140,7 @@ const invoice = createInvoiceRecord({
 ### Analytics
 
 ```typescript
-import { getMatterStatistics, getDiscoveryStatistics, getBillingStatistics } from '@sbf/legal-ops';
+import { getMatterStatistics, getDiscoveryStatistics, getBillingStatistics } from '@sbf/modules-legal-ops';
 
 // Matter statistics
 const matterStats = getMatterStatistics(allMatters);

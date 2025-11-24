@@ -1,5 +1,5 @@
 /**
- * @sbf/legal-ops
+ * @sbf/modules-legal-ops
  * 
  * Legal operations module for law firms and legal departments
  * 

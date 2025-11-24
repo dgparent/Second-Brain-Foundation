@@ -1,5 +1,5 @@
 /**
- * @sbf/restaurant-haccp
+ * @sbf/modules-restaurant-haccp
  * 
  * Restaurant HACCP and food safety compliance module
  */

@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-fitness-tracking",
-  "version": "0.1.0",
+  "name": "@sbf/modules-fitness-tracking",
+  "version": "1.0.0",
   "description": "Fitness and training tracking plugin for SBF",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

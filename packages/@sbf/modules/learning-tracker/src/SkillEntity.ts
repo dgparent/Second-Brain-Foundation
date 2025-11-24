@@ -1,4 +1,4 @@
-import { KnowledgeNodeEntity, KnowledgeNodeMetadata } from '@sbf/knowledge-tracking';
+import { KnowledgeNodeEntity, KnowledgeNodeMetadata } from '@sbf/frameworks-knowledge-tracking';
 
 export interface SkillMetadata extends KnowledgeNodeMetadata {
   skill_type: 'technical' | 'soft' | 'language' | 'creative' | 'physical' | 'other';

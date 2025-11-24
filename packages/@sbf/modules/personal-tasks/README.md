@@ -1,6 +1,6 @@
 # Personal Task Manager Plugin
 
-**Package:** `@sbf/plugins-personal-tasks`  
+**Package:** `@sbf/modules-personal-tasks`  
 **Version:** 0.1.0  
 **Status:** ✅ Complete
 
@@ -48,7 +48,7 @@ A comprehensive personal task management plugin for Second Brain Foundation that
 ## Quick Start
 
 ```typescript
-import { PersonalTaskManager } from '@sbf/plugins-personal-tasks';
+import { PersonalTaskManager } from '@sbf/modules-personal-tasks';
 
 // Create manager
 const manager = new PersonalTaskManager();
@@ -184,7 +184,7 @@ const inbox = createInboxTask('Random idea');
 Automatically categorizes tasks into 4 quadrants:
 
 ```typescript
-import { EisenhowerMatrixWorkflow } from '@sbf/plugins-personal-tasks';
+import { EisenhowerMatrixWorkflow } from '@sbf/modules-personal-tasks';
 
 // Categorize single task
 const categorization = EisenhowerMatrixWorkflow.categorize(task);
@@ -233,7 +233,7 @@ console.log('Stats:', recommendations.stats);
 Create optimized daily plans with time blocking:
 
 ```typescript
-import { DailyPlanningWorkflow } from '@sbf/plugins-personal-tasks';
+import { DailyPlanningWorkflow } from '@sbf/modules-personal-tasks';
 
 // Create daily plan
 const plan = DailyPlanningWorkflow.createDailyPlan(tasks, '2025-12-15', {
@@ -272,7 +272,7 @@ const suggestions = DailyPlanningWorkflow.suggestTimeBlocks(tasks, '2025-12-15')
 Comprehensive productivity analytics:
 
 ```typescript
-import { ProductivityMetricsUtility } from '@sbf/plugins-personal-tasks';
+import { ProductivityMetricsUtility } from '@sbf/modules-personal-tasks';
 
 // Calculate overall metrics
 const metrics = ProductivityMetricsUtility.calculateMetrics(tasks);

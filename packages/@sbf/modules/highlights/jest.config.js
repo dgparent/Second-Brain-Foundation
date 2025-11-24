@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 module.exports = {
-  displayName: '@sbf/highlights',
+  displayName: '@sbf/modules-highlights',
   preset: 'ts-jest',
   testEnvironment: 'node',
   rootDir: '.',

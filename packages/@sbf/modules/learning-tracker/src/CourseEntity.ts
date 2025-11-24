@@ -1,4 +1,4 @@
-import { LearningResourceEntity, LearningResourceMetadata } from '@sbf/knowledge-tracking';
+import { LearningResourceEntity, LearningResourceMetadata } from '@sbf/frameworks-knowledge-tracking';
 
 export interface CourseMetadata extends LearningResourceMetadata {
   platform?: string;

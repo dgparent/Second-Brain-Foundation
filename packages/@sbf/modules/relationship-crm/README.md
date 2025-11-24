@@ -1,4 +1,4 @@
-# @sbf/plugins-relationship-crm
+# @sbf/modules-relationship-crm
 
 > CRM and Contact Management Plugin for Second Brain Foundation
 
@@ -30,13 +30,13 @@ A comprehensive CRM (Customer Relationship Management) plugin that provides prof
 ### Installation
 
 ```bash
-npm install @sbf/plugins-relationship-crm
+npm install @sbf/modules-relationship-crm
 ```
 
 ### Basic Usage
 
 ```typescript
-import { CRMService } from '@sbf/plugins-relationship-crm';
+import { CRMService } from '@sbf/modules-relationship-crm';
 
 // Initialize CRM
 const crm = new CRMService(memoryEngine, aeiProvider);
@@ -199,7 +199,7 @@ const reminders = await workflow.generateReminders({
 Advanced contact search with multiple criteria:
 
 ```typescript
-import { ContactSearchUtility } from '@sbf/plugins-relationship-crm';
+import { ContactSearchUtility } from '@sbf/modules-relationship-crm';
 
 const search = new ContactSearchUtility(memoryEngine);
 
@@ -217,7 +217,7 @@ const results = await search.findContacts({
 Calculate relationship strength with customizable algorithms:
 
 ```typescript
-import { RelationshipStrengthCalculator } from '@sbf/plugins-relationship-crm';
+import { RelationshipStrengthCalculator } from '@sbf/modules-relationship-crm';
 
 const calculator = new RelationshipStrengthCalculator();
 
@@ -235,7 +235,7 @@ const strength = calculator.calculate({
 Analyze your network and find insights:
 
 ```typescript
-import { NetworkAnalyzer } from '@sbf/plugins-relationship-crm';
+import { NetworkAnalyzer } from '@sbf/modules-relationship-crm';
 
 const analyzer = new NetworkAnalyzer(memoryEngine);
 
@@ -303,7 +303,7 @@ npm run test:coverage
 
 ```typescript
 // In desktop app settings
-import { CRMService } from '@sbf/plugins-relationship-crm';
+import { CRMService } from '@sbf/modules-relationship-crm';
 
 const crm = new CRMService(window.memoryEngine, window.aeiProvider);
 

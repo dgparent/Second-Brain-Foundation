@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/learning-tracker",
-  "version": "0.1.0",
+  "name": "@sbf/modules-learning-tracker",
+  "version": "1.0.0",
   "description": "Learning & Skill Tracker Plugin for Second Brain Foundation",
   "type": "module",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@sbf/aei": "*",
-    "@sbf/knowledge-tracking": "*"
+    "@sbf/frameworks-knowledge-tracking": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.0"

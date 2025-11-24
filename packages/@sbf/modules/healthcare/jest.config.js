@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 module.exports = {
-  displayName: '@sbf/healthcare',
+  displayName: '@sbf/modules-healthcare',
   preset: 'ts-jest',
   testEnvironment: 'node',
   rootDir: '.',

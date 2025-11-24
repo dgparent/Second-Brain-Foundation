@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-relationship-crm",
-  "version": "0.1.0",
+  "name": "@sbf/modules-relationship-crm",
+  "version": "1.0.0",
   "description": "CRM and contact management plugin for SBF - validates Relationship Tracking Framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

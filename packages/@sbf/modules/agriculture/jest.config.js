@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 module.exports = {
-  displayName: '@sbf/agriculture',
+  displayName: '@sbf/modules-agriculture',
   preset: 'ts-jest',
   testEnvironment: 'node',
   rootDir: '.',

@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-nutrition-tracking",
-  "version": "0.1.0",
+  "name": "@sbf/modules-nutrition-tracking",
+  "version": "1.0.0",
   "description": "Nutrition and diet tracking plugin for SBF",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

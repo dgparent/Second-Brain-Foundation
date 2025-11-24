@@ -1,4 +1,4 @@
-import { KnowledgeNodeEntity, KnowledgeNodeMetadata, createKnowledgeNode } from '@sbf/knowledge-tracking';
+import { KnowledgeNodeEntity, KnowledgeNodeMetadata, createKnowledgeNode } from '@sbf/frameworks-knowledge-tracking';
 
 export interface InsightMetadata extends KnowledgeNodeMetadata {
   insight_type: 'connection' | 'realization' | 'question' | 'idea' | 'pattern';

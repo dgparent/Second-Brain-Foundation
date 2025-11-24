@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/agriculture",
-  "version": "0.1.0",
+  "name": "@sbf/modules-agriculture",
+  "version": "1.0.0",
   "description": "Agriculture Module for Second Brain Foundation - Farm management, field operations, harvest tracking, and post-harvest processing with full traceability",
   "type": "module",
   "main": "dist/index.js",

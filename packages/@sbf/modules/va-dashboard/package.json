@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugin-va-dashboard",
-  "version": "0.1.0",
+  "name": "@sbf/modules-va-dashboard",
+  "version": "1.0.0",
   "description": "Virtual Assistant Dashboard Plugin for Second Brain Foundation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-budgeting",
-  "version": "0.1.0",
+  "name": "@sbf/modules-budgeting",
+  "version": "1.0.0",
   "description": "Budgeting and cash flow management plugin for SBF",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

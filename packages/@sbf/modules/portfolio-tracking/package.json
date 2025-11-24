@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-portfolio-tracking",
-  "version": "0.1.0",
+  "name": "@sbf/modules-portfolio-tracking",
+  "version": "1.0.0",
   "description": "Portfolio and investment tracking plugin for SBF",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

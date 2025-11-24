@@ -1,6 +1,6 @@
 {
-  "name": "@sbf/plugins-personal-tasks",
-  "version": "0.1.0",
+  "name": "@sbf/modules-personal-tasks",
+  "version": "1.0.0",
   "description": "Personal task management plugin for SBF - validates Task Management Framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

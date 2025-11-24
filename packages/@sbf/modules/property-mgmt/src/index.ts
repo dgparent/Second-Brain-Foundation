@@ -1,5 +1,5 @@
 /**
- * @sbf/property-mgmt
+ * @sbf/modules-property-mgmt
  * 
  * Property management module for real estate operations
  */

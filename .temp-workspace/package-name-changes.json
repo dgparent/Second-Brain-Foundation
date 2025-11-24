@@ -1,0 +1,94 @@
+[
+  {
+    "New": "@sbf/modules-budgeting",
+    "Old": "@sbf/plugins-budgeting"
+  },
+  {
+    "New": "@sbf/modules-fitness-tracking",
+    "Old": "@sbf/plugins-fitness-tracking"
+  },
+  {
+    "New": "@sbf/modules-medication-tracking",
+    "Old": "@sbf/plugins-medication-tracking"
+  },
+  {
+    "New": "@sbf/modules-nutrition-tracking",
+    "Old": "@sbf/plugins-nutrition-tracking"
+  },
+  {
+    "New": "@sbf/modules-personal-tasks",
+    "Old": "@sbf/plugins-personal-tasks"
+  },
+  {
+    "New": "@sbf/modules-portfolio-tracking",
+    "Old": "@sbf/plugins-portfolio-tracking"
+  },
+  {
+    "New": "@sbf/modules-relationship-crm",
+    "Old": "@sbf/plugins-relationship-crm"
+  },
+  {
+    "New": "@sbf/modules-va-dashboard",
+    "Old": "@sbf/plugin-va-dashboard"
+  },
+  {
+    "New": "@sbf/modules-agriculture",
+    "Old": "@sbf/agriculture"
+  },
+  {
+    "New": "@sbf/modules-healthcare",
+    "Old": "@sbf/healthcare"
+  },
+  {
+    "New": "@sbf/modules-highlights",
+    "Old": "@sbf/highlights"
+  },
+  {
+    "New": "@sbf/modules-learning-tracker",
+    "Old": "@sbf/learning-tracker"
+  },
+  {
+    "New": "@sbf/frameworks-knowledge-tracking",
+    "Old": "@sbf/knowledge-tracking"
+  },
+  {
+    "New": "@sbf/modules-construction-ops",
+    "Old": "@sbf/construction-ops"
+  },
+  {
+    "New": "@sbf/modules-hospitality-ops",
+    "Old": "@sbf/hospitality-ops"
+  },
+  {
+    "New": "@sbf/modules-insurance-ops",
+    "Old": "@sbf/insurance-ops"
+  },
+  {
+    "New": "@sbf/modules-logistics-ops",
+    "Old": "@sbf/logistics-ops"
+  },
+  {
+    "New": "@sbf/modules-manufacturing-ops",
+    "Old": "@sbf/manufacturing-ops"
+  },
+  {
+    "New": "@sbf/modules-renewable-ops",
+    "Old": "@sbf/renewable-ops"
+  },
+  {
+    "New": "@sbf/modules-security-ops",
+    "Old": "@sbf/security-ops"
+  },
+  {
+    "New": "@sbf/modules-legal-ops",
+    "Old": "@sbf/legal-ops"
+  },
+  {
+    "New": "@sbf/modules-property-mgmt",
+    "Old": "@sbf/property-ops"
+  },
+  {
+    "New": "@sbf/modules-restaurant-haccp",
+    "Old": "@sbf/restaurant-haccp-ops"
+  }
+]

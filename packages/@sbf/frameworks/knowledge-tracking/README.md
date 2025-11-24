@@ -79,7 +79,7 @@ import {
   createKnowledgeNode,
   KnowledgeGraphWorkflow,
   SpacedRepetitionWorkflow
-} from '@sbf/knowledge-tracking';
+} from '@sbf/frameworks-knowledge-tracking';
 
 // Create a knowledge node
 const node = createKnowledgeNode(
@@ -114,7 +114,7 @@ const dueNodes = srWorkflow.getDueForReview(nodes);
 ## Installation
 
 ```bash
-npm install @sbf/knowledge-tracking
+npm install @sbf/frameworks-knowledge-tracking
 ```
 
 ## License
