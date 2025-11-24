@@ -1,0 +1,28 @@
+{
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/jest": "^29.5.0",
+    "typescript": "^5.9.0",
+    "jest": "^29.5.0"
+  },
+  "name": "@sbf/legal-ops",
+  "version": "1.0.0",
+  "keywords": [
+    "second-brain",
+    "legal",
+    "practice-management",
+    "law-firm"
+  ],
+  "dependencies": {
+    "@sbf/shared": "workspace:*"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "main": "dist/index.js",
+  "description": "Legal practice management module for Second Brain Foundation",
+  "types": "dist/index.d.ts"
+}

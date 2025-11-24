@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2025-11-24T03:24:33.381Z",
-  "count": 15,
+  "generated": "2025-11-24T04:15:00.000Z",
+  "count": 18,
   "modules": [
     {
       "id": "@sbf/plugins-budgeting",
@@ -248,6 +248,57 @@
       "name": "@sbf/renewable-ops",
       "author": "Second Brain Foundation",
       "license": "MIT"
+    },
+    {
+      "id": "@sbf/legal-ops",
+      "name": "@sbf/legal-ops",
+      "version": "1.0.0",
+      "description": "Legal Operations Module - Legal practice management, matter lifecycle, and compliance",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "legal",
+        "practice-management",
+        "law-firm",
+        "compliance",
+        "operations"
+      ],
+      "license": "MIT",
+      "published": "2025-11-24T04:15:00.000Z"
+    },
+    {
+      "id": "@sbf/property-ops",
+      "name": "@sbf/property-ops",
+      "version": "1.0.0",
+      "description": "Property Operations Module - Real estate property management, tenant lifecycle, and maintenance",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "property-management",
+        "real-estate",
+        "tenant",
+        "maintenance",
+        "operations"
+      ],
+      "license": "MIT",
+      "published": "2025-11-24T04:15:00.000Z"
+    },
+    {
+      "id": "@sbf/restaurant-haccp-ops",
+      "name": "@sbf/restaurant-haccp-ops",
+      "version": "1.0.0",
+      "description": "Restaurant & HACCP Operations Module - Food service, safety compliance, and temperature monitoring",
+      "author": "Second Brain Foundation",
+      "keywords": [
+        "sbf",
+        "restaurant",
+        "haccp",
+        "food-safety",
+        "compliance",
+        "operations"
+      ],
+      "license": "MIT",
+      "published": "2025-11-24T04:15:00.000Z"
     }
   ]
 }
