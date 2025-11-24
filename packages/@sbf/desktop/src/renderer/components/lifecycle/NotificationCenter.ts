@@ -96,12 +96,12 @@ export class NotificationCenter {
       // TODO: Implement notifications settings API
       this.settings = {
         enableDesktopNotifications: true,
+        enableSoundAlerts: true,
         urgentOnly: false,
-        soundEnabled: true,
-        dissolution_pending: true,
-        lifecycle_event: true,
-        privacy_alert: true,
-        system_notification: true,
+        dissolution: true,
+        lifecycle: true,
+        privacy: true,
+        system: true,
       };
     } catch (error) {
       console.error('Failed to load settings:', error);

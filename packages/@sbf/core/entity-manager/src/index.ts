@@ -35,7 +35,6 @@ export class EntityManager extends EventEmitter<EntityManagerEvents> {
       updated: now,
       lifecycle: entityData.lifecycle || {
         state: 'capture',
-        auto_transition: true,
       },
       sensitivity: entityData.sensitivity || {
         level: 'personal',

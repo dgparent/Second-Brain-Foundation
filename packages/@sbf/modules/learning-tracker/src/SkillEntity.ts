@@ -10,8 +10,8 @@ export interface SkillMetadata extends KnowledgeNodeMetadata {
   target_date?: string;
 }
 
-export interface SkillEntity extends KnowledgeNodeEntity {
-  type: 'learning.skill';
+export interface SkillEntity extends Omit<KnowledgeNodeEntity, 'metadata'> {
+  type: 'knowledge.node';
   metadata: SkillMetadata;
 }
 
@@ -24,7 +24,7 @@ export function createSkill(
   
   return {
     uid: `skill-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    type: 'learning.skill',
+    type: 'knowledge.node',
     title: name,
     created: now,
     updated: now,

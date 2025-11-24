@@ -10,8 +10,13 @@
 // Entities
 export * from './entities';
 
-// Workflows
-export * from './workflows';
+// Common types (export once to avoid conflicts)
+export type { SimpleMemoryEngine, SimpleAEIProvider, SimpleEntity } from './types/common';
+
+// Workflows (excluding types to avoid re-export conflicts)
+export { ContactCreationWorkflow, type ContactCreationOptions } from './workflows/ContactCreationWorkflow';
+export { InteractionLoggingWorkflow, type InteractionLoggingOptions } from './workflows/InteractionLoggingWorkflow';
+export { FollowUpReminderWorkflow, type ReminderOptions, type FollowUpReminder } from './workflows/FollowUpReminderWorkflow';
 
 // Utilities
 export * from './utils';

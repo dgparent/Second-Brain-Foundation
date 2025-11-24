@@ -6,10 +6,7 @@
 
 import { RelationshipAnalysisWorkflow } from '@sbf/frameworks-relationship-tracking';
 import type { SimpleEntity } from '@sbf/frameworks-relationship-tracking';
-
-export interface SimpleMemoryEngine {
-  query(filter: { type?: string; metadata?: any }): Promise<SimpleEntity[]>;
-}
+import type { SimpleMemoryEngine } from '../types/common';
 
 export interface ReminderOptions {
   days_threshold?: number; // Days since last contact (default: 30)

@@ -240,7 +240,7 @@ export class KnowledgeGraphViz {
   /**
    * Create drag behavior
    */
-  private drag(): d3.DragBehavior<SVGCircleElement, GraphNode, GraphNode> {
+  private drag(): d3.DragBehavior<SVGCircleElement, GraphNode, GraphNode | d3.SubjectPosition> {
     return d3.drag<SVGCircleElement, GraphNode>()
       .on('start', (event, d) => {
         if (!event.active && this.simulation) {

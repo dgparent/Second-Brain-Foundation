@@ -11,8 +11,8 @@ export interface CourseMetadata extends LearningResourceMetadata {
   currency?: string;
 }
 
-export interface CourseEntity extends LearningResourceEntity {
-  type: 'learning.course';
+export interface CourseEntity extends Omit<LearningResourceEntity, 'metadata'> {
+  type: 'knowledge.resource';
   metadata: CourseMetadata;
 }
 
@@ -25,7 +25,7 @@ export function createCourse(
   
   return {
     uid: `course-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    type: 'learning.course',
+    type: 'knowledge.resource',
     title,
     created: now,
     updated: now,

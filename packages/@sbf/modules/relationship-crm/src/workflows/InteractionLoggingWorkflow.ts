@@ -7,13 +7,8 @@
 import { createInteractionEntity } from '@sbf/frameworks-relationship-tracking';
 import { RelationshipAnalysisWorkflow } from '@sbf/frameworks-relationship-tracking';
 import { updateEngagementScore } from '../entities/CRMContact';
-import type { SimpleEntity, InteractionType } from '@sbf/frameworks-relationship-tracking';
-
-export interface SimpleMemoryEngine {
-  query(filter: { type?: string; metadata?: any }): Promise<SimpleEntity[]>;
-  store(entity: SimpleEntity): Promise<void>;
-  update(uid: string, updates: Partial<SimpleEntity>): Promise<void>;
-}
+import type { InteractionType } from '@sbf/frameworks-relationship-tracking';
+import type { SimpleMemoryEngine, SimpleEntity } from '../types/common';
 
 export interface InteractionLoggingOptions {
   contact_uids: string[];

@@ -7,16 +7,16 @@
 
 export interface PrivacyStats {
   totalEntities: number;
-  byLevel: {
+  byLevel?: {
     public: number;
     internal: number;
     confidential: number;
     restricted: number;
     secret: number;
   };
-  encrypted: number;
-  withAccessControls: number;
-  recentAuditEvents: number;
+  encrypted?: number;
+  withAccessControls?: number;
+  recentAuditEvents?: number;
 }
 
 export interface EncryptionStatus {

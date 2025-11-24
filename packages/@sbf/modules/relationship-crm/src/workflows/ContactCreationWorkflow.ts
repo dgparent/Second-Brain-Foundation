@@ -5,16 +5,8 @@
  */
 
 import { createCRMContact, type LeadStatus, type PriorityLevel } from '../entities/CRMContact';
-import type { SimpleEntity, ContactCategory } from '@sbf/frameworks-relationship-tracking';
-
-export interface SimpleMemoryEngine {
-  query(filter: { type?: string; metadata?: any }): Promise<SimpleEntity[]>;
-  store(entity: SimpleEntity): Promise<void>;
-}
-
-export interface SimpleAEIProvider {
-  analyze(prompt: string, content: string): Promise<{ result: string; confidence: number }>;
-}
+import type { ContactCategory } from '@sbf/frameworks-relationship-tracking';
+import type { SimpleMemoryEngine, SimpleAEIProvider, SimpleEntity } from '../types/common';
 
 export interface ContactCreationOptions {
   full_name: string;
@@ -30,6 +22,7 @@ export interface ContactCreationOptions {
   lead_source?: string;
   deal_value?: number;
   priority_level?: PriorityLevel;
+  industry?: string;
   
   // AI enrichment options
   enrichment_options?: {

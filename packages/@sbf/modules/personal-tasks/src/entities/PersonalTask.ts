@@ -11,6 +11,7 @@
 
 import {
   TaskEntity,
+  TaskMetadata,
   createTask,
   TaskStatus,
   TaskPriority,
@@ -66,17 +67,7 @@ export interface RecurrencePattern {
 /**
  * Personal task metadata extending base task
  */
-export interface PersonalTaskMetadata {
-  // From base TaskEntity
-  status: TaskStatus;
-  priority: TaskPriority;
-  complexity?: TaskComplexity;
-  assignee_uid?: string;
-  project_uid?: string;
-  due_date?: string;
-  estimated_hours?: number;
-  actual_hours?: number;
-  
+export interface PersonalTaskMetadata extends TaskMetadata {
   // Personal productivity extensions
   contexts?: TaskContext[];
   energy_level?: EnergyLevel;

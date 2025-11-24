@@ -1,0 +1,12 @@
+[submodule "libraries/superset"]
+	path = libraries/superset
+	url = https://github.com/apache/superset
+[submodule "libraries/grafana"]
+	path = libraries/grafana
+	url = https://github.com/grafana/grafana
+[submodule "libraries/lightdash"]
+	path = libraries/lightdash
+	url = https://github.com/lightdash/lightdash
+[submodule "libraries/metabase"]
+	path = libraries/metabase
+	url = https://github.com/metabase/metabase
