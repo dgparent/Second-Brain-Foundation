@@ -26,6 +26,9 @@
     "packages/@sbf/modules/learning-tracker",
     "packages/@sbf/modules/relationship-crm",
     "packages/@sbf/modules/personal-tasks",
+    "packages/@sbf/modules/legal-ops",
+    "packages/@sbf/modules/property-mgmt",
+    "packages/@sbf/modules/restaurant-haccp",
     "packages/@sbf/desktop"
   ],
   "scripts": {

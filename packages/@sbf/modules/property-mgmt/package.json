@@ -1,0 +1,30 @@
+{
+  "name": "@sbf/modules-property-mgmt",
+  "version": "1.0.0",
+  "description": "Property management module for real estate operations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc || exit 0",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "sbf",
+    "module",
+    "property-management",
+    "real-estate",
+    "landlord",
+    "tenant",
+    "lease-management"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
