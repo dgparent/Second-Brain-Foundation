@@ -2,43 +2,42 @@
 // Business logic for events with tenant isolation
 
 import { Injectable } from '@nestjs/common';
+import { EventsRepository } from '../repositories/events.repository';
 
 @Injectable()
 export class EventsService {
+  constructor(private readonly repository: EventsRepository) {}
+
   async create(tenantId: string, data: any): Promise<any> {
-    // TODO: Implement
-    return { uid: 'event-123', tenant_id: tenantId, ...data };
+    return this.repository.create(tenantId, data);
   }
 
   async findAll(
     tenantId: string,
     options: any
   ): Promise<{ events: any[]; total: number }> {
-    // TODO: Implement
-    return { events: [], total: 0 };
+    const events = await this.repository.findAll(tenantId, options);
+    return { events, total: events.length };
   }
 
   async findByUid(tenantId: string, uid: string): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId };
+    return this.repository.findByUid(tenantId, uid);
   }
 
   async update(tenantId: string, uid: string, data: any): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId, ...data };
+    return this.repository.update(tenantId, uid, data);
   }
 
   async delete(tenantId: string, uid: string): Promise<void> {
-    // TODO: Implement
+    await this.repository.delete(tenantId, uid);
   }
 
   async getUpcoming(
     tenantId: string,
     days: number
   ): Promise<{ events: any[] }> {
-    // TODO: Implement
-    // Query events with date >= today AND date <= today + days
-    return { events: [] };
+    const events = await this.repository.getUpcoming(tenantId, days);
+    return { events };
   }
 
   async getPast(
@@ -46,9 +45,8 @@ export class EventsService {
     days: number,
     limit: number
   ): Promise<{ events: any[] }> {
-    // TODO: Implement
-    // Query events with date < today AND date >= today - days
-    return { events: [] };
+    const events = await this.repository.getPast(tenantId, days, limit);
+    return { events };
   }
 
   async getCalendar(
@@ -56,17 +54,18 @@ export class EventsService {
     year: number,
     month: number
   ): Promise<{ events: any[] }> {
-    // TODO: Implement
-    // Query events in given month/year
-    return { events: [] };
+    const events = await this.repository.getCalendar(tenantId, year, month);
+    return { events };
   }
 
   async getAttendees(
     tenantId: string,
     uid: string
   ): Promise<{ attendees: any[] }> {
-    // TODO: Implement
-    // Get people linked to this event
-    return { attendees: [] };
+    const event = await this.repository.findByUid(tenantId, uid);
+    if (!event) return { attendees: [] };
+    
+    // TODO: Map attendee UIDs to actual people entities
+    return { attendees: event.attendees || [] };
   }
 }

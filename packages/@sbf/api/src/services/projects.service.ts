@@ -2,44 +2,42 @@
 // Business logic for projects with tenant isolation
 
 import { Injectable } from '@nestjs/common';
+import { ProjectsRepository } from '../repositories/projects.repository';
 
 @Injectable()
 export class ProjectsService {
+  constructor(private readonly repository: ProjectsRepository) {}
+
   async create(tenantId: string, data: any): Promise<any> {
-    // TODO: Implement
-    return { uid: 'project-123', tenant_id: tenantId, ...data };
+    return this.repository.create(tenantId, data);
   }
 
   async findAll(
     tenantId: string,
     options: any
   ): Promise<{ projects: any[]; total: number }> {
-    // TODO: Implement
-    return { projects: [], total: 0 };
+    const projects = await this.repository.findAll(tenantId, options);
+    return { projects, total: projects.length };
   }
 
   async findByUid(tenantId: string, uid: string): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId };
+    return this.repository.findByUid(tenantId, uid);
   }
 
   async update(tenantId: string, uid: string, data: any): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId, ...data };
+    return this.repository.update(tenantId, uid, data);
   }
 
   async delete(tenantId: string, uid: string): Promise<void> {
-    // TODO: Implement
+    await this.repository.delete(tenantId, uid);
   }
 
   async archive(tenantId: string, uid: string): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId, archived: true };
+    return this.repository.archive(tenantId, uid);
   }
 
   async unarchive(tenantId: string, uid: string): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId, archived: false };
+    return this.repository.unarchive(tenantId, uid);
   }
 
   async getTasks(
@@ -47,8 +45,7 @@ export class ProjectsService {
     uid: string,
     status?: string
   ): Promise<{ tasks: any[] }> {
-    // TODO: Implement
-    // Query tasks with project_uid = uid AND tenant_id = tenantId
+    // TODO: Query tasks repository with project_uid filter
     return { tasks: [] };
   }
 }

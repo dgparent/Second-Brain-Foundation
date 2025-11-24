@@ -2,34 +2,34 @@
 // Business logic for people with tenant isolation
 
 import { Injectable } from '@nestjs/common';
+import { PeopleRepository } from '../repositories/people.repository';
 
 @Injectable()
 export class PeopleService {
+  constructor(private readonly repository: PeopleRepository) {}
+
   async create(tenantId: string, data: any): Promise<any> {
-    // TODO: Implement
-    return { uid: 'person-123', tenant_id: tenantId, ...data };
+    return this.repository.create(tenantId, data);
   }
 
   async findAll(
     tenantId: string,
     options: any
   ): Promise<{ people: any[]; total: number }> {
-    // TODO: Implement
-    return { people: [], total: 0 };
+    const people = await this.repository.findAll(tenantId, options);
+    return { people, total: people.length };
   }
 
   async findByUid(tenantId: string, uid: string): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId };
+    return this.repository.findByUid(tenantId, uid);
   }
 
   async update(tenantId: string, uid: string, data: any): Promise<any> {
-    // TODO: Implement
-    return { uid, tenant_id: tenantId, ...data };
+    return this.repository.update(tenantId, uid, data);
   }
 
   async delete(tenantId: string, uid: string): Promise<void> {
-    // TODO: Implement
+    await this.repository.delete(tenantId, uid);
   }
 
   async getInteractions(
@@ -37,8 +37,8 @@ export class PeopleService {
     uid: string,
     limit: number
   ): Promise<{ interactions: any[] }> {
-    // TODO: Implement
-    // Query events/notes mentioning this person
+    // TODO: Query graph for relationships to this person
+    // For now, return empty
     return { interactions: [] };
   }
 
@@ -46,7 +46,7 @@ export class PeopleService {
     tenantId: string,
     tag: string
   ): Promise<{ people: any[] }> {
-    // TODO: Implement
-    return { people: [] };
+    const people = await this.repository.findByTag(tenantId, tag);
+    return { people };
   }
 }
