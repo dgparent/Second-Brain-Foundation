@@ -1,32 +1,16 @@
 {
-  "name": "@sbf/modules-agriculture",
-  "version": "1.0.0",
-  "description": "Agriculture Module for Second Brain Foundation - Farm management, field operations, harvest tracking, and post-harvest processing with full traceability",
-  "type": "module",
+  "name": "@sbf/agriculture",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx -p typescript tsc",
-    "test": "jest"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
-  "keywords": [
-    "second-brain",
-    "agriculture",
-    "farming",
-    "field-operations",
-    "harvest-tracking",
-    "traceability",
-    "post-harvest",
-    "crop-management"
-  ],
-  "author": "Second Brain Foundation",
-  "license": "MIT",
   "dependencies": {
-    "@sbf/aei": "*",
-    "@sbf/shared": "*"
+    "@sbf/shared": "workspace:*"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.3"
   }
 }

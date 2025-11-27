@@ -1,31 +1,19 @@
 {
-  "name": "@sbf/modules-va-dashboard",
-  "version": "1.0.0",
-  "description": "Virtual Assistant Dashboard Plugin for Second Brain Foundation",
+  "name": "@sbf/va-dashboard",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx -p typescript tsc",
-    "dev": "tsc --watch",
-    "clean": "rm -rf dist",
-    "test": "npx -p jest jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --maxWorkers=2"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "dependencies": {
-    "@sbf/aei": "*",
-    "@sbf/memory-engine": "*",
-    "@sbf/shared": "*"
+    "@sbf/shared": "workspace:*",
+    "@sbf/aei": "workspace:*",
+    "@sbf/core-entity-manager": "workspace:*",
+    "@sbf/vector-client": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
-  },
-  "keywords": [
-    "second-brain",
-    "virtual-assistant",
-    "va",
-    "client-management",
-    "task-automation"
-  ]
+  }
 }

@@ -53,5 +53,15 @@ export abstract class BaseAIProvider {
     options?: ExtractionOptions
   ): Promise<InferredRelationship[]>;
 
+  abstract generateEmbedding(
+    text: string,
+    options?: ExtractionOptions
+  ): Promise<number[]>;
+
+  abstract chat(
+    messages: { role: 'system' | 'user' | 'assistant'; content: string }[],
+    options?: ExtractionOptions
+  ): Promise<string>;
+
   abstract testConnection(): Promise<boolean>;
 }

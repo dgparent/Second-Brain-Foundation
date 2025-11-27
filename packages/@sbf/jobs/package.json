@@ -1,0 +1,21 @@
+{
+  "name": "@sbf/jobs",
+  "version": "0.1.0",
+  "description": "Background jobs for Second Brain Foundation using Trigger.dev",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@sbf/ai-client": "workspace:*",
+    "@sbf/config": "workspace:*",
+    "@sbf/vector-client": "workspace:*",
+    "@trigger.dev/sdk": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

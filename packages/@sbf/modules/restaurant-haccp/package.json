@@ -1,28 +1,17 @@
 {
-  "name": "@sbf/modules-restaurant-haccp",
-  "version": "1.0.0",
-  "description": "Restaurant HACCP and food safety compliance module",
+  "name": "@sbf/restaurant-haccp",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx -p typescript tsc || exit 0",
-    "test": "npx -p jest jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --maxWorkers=2",
-    "clean": "rimraf dist"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
-  "keywords": [
-    "sbf",
-    "module",
-    "restaurant",
-    "haccp",
-    "food-safety",
-    "compliance"
-  ],
-  "author": "Second Brain Foundation",
-  "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@sbf/shared": "workspace:*",
+    "@sbf/core-entity-manager": "workspace:*",
+    "@sbf/aei": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "^5.9.3"
   }

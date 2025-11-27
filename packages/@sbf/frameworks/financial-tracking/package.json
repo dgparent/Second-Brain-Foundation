@@ -22,9 +22,9 @@
   "author": "Second Brain Foundation",
   "license": "MIT",
   "dependencies": {
-    "@sbf/aei": "*",
-    "@sbf/core": "*",
-    "@sbf/memory-engine": "*"
+    "@sbf/aei": "workspace:*",
+    "@sbf/core": "workspace:*",
+    "@sbf/memory-engine": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

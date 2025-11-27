@@ -1,0 +1,27 @@
+{
+  "name": "@sbf/core-authz",
+  "version": "0.1.0",
+  "description": "Authorization service with RBAC + ABAC for Second Brain Foundation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "authorization",
+    "rbac",
+    "abac",
+    "multi-tenant",
+    "second-brain"
+  ]
+}

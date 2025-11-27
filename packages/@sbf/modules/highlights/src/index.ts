@@ -1,12 +1,2 @@
-export * from './HighlightEntity.js';
-export * from './InsightEntity.js';
-
-// Re-export framework utilities
-export {
-  KnowledgeGraphWorkflow,
-  SpacedRepetitionWorkflow,
-  ProgressTrackingWorkflow,
-  createKnowledgeNode,
-  updateNodeMastery,
-  markNodeReviewed
-} from '@sbf/frameworks-knowledge-tracking';
+export const MODULE_NAME = '@sbf/highlights';
+export function init() { console.log('Initializing highlights module'); }

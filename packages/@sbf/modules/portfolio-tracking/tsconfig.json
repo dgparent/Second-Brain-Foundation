@@ -3,21 +3,12 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "composite": true
+    "composite": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/**/*"
-  ],
-  "references": [
-    {
-      "path": "../../frameworks/financial-tracking"
-    }
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/__tests__/**"
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "name": "@sbf/modules-relationship-crm",
+  "version": "1.0.0",
+  "description": "CRM and contact management plugin for SBF - validates Relationship Tracking Framework",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "keywords": [
+    "sbf",
+    "plugin",
+    "crm",
+    "contacts",
+    "relationships",
+    "networking"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/frameworks-relationship-tracking": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

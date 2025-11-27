@@ -1,7 +1,7 @@
 # 📚 Second Brain Foundation - Documentation Index
 
-**Last Updated:** 2025-11-21  
-**Status:** Production Ready (95%) - v1.0 Release Candidate  
+**Last Updated:** 2025-11-25  
+**Status:** Production Ready - Multi-Tenant Platform with Analytics  
 **Repository:** Enterprise-Grade ✨
 
 ---
@@ -10,23 +10,30 @@
 
 ### New to Second Brain Foundation?
 **Just want to understand what this is?**  
-→ **[README.md](./README.md)** - Project overview and quick start
+→ **[README.md](../README.md)** - Project overview and architecture  
+→ **[PROJECT-STATUS.md](../PROJECT-STATUS.md)** - Current status and progress
 
 ### For Developers
 **Want to set up your development environment?**  
-→ **[QUICK-START.md](./QUICK-START.md)** - Get running in 5 minutes  
-→ **[ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md)** - Detailed environment setup  
-→ **[Developer Guide](./docs/06-guides/developer-guide.md)** - Architecture and standards
+→ **[QUICK-START.md](../QUICK-START.md)** - Get running in 5 minutes  
+→ **[Developer Guide](./06-guides/developer-guide.md)** - Architecture and standards  
+→ **[Getting Started](./06-guides/getting-started.md)** - Detailed setup guide
 
 ### For Contributors
 **Want to contribute to the project?**  
-→ **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Contribution guidelines  
-→ **[START-HERE.md](./START-HERE.md)** - Onboarding for new contributors
+→ **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Contribution guidelines  
+→ **[Developer Guide](./06-guides/developer-guide.md)** - Code standards and practices
 
-### For module Developers
+### For Module Developers
 **Want to build modules or frameworks?**  
-→ **[module Development Guide](./docs/module-DEVELOPMENT-GUIDE.md)**  
-→ **[Framework Development Guide](./docs/FRAMEWORK-DEVELOPMENT-GUIDE.md)**
+→ **[Module Development Guide](./04-implementation/MODULE-DEVELOPMENT-GUIDE.md)**  
+→ **[Framework Development Guide](./04-implementation/FRAMEWORK-DEVELOPMENT-GUIDE.md)**
+
+### For Investors
+**Want to understand the business and vision?**  
+→ **[Investor Executive Summary](./01-overview/INVESTOR-EXECUTIVE-SUMMARY.md)**  
+→ **[Competitive Analysis](./01-overview/COMPETITIVE-ANALYSIS.md)**  
+→ **[Product Roadmap](./02-product/PRODUCT-ROADMAP.md)**
 
 ---
 
@@ -35,18 +42,337 @@
 ### Root-Level Quick References
 | Document | Purpose | Audience |
 |----------|---------|----------|
-| **[README.md](./README.md)** | Project overview, architecture, quick start | Everyone |
-| **[PROJECT-STATUS.md](./PROJECT-STATUS.md)** | Current status, roadmap, metrics | Everyone |
-| **[QUICK-START.md](./QUICK-START.md)** | 5-minute setup guide | Developers |
-| **[QUICK-REFERENCE.md](./QUICK-REFERENCE.md)** | Command reference | Developers |
-| **[START-HERE.md](./START-HERE.md)** | Onboarding for contributors | Contributors |
-| **[CONTRIBUTING.md](./CONTRIBUTING.md)** | Contribution guidelines | Contributors |
-| **[ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md)** | Dev environment setup | Developers |
-| **[WORKFLOWS.md](./WORKFLOWS.md)** | Development workflows | Developers |
-| **[DEPLOYMENT.md](./DEPLOYMENT.md)** | Deployment instructions | DevOps |
-| **[TASK-FRAMEWORK-QUICK-REF.md](./TASK-FRAMEWORK-QUICK-REF.md)** | Task framework API reference | module Developers |
+| **[README.md](../README.md)** | Project overview, architecture, quick start | Everyone |
+| **[PROJECT-STATUS.md](../PROJECT-STATUS.md)** | Current status, roadmap, metrics | Everyone |
+| **[QUICK-START.md](../QUICK-START.md)** | 5-minute setup guide | Developers |
+| **[CHANGELOG.md](../CHANGELOG.md)** | Version history and changes | Everyone |
+| **[CONTRIBUTING.md](../CONTRIBUTING.md)** | Contribution guidelines | Contributors |
+| **[LICENSE](../LICENSE)** | Project license (MIT) | Everyone |
+| **[WORKSPACE-PROTOCOL.md](../WORKSPACE-PROTOCOL.md)** | Development protocols | Developers |
 
-### Documentation Directory Structure
+---
+
+## 📂 Documentation Directory Structure
+
+### Complete Navigation
+
+```
+docs/
+├── 01-overview/           # Project vision & business
+├── 02-product/            # Product specifications
+├── 03-architecture/       # Technical architecture
+├── 04-implementation/     # Implementation guides
+├── 05-research/           # Research & analysis
+├── 06-guides/             # User & developer guides
+├── 07-reference/          # Quick references & APIs
+└── 08-archive/            # Historical content
+```
+
+---
+
+## 📋 Documentation by Category
+
+### 01 - Overview & Vision
+
+**Business & Strategy**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Project Brief](./01-overview/project-brief.md)** | Executive summary | Everyone |
+| **[Project Status](./01-overview/project-status.md)** | Current progress | Everyone |
+| **[Investor Executive Summary](./01-overview/INVESTOR-EXECUTIVE-SUMMARY.md)** | Investor presentation | Investors |
+| **[Competitive Analysis](./01-overview/COMPETITIVE-ANALYSIS.md)** | Market comparison | Business |
+
+---
+
+### 02 - Product Specifications
+
+**Product Definition**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Product Requirements (PRD)](./02-product/prd.md)** | Detailed product spec | Product Team |
+| **[Product Roadmap](./02-product/PRODUCT-ROADMAP.md)** | Feature timeline | Everyone |
+| **[Features](./02-product/features/)** | Feature documentation | Product Team |
+| **[Use Cases](./02-product/use-cases/)** | User scenarios | Everyone |
+
+---
+
+### 03 - Architecture
+
+**Technical Design**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Architecture Overview](./03-architecture/architecture.md)** | System architecture | Developers |
+| **[Technical Architecture V2](./03-architecture/TECHNICAL-ARCHITECTURE-V2.md)** | Detailed tech design | Developers |
+| **[Tech Stack Update](./03-architecture/tech-stack-update.md)** | Technology choices | Developers |
+| **[Frontend Specification](./03-architecture/frontend-spec.md)** | Frontend architecture | Frontend Devs |
+| **[Plugin Cluster Strategy](./03-architecture/PLUGIN-CLUSTER-STRATEGY.md)** | Module architecture | Developers |
+| **[ArangoDB Setup](./03-architecture/ARANGODB-SETUP.md)** | Graph database config | DevOps |
+| **[Automation Integration](./03-architecture/automation-integration.md)** | Automation design | Developers |
+| **[Developer Migration Plan](./03-architecture/developer-migration-plan.md)** | Upgrade guides | Developers |
+
+**Analytics Architecture**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Analytics Deployment](./03-architecture/analytics/ANALYTICS-DEPLOYMENT.md)** | Deployment guide | DevOps |
+| **[Analytics Integration](./03-architecture/analytics/ANALYTICS-INTEGRATION.md)** | Integration design | Developers |
+| **[Analytics Quickstart](./03-architecture/analytics/ANALYTICS-QUICKSTART.md)** | Quick setup | Developers |
+
+---
+
+### 04 - Implementation
+
+**Development Guides**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Implementation Plan](./04-implementation/implementation-plan.md)** | Overall plan | Developers |
+| **[Phase Readiness](./04-implementation/phase-readiness.md)** | Phase tracking | Developers |
+| **[Framework Development Guide](./04-implementation/FRAMEWORK-DEVELOPMENT-GUIDE.md)** | Build frameworks | Framework Devs |
+| **[Module Development Guide](./04-implementation/MODULE-DEVELOPMENT-GUIDE.md)** | Build modules | Module Devs |
+| **[Knowledge Framework Plan](./04-implementation/KNOWLEDGE-FRAMEWORK-PLAN.md)** | Knowledge system | Developers |
+| **[Phase 4A Implementation](./04-implementation/PHASE-4A-IMPLEMENTATION-PLAN.md)** | Financial framework | Developers |
+
+**CLI & Tooling**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[CLI Enhancement Guide](./04-implementation/cli-enhancement-guide.md)** | CLI features | Developers |
+| **[CLI Implementation Summary](./04-implementation/cli-implementation-summary.md)** | CLI details | Developers |
+| **[CLI Scaffolding Guide](./04-implementation/cli-scaffolding-guide.md)** | Scaffolding tools | Developers |
+
+**Libraries Integration**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Libraries Integration Plan](./04-implementation/libraries-integration/LIBRARIES-INTEGRATION-PLAN.md)** | Analytics libraries | Developers |
+
+**Infrastructure**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Infrastructure Next Steps](./04-implementation/infrastructure/NEXT-STEPS-INFRASTRUCTURE.md)** | Infra roadmap | DevOps |
+
+---
+
+### 05 - Research
+
+**Market & User Research**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Analysis Executive Summary](./05-research/ANALYSIS-EXECUTIVE-SUMMARY.md)** | Research summary | Business |
+| **[Comprehensive Project Analysis](./05-research/COMPREHENSIVE-PROJECT-ANALYSIS.md)** | Full analysis | Everyone |
+| **[Brainstorming Session](./05-research/brainstorming-session.md)** | Ideation notes | Product Team |
+| **[Epic Use Cases](./05-research/epic-personal-use-cases-exploration.md)** | Use case research | Product Team |
+| **[Market Research](./05-research/market-research/)** | Market data | Business |
+| **[Technology Research](./05-research/technology-research/)** | Tech evaluation | Developers |
+| **[User Research](./05-research/user-research/)** | User insights | Product Team |
+
+---
+
+### 06 - Guides
+
+**User & Developer Guides**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Getting Started](./06-guides/getting-started.md)** | Setup guide | Everyone |
+| **[Developer Guide](./06-guides/developer-guide.md)** | Development practices | Developers |
+| **[API Documentation](./06-guides/api-documentation.md)** | API reference | Developers |
+| **[Troubleshooting](./06-guides/troubleshooting.md)** | Problem solving | Everyone |
+| **[UX Analysis & Plan](./06-guides/UX-ANALYSIS-AND-BETTERMENT-PLAN.md)** | UX improvements | Designers |
+| **[AI Automation Guidelines](./06-guides/AI-automation-guidelines.md)** | Automation guide | Developers |
+| **[Project Handoff](./06-guides/PROJECT-HANDOFF.md)** | Handoff procedures | Teams |
+
+---
+
+### 07 - Reference
+
+**Quick References & APIs**
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[Tech Stack Quick Ref](./07-reference/tech-stack-quick-ref.md)** | Stack overview | Developers |
+| **[Quick Reference](./07-reference/QUICK-REFERENCE.md)** | Command cheatsheet | Developers |
+
+---
+
+### 08 - Archive
+
+**Historical Documentation**
+
+| Location | Description |
+|----------|-------------|
+| **[Sessions 2025-11](./08-archive/sessions/2025-11/)** | November 2025 sessions |
+| **[Refactor Session](./08-archive/sessions/2025-11/refactor-session/)** | Refactor work logs |
+| **[Decisions](./08-archive/decisions/)** | Architecture decisions |
+| **[Deprecated](./08-archive/deprecated/)** | Outdated docs |
+| **[Legacy Code](./08-archive/legacy-extraction/)** | Old implementations |
+| **[Phases](./08-archive/phases/)** | Phase completion docs |
+
+---
+
+## 🗂️ Special Topics
+
+### Multi-Tenant Architecture
+
+**Key Documents:**
+- [Technical Architecture V2](./03-architecture/TECHNICAL-ARCHITECTURE-V2.md) - Multi-tenant design
+- See archived session files for implementation details
+
+### Analytics Integration
+
+**Key Documents:**
+- [Infra README](../infra/README.md) - Infrastructure and Tools overview
+- [Analytics Integration](./03-architecture/analytics/ANALYTICS-INTEGRATION.md) - Integration guide
+- [Analytics Deployment](./03-architecture/analytics/ANALYTICS-DEPLOYMENT.md) - Deployment steps
+- [Libraries Integration Plan](./04-implementation/libraries-integration/LIBRARIES-INTEGRATION-PLAN.md) - Full plan
+
+### Framework Development
+
+**Key Documents:**
+- [Framework Development Guide](./04-implementation/FRAMEWORK-DEVELOPMENT-GUIDE.md) - How to build frameworks
+- [Module Development Guide](./04-implementation/MODULE-DEVELOPMENT-GUIDE.md) - How to build modules
+- [Knowledge Framework Plan](./04-implementation/KNOWLEDGE-FRAMEWORK-PLAN.md) - Example framework
+
+### Desktop App
+
+**Key Documents:**
+- [Architecture Overview](./03-architecture/architecture.md) - Desktop app design
+- [Getting Started](./06-guides/getting-started.md) - Running the desktop app
+- See AEI Core documentation for Python integration
+
+---
+
+## 🔍 Finding What You Need
+
+### By Role
+
+**Investors & Business**
+1. [Investor Executive Summary](./01-overview/INVESTOR-EXECUTIVE-SUMMARY.md)
+2. [Competitive Analysis](./01-overview/COMPETITIVE-ANALYSIS.md)
+3. [Product Roadmap](./02-product/PRODUCT-ROADMAP.md)
+4. [Project Status](../PROJECT-STATUS.md)
+
+**Product Managers**
+1. [PRD](./02-product/prd.md)
+2. [Use Cases](./02-product/use-cases/)
+3. [Product Roadmap](./02-product/PRODUCT-ROADMAP.md)
+4. [User Research](./05-research/user-research/)
+
+**Developers**
+1. [Quick Start](../QUICK-START.md)
+2. [Developer Guide](./06-guides/developer-guide.md)
+3. [Architecture Overview](./03-architecture/architecture.md)
+4. [API Documentation](./06-guides/api-documentation.md)
+
+**Module Developers**
+1. [Module Development Guide](./04-implementation/MODULE-DEVELOPMENT-GUIDE.md)
+2. [Framework Development Guide](./04-implementation/FRAMEWORK-DEVELOPMENT-GUIDE.md)
+3. [CLI Scaffolding Guide](./04-implementation/cli-scaffolding-guide.md)
+
+**DevOps/Infrastructure**
+1. [Infrastructure Next Steps](./04-implementation/infrastructure/NEXT-STEPS-INFRASTRUCTURE.md)
+2. [Analytics Deployment](./03-architecture/analytics/ANALYTICS-DEPLOYMENT.md)
+3. [ArangoDB Setup](./03-architecture/ARANGODB-SETUP.md)
+
+### By Task
+
+**I want to...**
+
+- **Understand the project** → [README](../README.md), [Project Brief](./01-overview/project-brief.md)
+- **Set up development** → [Quick Start](../QUICK-START.md), [Getting Started](./06-guides/getting-started.md)
+- **Build a module** → [Module Development Guide](./04-implementation/MODULE-DEVELOPMENT-GUIDE.md)
+- **Understand architecture** → [Architecture Overview](./03-architecture/architecture.md)
+- **Deploy to production** → [Infrastructure Next Steps](./04-implementation/infrastructure/NEXT-STEPS-INFRASTRUCTURE.md)
+- **Integrate analytics** → [Analytics Integration](./03-architecture/analytics/ANALYTICS-INTEGRATION.md)
+- **Contribute code** → [Contributing](../CONTRIBUTING.md), [Developer Guide](./06-guides/developer-guide.md)
+- **Troubleshoot issues** → [Troubleshooting](./06-guides/troubleshooting.md)
+- **Check current status** → [Project Status](../PROJECT-STATUS.md)
+- **Review changes** → [Changelog](../CHANGELOG.md)
+
+---
+
+## 📊 Documentation Status
+
+### ✅ Complete & Up-to-Date
+- Architecture documentation
+- Product specifications
+- Implementation guides
+- Analytics integration docs
+- Repository organization
+
+### 🔄 In Progress
+- User guides and tutorials
+- API reference documentation
+- Video walkthroughs
+- Example projects
+
+### 📋 Planned
+- Interactive documentation site
+- API playground
+- Module showcase gallery
+- Community contributions
+
+---
+
+## 🤝 Contributing to Documentation
+
+Documentation improvements are always welcome!
+
+**How to Contribute:**
+1. Fork the repository
+2. Make your changes in the appropriate `/docs` folder
+3. Follow the [Documentation Style Guide](../CONTRIBUTING.md#documentation)
+4. Submit a pull request
+
+**Documentation Guidelines:**
+- Use clear, concise language
+- Include code examples where appropriate
+- Add diagrams for complex concepts
+- Keep navigation up-to-date
+- Archive outdated content to 08-archive/
+
+---
+
+## 📞 Help & Support
+
+**Can't find what you need?**
+
+- 🔍 **Search:** Use GitHub's search to find specific topics
+- 💬 **Ask:** Open a [GitHub Discussion](https://github.com/yourusername/SecondBrainFoundation/discussions)
+- 🐛 **Report:** File an [Issue](https://github.com/yourusername/SecondBrainFoundation/issues) for missing docs
+- 📧 **Contact:** Email support@secondbrainfoundation.com
+
+---
+
+## 📅 Documentation Updates
+
+**Last Major Update:** 2025-11-25  
+- Comprehensive repository cleanup
+- Organized all documentation
+- Archived session files
+- Created navigation structure
+- Updated cross-references
+
+**Update Frequency:**
+- Major updates: With each release
+- Minor updates: Ongoing as needed
+- Review cycle: Monthly
+
+---
+
+**Status:** 📗 **Well-Documented**  
+**Completeness:** ~85% Complete  
+**Next Review:** December 2025
+
+---
+
+*For the latest documentation, always refer to the `main` branch on GitHub.*
 
 ```
 docs/
@@ -98,8 +424,10 @@ docs/
 ### Current Status
 | Document | Purpose |
 |----------|---------|
+| **[INVESTOR-EXECUTIVE-SUMMARY.md](./INVESTOR-EXECUTIVE-SUMMARY.md)** | Executive summary for investors |
+| **[LIBRARIES-INTEGRATION-PLAN.md](./LIBRARIES-INTEGRATION-PLAN.md)** | Analytics platform integration roadmap |
 | **[PROJECT-STATUS.md](./PROJECT-STATUS.md)** | Overall project status, metrics, roadmap |
-| **[REPOSITORY-CLEANUP-2025-11-21.md](./docs/REPOSITORY-CLEANUP-2025-11-21.md)** | Latest cleanup summary |
+| **[REPOSITORY-CLEANUP-2025-11-21.md](./REPOSITORY-CLEANUP-2025-11-21.md)** | Latest cleanup summary |
 
 ### Session Summaries
 - **[PARTY-MODE-SESSION-SUMMARY.md](./docs/PARTY-MODE-SESSION-SUMMARY.md)** - Framework development session
@@ -146,9 +474,8 @@ docs/
 ### "I want to start developing"
 ```
 1. Read: QUICK-START.md
-2. Read: ENVIRONMENT-SETUP.md
-3. Run: npm install && npm run build
-4. Read: QUICK-REFERENCE.md
+2. Run: npm install && npm run build
+3. Read: QUICK-REFERENCE.md
 ```
 
 ### "I want to build a module"
@@ -161,11 +488,9 @@ docs/
 
 ### "I want to contribute"
 ```
-1. Read: START-HERE.md
-2. Read: CONTRIBUTING.md
-3. Read: WORKFLOWS.md
-4. Fork repository and make changes
-5. Submit PR
+1. Read: CONTRIBUTING.md
+2. Fork repository and make changes
+3. Submit PR
 ```
 
 ### "I'm having issues"
@@ -220,8 +545,6 @@ docs/
 ### 🚀 Getting Started
 - 📘 [README.md](./README.md) - Project overview
 - ⚡ [QUICK-START.md](./QUICK-START.md) - 5-minute setup
-- 🔧 [ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md) - Dev environment
-- 🎯 [START-HERE.md](./START-HERE.md) - Onboarding guide
 
 ### 📖 Reference
 - 📋 [QUICK-REFERENCE.md](./QUICK-REFERENCE.md) - Command reference
@@ -230,7 +553,6 @@ docs/
 - 📊 [Implementation](./docs/04-implementation/) - Package details
 
 ### 🔨 Development
-- 💻 [WORKFLOWS.md](./WORKFLOWS.md) - Development workflows
 - 🔌 [module Development](./docs/module-DEVELOPMENT-GUIDE.md) - Build modules
 - 🏗️ [Framework Development](./docs/FRAMEWORK-DEVELOPMENT-GUIDE.md) - Build frameworks
 - 🤝 [CONTRIBUTING.md](./CONTRIBUTING.md) - Contribution guide
@@ -255,7 +577,7 @@ docs/
 ## 🎯 Repository Quality Metrics
 
 ### Structure: 98/100 ✅
-- ✅ Clean root directory (23 items, down from 30+)
+- ✅ Clean root directory
 - ✅ Organized documentation structure
 - ✅ Proper archival of legacy content
 - ✅ Clear separation of concerns
@@ -269,7 +591,7 @@ docs/
 
 ### Code Quality: 95/100 ✅
 - ✅ 0 TypeScript errors (strict mode)
-- ✅ Production-ready packages (19 total)
+- ✅ Production-ready packages
 - ✅ 85-90% code reuse
 - ✅ ~10 second build time
 - ✅ Comprehensive test scripts
@@ -285,19 +607,19 @@ docs/
 
 ---
 
-## ✨ Recent Updates (2025-11-21)
+## ✨ Recent Updates (2025-11-25)
 
 ### Major Repository Cleanup
 - ✅ Archived legacy refactor documentation
-- ✅ Moved Extraction-01 to archive (19,537 files)
+- ✅ Moved Extraction-01 to archive
 - ✅ Moved Memory-engine prototype to archive
 - ✅ Reorganized use cases to docs/02-product/
 - ✅ Completely rewrote README.md for v1.0
 - ✅ Updated DOCUMENTATION-INDEX.md
-- ✅ Reduced root directory items by 23%
-- ✅ Improved enterprise readiness from 85% to 95%
+- ✅ Reduced root directory items
+- ✅ Improved enterprise readiness
 
-See [REPOSITORY-CLEANUP-2025-11-21.md](./docs/REPOSITORY-CLEANUP-2025-11-21.md) for details.
+See [REPOSITORY-CLEANUP-EXECUTIVE-SUMMARY-2025-11-25.md](./docs/REPOSITORY-CLEANUP-EXECUTIVE-SUMMARY-2025-11-25.md) for details.
 
 ---
 
@@ -328,7 +650,6 @@ See [REPOSITORY-CLEANUP-2025-11-21.md](./docs/REPOSITORY-CLEANUP-2025-11-21.md) 
 
 - 🚀 **New Here?** → [README.md](./README.md) - Understand the project
 - ⚡ **Ready to Code?** → [QUICK-START.md](./QUICK-START.md) - Setup in 5 minutes
-- 🎯 **Want to Contribute?** → [START-HERE.md](./START-HERE.md) - Onboarding guide
 - 🔌 **Building modules?** → [module Guide](./docs/module-DEVELOPMENT-GUIDE.md) - Create modules
 - 📊 **Check Status?** → [PROJECT-STATUS.md](./PROJECT-STATUS.md) - Current state
 - 🐛 **Having Issues?** → [QUICK-REFERENCE.md](./QUICK-REFERENCE.md) - Commands & troubleshooting

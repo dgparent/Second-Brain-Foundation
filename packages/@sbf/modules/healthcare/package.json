@@ -1,30 +1,16 @@
 {
-  "name": "@sbf/modules-healthcare",
-  "version": "1.0.0",
-  "description": "Healthcare Module for Second Brain Foundation - Medical appointments, provider tracking, and health document management",
-  "type": "module",
+  "name": "@sbf/healthcare",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx -p typescript tsc",
-    "test": "jest"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
-  "keywords": [
-    "second-brain",
-    "healthcare",
-    "medical",
-    "appointments",
-    "health-records",
-    "provider-tracking"
-  ],
-  "author": "Second Brain Foundation",
-  "license": "MIT",
   "dependencies": {
-    "@sbf/aei": "*",
-    "@sbf/frameworks-health-tracking": "*"
+    "@sbf/shared": "workspace:*"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.3"
   }
 }

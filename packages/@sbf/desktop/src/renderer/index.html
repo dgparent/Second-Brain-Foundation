@@ -115,76 +115,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>🧠 Second Brain Foundation</h1>
-  </header>
-  
-  <main>
-    <aside class="sidebar">
-      <h3>Plugins</h3>
-      <ul class="plugin-list" id="pluginList">
-        <li class="plugin-item">📊 Dashboard</li>
-        <li class="plugin-item">💰 Finance</li>
-        <li class="plugin-item">💪 Health</li>
-        <li class="plugin-item">📚 Knowledge</li>
-        <li class="plugin-item">✅ Tasks</li>
-      </ul>
-    </aside>
-    
-    <div class="content">
-      <div class="welcome">
-        <h2>Welcome to Second Brain Foundation</h2>
-        <p>Your AI-augmented personal knowledge management system. Select a plugin from the sidebar to get started.</p>
-        <button class="btn" onclick="loadPlugins()">Load Plugins</button>
-        
-        <div class="status" id="status" style="display: none;">
-          <h3>System Status</h3>
-          <p id="statusMessage">Ready</p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <script>
-    // Access the exposed API
-    const { sbfAPI } = window;
-
-    async function loadPlugins() {
-      const statusEl = document.getElementById('status');
-      const statusMsg = document.getElementById('statusMessage');
-      
-      statusEl.style.display = 'block';
-      statusMsg.textContent = 'Loading plugins...';
-      
-      try {
-        const plugins = await sbfAPI.plugins.list();
-        statusMsg.textContent = `Loaded ${plugins.length} plugins`;
-        
-        // Update plugin list
-        const listEl = document.getElementById('pluginList');
-        if (plugins.length > 0) {
-          listEl.innerHTML = plugins.map(p => 
-            `<li class="plugin-item">${p.name}</li>`
-          ).join('');
-        }
-      } catch (error) {
-        statusMsg.textContent = 'Error loading plugins: ' + error.message;
-      }
-    }
-
-    // Add click handlers to plugin items
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('plugin-item')) {
-        document.querySelectorAll('.plugin-item').forEach(item => {
-          item.classList.remove('active');
-        });
-        e.target.classList.add('active');
-      }
-    });
-
-    // Display system info
-    console.log('Platform:', sbfAPI.system.platform());
-    console.log('Electron Version:', sbfAPI.system.version());
-  </script>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>

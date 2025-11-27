@@ -1,0 +1,114 @@
+{
+  "teams": [
+    {
+      "name": "Querying",
+      "label": ".Team/Querying",
+      "members": [
+        "ranquild",
+        "romeovs",
+        "bshepherdson",
+        "metamben",
+        "wzimrin",
+        "ericnormand",
+        "galdre"
+      ]
+    },
+    {
+      "name": "Drivers",
+      "label": ".Team/Drivers",
+      "members": [
+        "snoe",
+        "rileythomp"
+      ]
+    },
+    {
+      "name": "Embedding",
+      "label": ".Team/Embedding",
+      "members": [
+        "WiNloSt",
+        "npretto",
+        "heypoom",
+        "sanex3339",
+        "lorem--ipsum"
+      ]
+    },
+    {
+      "name": "Admin Webapp",
+      "label": ".Team/AdminWebapp",
+      "members": [
+        "eliotmetabase"
+      ]
+    },
+    {
+      "name": "DevEx",
+      "label": ".Team/DevEx",
+      "members": [
+        "camsaul",
+        "dpsutton",
+        "escherize",
+        "fraserdrops",
+        "nemanjaglumac"
+      ]
+    },
+     {
+      "name": "Metabot",
+      "label": ".Team/Metabot",
+      "members": [
+        "appleby",
+        "noahmoss",
+        "retro",
+        "sloansparger",
+        "somtom",
+        "tsplude",
+        "lbrdnk",
+        "piranha",
+        "crisptrutski"
+      ]
+    },
+    {
+      "name": "Cloud",
+      "label": "cloud",
+      "members": [
+        "filipesilva"
+      ]
+    },
+    {
+      "name": "DashViz",
+      "label": ".Team/DashViz",
+      "members": [
+        "eliotmetabase"
+      ]
+    },
+    {
+      "name": "UX West",
+      "label": ".Team/UXWest",
+      "members": [
+        "eliotmetabase",
+        "npfitz",
+        "johnswanson",
+        "iethree",
+        "nvoxland",
+        "edpaget",
+        "deniskaber",
+        "alxnddr",
+        "bpander",
+        "andsalves"
+      ]
+    },
+    {
+      "name": "Gadget",
+      "label": ".Team/Gadget",
+      "members": [
+        "nmezzopera",
+        "bronsa",
+        "wotbrew",
+        "qnkhuat",
+        "chodorowicz",
+        "kamilmielnik",
+        "stasgavrylov",
+        "uladzimirdev",
+        "egorgrushin"
+      ]
+    }
+  ]
+}

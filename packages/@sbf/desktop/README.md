@@ -88,6 +88,19 @@ await sbfAPI.entities.update('uid', {...});
 await sbfAPI.entities.delete('uid');
 ```
 
+### Domain APIs
+
+The following namespaces are available via `sbfAPI`:
+
+- `sbfAPI.tasks` - Task Management
+- `sbfAPI.finance` - Budgeting & Portfolio
+- `sbfAPI.fitness` - Fitness, Nutrition, Medication
+- `sbfAPI.crm` - Relationship CRM
+- `sbfAPI.learning` - Learning Tracker
+- `sbfAPI.legal` - Legal Operations
+- `sbfAPI.property` - Property Management
+- `sbfAPI.haccp` - Restaurant HACCP
+
 ## Configuration
 
 ### electron-builder

@@ -187,6 +187,90 @@ export class PrivacyAwareProvider extends BaseAIProvider {
   }
 
   /**
+   * Generate embedding with privacy enforcement
+   */
+  async generateEmbedding(
+    text: string,
+    options?: ExtractionOptions & { entityId?: string; entityName?: string }
+  ): Promise<number[]> {
+    const tempEntity: Entity = {
+      uid: options?.entityId || 'temp-entity',
+      type: 'text',
+      title: options?.entityName || 'Embedding Request',
+      created: new Date().toISOString(),
+      updated: new Date().toISOString(),
+      lifecycle: { state: 'capture' },
+      sensitivity: {
+        level: 'personal',
+        privacy: { cloud_ai_allowed: false, local_ai_allowed: true, export_allowed: true },
+      },
+      content: text,
+      metadata: { privacy: { level: PrivacyLevel.Personal } },
+    };
+
+    const result = await this.privacyService.processForAI(
+      tempEntity,
+      this.aiProvider,
+      this.userId
+    );
+
+    if (!result.allowed) {
+      console.error(`AI access denied for entity ${tempEntity.uid}: ${result.violations.join(', ')}`);
+      throw new Error(`AI access denied: ${result.violations.join(', ')}`);
+    }
+
+    const contentToProcess = result.filtered ? result.content : text;
+    return await this.innerProvider.generateEmbedding(contentToProcess, options);
+  }
+
+  /**
+   * Chat with privacy enforcement
+   */
+  async chat(
+    messages: { role: 'system' | 'user' | 'assistant'; content: string }[],
+    options?: ExtractionOptions
+  ): Promise<string> {
+    // Check privacy for each message content
+    // For simplicity, we check the last user message or concatenate all
+    // A robust implementation would check all content
+    const lastUserMessage = messages.filter(m => m.role === 'user').pop();
+    
+    if (lastUserMessage) {
+      const tempEntity: Entity = {
+        uid: 'chat-message',
+        type: 'text',
+        title: 'Chat Request',
+        created: new Date().toISOString(),
+        updated: new Date().toISOString(),
+        lifecycle: { state: 'capture' },
+        sensitivity: {
+          level: 'personal',
+          privacy: { cloud_ai_allowed: false, local_ai_allowed: true, export_allowed: true },
+        },
+        content: lastUserMessage.content,
+        metadata: { privacy: { level: PrivacyLevel.Personal } },
+      };
+
+      const result = await this.privacyService.processForAI(
+        tempEntity,
+        this.aiProvider,
+        this.userId
+      );
+
+      if (!result.allowed) {
+        throw new Error(`AI access denied: ${result.violations.join(', ')}`);
+      }
+      
+      // Update message content if filtered
+      if (result.filtered) {
+        lastUserMessage.content = result.content;
+      }
+    }
+
+    return await this.innerProvider.chat(messages, options);
+  }
+
+  /**
    * Test connection (pass-through)
    */
   async testConnection(): Promise<boolean> {

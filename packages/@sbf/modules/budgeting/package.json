@@ -1,28 +1,17 @@
 {
-  "name": "@sbf/modules-budgeting",
-  "version": "1.0.0",
-  "description": "Budgeting and cash flow management plugin for SBF",
+  "name": "@sbf/budgeting",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx -p typescript tsc",
-    "test": "npx -p jest jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --maxWorkers=2"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
-  "keywords": [
-    "sbf",
-    "plugin",
-    "budgeting",
-    "finance",
-    "transactions",
-    "cash-flow"
-  ],
-  "author": "Second Brain Foundation",
-  "license": "MIT",
   "dependencies": {
-    "@sbf/frameworks-financial-tracking": "*"
+    "@sbf/shared": "workspace:*",
+    "@sbf/core-entity-manager": "workspace:*",
+    "@sbf/frameworks-financial-tracking": "workspace:*",
+    "@sbf/aei": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

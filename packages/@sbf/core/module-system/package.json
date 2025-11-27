@@ -14,7 +14,7 @@
     "test:ci": "jest --ci --coverage --maxWorkers=2"
   },
   "dependencies": {
-    "@sbf/shared": "*",
+    "@sbf/shared": "workspace:*",
     "eventemitter3": "^5.0.1"
   },
   "devDependencies": {

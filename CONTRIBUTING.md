@@ -106,7 +106,7 @@ export function createYourEntity(
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@sbf/aei-core": "workspace:*",
+    "@sbf/shared": "workspace:*",
     "@sbf/knowledge-tracking": "workspace:*"
   }
 }

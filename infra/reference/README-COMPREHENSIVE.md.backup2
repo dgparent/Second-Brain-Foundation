@@ -1,0 +1,638 @@
+# Second Brain Foundation - Libraries Collection
+
+**Location:** `C:\!Projects\SecondBrainFoundation\libraries\`  
+**Purpose:** Curated open-source repositories for SBF ecosystem enhancement  
+**Last Updated:** 2025-11-24
+
+---
+
+> **Note:** This README provides comprehensive documentation of all libraries. For UI extraction guidance, see `EXTRACTION-GUIDE.md`.
+
+## 📚 Table of Contents
+
+- [Workflow Automation](#workflow-automation)
+- [Knowledge Management & Note-Taking](#knowledge-management--note-taking)
+- [AI & Machine Learning](#ai--machine-learning)
+- [Data Visualization](#data-visualization)
+- [Business Intelligence & Analytics](#business-intelligence--analytics)
+- [Dashboard & Monitoring](#dashboard--monitoring)
+- [Communication & Collaboration](#communication--collaboration)
+- [Scheduling & Calendar](#scheduling--calendar)
+- [CRM & Customer Support](#crm--customer-support)
+- [Text Editors & Content](#text-editors--content)
+- [Low-Code Platforms](#low-code-platforms)
+- [Domain-Specific Operations Frameworks](#domain-specific-operations-frameworks)
+- [UI Extraction Quick Reference](#ui-extraction-quick-reference)
+
+---
+
+## 🔄 Workflow Automation
+
+### Activepieces
+**Repository:** https://github.com/activepieces/activepieces  
+**License:** MIT  
+**Language:** TypeScript  
+**Stars:** ~10K+
+
+Open-source no-code business automation tool, alternative to Zapier.
+
+**Modules of Interest:**
+- 🔌 **400+ Pre-built Integrations** - Connect to popular services without code
+- 🎯 **Visual Flow Builder** - Drag-and-drop workflow creation
+- 🔐 **Self-hostable** - Deploy on your own infrastructure
+- 🚀 **Custom Pieces** - Extend with custom TypeScript integrations
+- 📊 **Workflow Analytics** - Monitor execution and performance
+- 🔄 **Branching & Loops** - Complex conditional logic support
+
+**SBF Integration Value:**
+- Powers VA Dashboard automation workflows
+- Enables module-to-module communication
+- Automates cross-framework data synchronization
+- Integrates external services with SBF modules
+
+---
+
+### n8n
+**Repository:** https://github.com/n8n-io/n8n  
+**License:** Sustainable Use License / n8n Enterprise License  
+**Language:** TypeScript  
+**Stars:** ~50K+
+
+Fair-code licensed workflow automation platform with visual programming.
+
+**Modules of Interest:**
+- 🔗 **350+ Node Integrations** - APIs, databases, and services
+- 🎨 **Visual Workflow Editor** - Intuitive node-based design
+- 💾 **Data Persistence** - Store workflow state between executions
+- 🔒 **Self-hosted** - Full control over data and execution
+- 🧪 **JavaScript Code Nodes** - Custom logic with full programming power
+- ⏰ **Scheduling & Webhooks** - Trigger workflows on events or schedules
+- 🔄 **Error Handling** - Retry logic and error workflows
+
+**SBF Integration Value:**
+- Complex workflow orchestration across modules
+- Data transformation pipelines
+- Event-driven architecture support
+- Third-party integration hub
+
+---
+
+### Huginn
+**Repository:** https://github.com/huginn/huginn  
+**License:** MIT  
+**Language:** Ruby  
+**Stars:** ~44K+
+
+System for building agents that perform automated tasks online.
+
+**Modules of Interest:**
+- 🤖 **Autonomous Agents** - Self-running background tasks
+- 📡 **Web Scraping** - Extract data from websites
+- 📧 **Email & Notifications** - Automated alerts and messages
+- 🔍 **RSS & Feed Monitoring** - Track content changes
+- 📊 **Data Aggregation** - Collect and synthesize information
+- 🔗 **API Integrations** - Connect to third-party services
+
+**SBF Integration Value:**
+- Automated data collection for Knowledge Graph
+- Content monitoring and ingestion
+- Background research assistant functionality
+- RSS feed integration for Learning Tracker
+
+---
+
+## 📊 Dashboard & Monitoring
+
+### Apache Superset
+**Repository:** https://github.com/apache/superset  
+**License:** Apache 2.0  
+**Language:** Python + React  
+**Stars:** ~65K+
+
+Enterprise-ready business intelligence platform with rich visualizations and semantic layer.
+
+**Modules of Interest:**
+- 🎨 **50+ Chart Types** - Comprehensive visualization library
+- 🔍 **SQL Lab** - Advanced SQL editor for power users
+- 🎯 **No-Code Chart Builder** - Drag-and-drop interface for non-technical users
+- 📊 **Dashboard Builder** - Interactive dashboards with filters and drill-down
+- 🔐 **Row-Level Security (RLS)** - Multi-tenant data isolation
+- 📐 **Semantic Layer** - Define metrics and dimensions
+- ⚡ **Caching Layer** - Redis/Memcached for performance
+- 🔌 **REST API** - Programmatic access to all features
+- 🖼️ **Embedding Support** - Embed dashboards in other apps
+- 🔄 **Multiple Data Sources** - PostgreSQL, MySQL, Snowflake, etc.
+
+**SBF Integration Value:**
+- Primary BI platform for SBF analytics module
+- Multi-tenant ready with RLS
+- Embeddable in Electron desktop app
+- Semantic layer maps to SBF entity model
+- Support both SQL experts and business users
+
+---
+
+### Grafana
+**Repository:** https://github.com/grafana/grafana  
+**License:** AGPL-3.0  
+**Language:** Go + TypeScript  
+**Stars:** ~65K+
+
+Open-source monitoring and observability platform focused on time-series data.
+
+**Modules of Interest:**
+- 📈 **Time-Series Visualizations** - Optimized for metrics over time
+- 🔔 **Alerting System** - Threshold and anomaly-based alerts
+- 🎨 **Panel Plugins** - Extensible visualization system
+- 🔗 **Multi-Data Source** - Query multiple databases in one dashboard
+- 📝 **Template Variables** - Dynamic dashboard filtering
+- 🔄 **Auto-Refresh** - Real-time dashboard updates
+- 📊 **Dashboard Playlists** - Rotate through multiple dashboards
+- 🌐 **Dashboard Sharing** - Public links and snapshots
+- 📱 **Mobile App** - View dashboards on mobile devices
+- 🔌 **Plugin Ecosystem** - 100+ community plugins
+
+**SBF Integration Value:**
+- Real-time monitoring for task/project progress
+- Alerting for goals, deadlines, health metrics
+- Time-series analysis for trends and patterns
+- Custom panels for SBF-specific visualizations
+- Lightweight and fast for embedded use
+
+---
+
+### Metabase
+**Repository:** https://github.com/metabase/metabase  
+**License:** AGPL-3.0  
+**Language:** Clojure + React  
+**Stars:** ~40K+
+
+User-friendly BI tool that emphasizes simplicity and ease of use.
+
+**Modules of Interest:**
+- 🎯 **Simple Query Builder** - No SQL required for basic queries
+- 💻 **SQL Editor** - Advanced queries for power users
+- 📊 **Dashboard Builder** - Clean, intuitive interface
+- 📧 **Subscriptions** - Scheduled delivery via email/Slack
+- 🔔 **Alerts** - Get notified when data changes
+- 🎨 **Interactive Dashboards** - Click-through filters
+- 📐 **Models** - Reusable data abstractions
+- 🔌 **Embedding SDK** - React components for embedding
+- 🎯 **Segments & Metrics** - Canonical business definitions
+- 📱 **Mobile-Responsive** - Works on all devices
+
+**SBF Integration Value:**
+- Easiest for non-technical SBF users
+- Embedding SDK for native React integration
+- Models map cleanly to SBF entities
+- Scheduled reports for automated insights
+- Quick setup and minimal configuration
+
+---
+
+### Lightdash
+**Repository:** https://github.com/lightdash/lightdash  
+**License:** MIT  
+**Language:** TypeScript  
+**Stars:** ~4K+
+
+Developer-friendly BI platform built around dbt and metrics-as-code.
+
+**Modules of Interest:**
+- 📝 **Metrics as Code** - Define metrics in YAML/TypeScript
+- 🔗 **dbt Integration** - Native dbt support
+- 🎯 **Self-Service BI** - Empower users to explore data
+- 📊 **Chart Builder** - Intuitive visualization creation
+- 🔄 **Version Control** - Git-based analytics workflows
+- 🌐 **Preview Environments** - Test analytics changes
+- 📈 **Lineage Tracking** - Understand data dependencies
+- 🔍 **Explore Interface** - Ad-hoc data exploration
+- 🎨 **Dashboard Builder** - Organize insights
+- ⚡ **TypeScript-First** - Developer-friendly architecture
+
+**SBF Integration Value:**
+- TypeScript alignment with SBF codebase
+- Metrics-as-code approach for versioning
+- Developer-friendly workflows
+- CI/CD integration for analytics
+- Lightweight and embeddable
+
+---
+
+## 📚 Library Details
+
+### 1. text-generation-webui ⭐ 45.4K
+
+**Tech:** Python + Gradio  
+**Use For:** Chat UI, parameter controls, extension patterns  
+**Priority:** P0 (Critical)
+
+**Key Folders:**
+```
+text-generation-webui/
+├── gradio/                  → Chat interface logic
+├── css/                     → Styles to port
+├── js/                      → WebSocket patterns
+├── extensions/              → Queue/processing UI
+└── docs/                    → Usage guides
+```
+
+**Extract For:**
+- AEI Chat Interface
+- Organization Queue
+- Settings panels
+
+**Notes:**
+- Gradio UI - copy patterns, not code
+- Screenshot UI, recreate in React
+- Great CSS to port
+
+---
+
+### 2. SurfSense ⭐ 10.6K
+
+**Tech:** Next.js + FastAPI  
+**Use For:** RAG chat, file browser, modern React patterns  
+**Priority:** P0 (Critical)
+
+**Key Folders:**
+```
+SurfSense/
+├── frontend/src/components/ → React components (reusable!)
+│   ├── Chat/               → RAG chat with sources
+│   ├── Sidebar/            → Navigation
+│   ├── FileExplorer/       → File tree
+│   └── SearchResults/      → Search UI
+└── docs/                   → Setup guides
+```
+
+**Extract For:**
+- Chat with source citations
+- File browser
+- Document preview
+- Modern UI patterns
+
+**Notes:**
+- Next.js → React (easy port)
+- Great component structure
+- Aceternity UI styles
+
+---
+
+### 3. mdx-editor ⭐ 3.0K
+
+**Tech:** React + Lexical  
+**Use For:** Markdown editing  
+**Priority:** P0 (Critical)
+
+**Key Folders:**
+```
+mdx-editor/
+├── src/
+│   ├── MDXEditor.tsx       → Main component
+│   ├── plugins/            → Lexical plugins
+│   ├── toolbar/            → Toolbar UI
+│   └── utils/              → Markdown helpers
+└── docs/                   → Feature docs
+```
+
+**Extract For:**
+- Daily note editor
+- Entity editing
+- Markdown WYSIWYG
+
+**Notes:**
+- Use as npm package (`@mdxeditor/editor`)
+- Excellent documentation
+- Front-matter support built-in
+
+**Read First:** `mdx-editor/docs/getting-started.md`
+
+---
+
+### 4. FreedomGPT ⭐ 2.7K
+
+**Tech:** React + Electron  
+**Use For:** Desktop app setup, clean chat UI  
+**Priority:** P0 (Critical)
+
+**Key Folders:**
+```
+FreedomGPT/
+├── src/
+│   ├── main/               → Electron main process
+│   │   └── electron/       → Window management
+│   └── renderer/           → React UI
+│       ├── components/Chat/
+│       └── components/Sidebar/
+└── electron-builder.json   → Build config
+```
+
+**Extract For:**
+- Desktop shell
+- Electron setup
+- Clean React chat components
+- Window management
+
+**Notes:**
+- Direct React code reuse possible
+- Good Electron patterns
+- Simple, clean UI
+
+---
+
+### 5. obsidian-textgenerator ⭐ 1.8K
+
+**Tech:** TypeScript (Obsidian plugin)  
+**Use For:** Settings UI, AI provider config  
+**Priority:** P1 (Important)
+
+**Key Folders:**
+```
+obsidian-textgenerator/
+├── src/
+│   ├── settings/           → Settings UI ⭐
+│   │   ├── SettingTab.ts
+│   │   └── components/
+│   ├── ui/                 → Modal patterns
+│   └── providers/          → AI provider logic
+└── recipes.md              → Usage examples
+```
+
+**Extract For:**
+- Settings panel
+- AI provider configuration
+- Tab navigation
+- Form controls
+
+**Notes:**
+- Remove Obsidian API dependencies
+- Great settings structure
+- Provider patterns useful
+
+---
+
+### 6. rich-markdown-editor ⭐ 2.9K
+
+**Tech:** React + Prosemirror  
+**Use For:** Slash commands, inline toolbar (reference)  
+**Priority:** P1 (Reference only)
+
+**Key Folders:**
+```
+rich-markdown-editor/
+├── src/
+│   ├── components/         → Prosemirror components
+│   ├── commands/           → Slash commands ⭐
+│   └── lib/                → Utilities
+└── README.md
+```
+
+**Extract For:**
+- Slash command patterns
+- Inline toolbar inspiration
+- Block component ideas
+
+**Notes:**
+- **ARCHIVED** repo (still valuable)
+- Prosemirror is complex - use patterns, not code
+- Reference only - use mdx-editor for actual implementation
+
+---
+
+### 7. react-md-editor ⭐ 2.7K
+
+**Tech:** React  
+**Use For:** Simple split-view editor (backup option)  
+**Priority:** P2 (Backup/Reference)
+
+**Key Folders:**
+```
+react-md-editor/
+├── src/
+│   ├── Editor.tsx          → Simple editor
+│   └── components/         → Basic toolbar
+└── core/                   → Core logic
+```
+
+**Extract For:**
+- Fallback simple editor
+- Split-pane patterns
+
+**Notes:**
+- Use only if mdx-editor too complex
+- Very simple, limited features
+- Good for MVP fallback
+
+---
+
+## 🎯 Extraction Priority
+
+### This Week (P0 - Critical)
+1. **FreedomGPT** (Day 1) - Desktop shell
+2. **text-generation-webui** (Day 2-3) - Chat UI
+3. **mdx-editor** (Day 4-5) - Editor
+4. **text-generation-webui** (Day 6-7) - Organization queue
+
+### Next Week (P1 - Important)
+5. **obsidian-textgenerator** (Day 8-9) - Settings
+6. **SurfSense** (Day 10-11) - File browser
+7. Polish & integration
+
+### Later (P2 - Enhancement)
+8. **rich-markdown-editor** - Slash commands
+9. **react-md-editor** - If needed as fallback
+
+---
+
+## 📖 Key Documentation Files
+
+**Must Read Before Extraction:**
+
+1. **`EXTRACTION-GUIDE.md`** ⭐⭐⭐
+   - Complete module mapping
+   - Step-by-step extraction
+   - Priority roadmap
+
+2. **`mdx-editor/docs/getting-started.md`**
+   - How to use editor
+   - Plugin system
+   - Configuration
+
+3. **`text-generation-webui/docs/README.md`**
+   - UI modes explained
+   - Extension system
+   - Features overview
+
+4. **`FreedomGPT/Readme.md`**
+   - Setup instructions
+   - Architecture overview
+
+5. **`SurfSense/README.md`**
+   - Installation
+   - Component structure
+   - API integration
+
+---
+
+## 🔧 Setup Commands
+
+### Install mdx-editor (Direct Use)
+```bash
+cd aei-ui
+npm install @mdxeditor/editor
+```
+
+### Run text-generation-webui (Local Testing)
+```bash
+cd libraries/text-generation-webui
+python server.py
+# Visit http://localhost:7860 to see UI
+```
+
+### Run SurfSense (Local Testing)
+```bash
+cd libraries/SurfSense
+npm install
+npm run dev
+# Visit http://localhost:3000
+```
+
+### Build FreedomGPT (Desktop Testing)
+```bash
+cd libraries/FreedomGPT
+npm install
+npm run dev
+# Electron app launches
+```
+
+---
+
+## ⚠️ Important Notes
+
+### Copyright & Licensing
+
+**All libraries are open-source:**
+- text-generation-webui: AGPL-3.0
+- SurfSense: MIT
+- mdx-editor: MIT
+- FreedomGPT: MIT
+- obsidian-textgenerator: MIT
+- rich-markdown-editor: BSD-3-Clause
+- react-md-editor: MIT
+
+**Safe to use** for reference, learning, and extraction patterns.  
+**Always credit** original authors in our code comments.
+
+### Adaptation Strategy
+
+**DO:**
+- ✅ Study UI patterns
+- ✅ Screenshot interfaces
+- ✅ Extract CSS/styles
+- ✅ Learn component structure
+- ✅ Rewrite in our tech stack
+
+**DON'T:**
+- ❌ Copy code verbatim without understanding
+- ❌ Include unnecessary dependencies
+- ❌ Violate license terms
+- ❌ Claim UI designs as original
+
+---
+
+## 🚀 Getting Started
+
+**First Time Here?**
+
+1. **Read:** `EXTRACTION-GUIDE.md` (complete instructions)
+2. **Review:** This README for quick navigation
+3. **Browse:** Each library's README for context
+4. **Start:** Day 1 extraction (FreedomGPT desktop shell)
+
+**Need Help Finding Something?**
+
+Use the "Quick Navigation by Module" section above or search this file for keywords.
+
+---
+
+## 📊 Statistics
+
+**Total Libraries:** 30  
+**Total Stars:** ~300,000+  
+**Total Size:** ~3-4GB  
+**Cloned:** 2025-11-14  
+**Last Updated:** 2025-11-24  
+**Ready for:** Component extraction & BI integration
+
+### Libraries by Category
+- **AI Chat Interfaces:** 4 (text-generation-webui, anything-llm, open-webui, jan, FreedomGPT)
+- **PKM/Note Systems:** 7 (logseq, athens, trilium, foam, silverbullet, vnote, SurfSense)
+- **Markdown Editors:** 5 (mdx-editor, tiptap, milkdown, rich-markdown-editor, react-md-editor, editorjs)
+- **Graph Visualization:** 4 (reagraph, cytoscape, sigmajs, d3)
+- **Dashboard & BI:** 4 (superset, grafana, metabase, lightdash) ⭐ NEW
+- **Canvas/Visual Tools:** 2 (tldraw, excalidraw)
+- **Configuration:** 2 (obsidian-textgenerator, obsidian-textgenerator-plugin)
+
+---
+
+## 📦 Complete Library Index
+
+### AI Chat & LLM Interfaces
+- **text-generation-webui** - Gradio-based LLM UI (AGPL-3.0) ⭐ 45.4K
+- **anything-llm** - Full-stack RAG & document chat (MIT) ⭐ 28.7K
+- **open-webui** - Extensible AI interface (MIT) ⭐ 52.3K
+- **jan** - Local AI client (AGPL-3.0) ⭐ 24.8K
+- **FreedomGPT** - Electron-based chat UI (MIT) ⭐ 2.7K
+
+### PKM & Knowledge Management
+- **logseq** - Local-first outliner (AGPL-3.0) ⭐ 33.9K
+- **athens** - Graph-based knowledge graph (EPL-1.0) ⭐ 6.4K
+- **trilium** - Hierarchical notes (AGPL-3.0) ⭐ 28.1K
+- **foam** - VS Code PKM (MIT) ⭐ 15.8K
+- **silverbullet** - Markdown workspace (MIT) ⭐ 2.5K
+- **vnote** - Note-taking (MIT) ⭐ 12.0K
+- **SurfSense** - AI-powered PKM (MIT) ⭐ 10.6K
+
+### Markdown Editors
+- **mdx-editor** - Lexical-based MDX editor (MIT) ⭐ 3.0K
+- **tiptap** - Headless editor framework (MIT) ⭐ 29.2K
+- **milkdown** - Plugin-driven editor (MIT) ⭐ 9.0K
+- **rich-markdown-editor** - Prosemirror editor (BSD-3) ⭐ 2.9K [ARCHIVED]
+- **react-md-editor** - Simple markdown editor (MIT) ⭐ 2.7K
+- **editorjs** - Block-style editor (Apache-2.0) ⭐ 28.8K
+
+### Graph Visualization
+- **reagraph** - 3D/2D graph (Apache-2.0) ⭐ 2.0K
+- **cytoscape** - Graph theory library (MIT) ⭐ 10.2K
+- **sigmajs** - Graph visualization (MIT) ⭐ 11.4K
+- **d3** - Data visualization (ISC) ⭐ 109.2K
+
+### Dashboard & Business Intelligence ⭐ NEW
+- **superset** - Enterprise BI platform (Apache-2.0) ⭐ 65K+
+- **grafana** - Monitoring & observability (AGPL-3.0) ⭐ 65K+
+- **metabase** - User-friendly BI tool (AGPL-3.0) ⭐ 40K+
+- **lightdash** - dbt-native BI (MIT) ⭐ 4K+
+
+### Canvas & Visual Tools
+- **tldraw** - Infinite canvas (Apache-2.0) ⭐ 37.1K
+- **excalidraw** - Virtual whiteboard (MIT) ⭐ 88.9K
+
+### Configuration & Settings
+- **obsidian-textgenerator** - AI text generation plugin (MIT) ⭐ 1.8K
+- **obsidian-textgenerator-plugin** - Variant reference
+
+---
+
+## 🔗 Related Documentation
+
+- **UI Research:** `docs/05-research/technology-research/ui-library-research.md`
+- **Summary:** `docs/05-research/technology-research/ui-libraries-summary.md`
+- **ChatGPT Analysis:** `docs/libraries-building-result-from-chatgpt.md`
+- **This Guide:** `libraries/EXTRACTION-GUIDE.md` ⭐
+
+---
+
+**Need assistance?** Refer to [EXTRACTION-GUIDE.md](./EXTRACTION-GUIDE.md) for detailed instructions.
+
+**Ready to build?** Start with Day 1 (FreedomGPT Desktop Shell)! 🚀

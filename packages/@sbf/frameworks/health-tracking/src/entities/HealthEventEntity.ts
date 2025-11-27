@@ -5,9 +5,11 @@ export interface Entity {
   uid: string;
   type: string;
   title: string;
-  lifecycle: { state: string };
+  lifecycle: {
+    state: 'capture' | 'transitional' | 'permanent' | 'archived';
+  };
   sensitivity: {
-    level: string;
+    level: 'public' | 'personal' | 'confidential' | 'secret';
     privacy: {
       cloud_ai_allowed: boolean;
       local_ai_allowed: boolean;
@@ -75,7 +77,7 @@ export function createHealthEvent(data: {
     uid: data.uid,
     type: data.type,
     title: data.title,
-    lifecycle: { state: 'permanent' },
+    lifecycle: { state: 'permanent' as const },
     sensitivity: createHealthPrivacy('confidential'),
     created: new Date().toISOString(),
     updated: new Date().toISOString(),

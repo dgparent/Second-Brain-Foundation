@@ -1,0 +1,14 @@
+# Fly.io configuration for SBF Workers
+app = "sbf-workers"
+primary_region = "sea"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+
+# No HTTP service - workers connect to Redis
+[metrics]
+  port = 9091
+  path = "/metrics"

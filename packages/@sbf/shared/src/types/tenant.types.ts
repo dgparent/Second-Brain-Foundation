@@ -175,3 +175,35 @@ export interface TenantPolicySet {
   pseudo_personal: RolePolicy;
   professional: RolePolicy;
 }
+
+/**
+ * Legacy types for compatibility with v1.0 API and DB schema.
+ */
+export interface LegacyTenant {
+  id: string;
+  slug: string;
+  name: string;
+  plan: string;
+  settings: Record<string, any>;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface LegacyUser {
+  id: string;
+  email: string;
+  name?: string;
+  metadata: Record<string, any>;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface LegacyTenantMembership {
+  id: string;
+  tenant_id: string;
+  user_id: string;
+  role: string;
+  permissions: Record<string, any>;
+  created_at: Date;
+  updated_at: Date;
+}

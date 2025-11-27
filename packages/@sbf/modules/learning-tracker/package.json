@@ -1,27 +1,19 @@
 {
-  "name": "@sbf/modules-learning-tracker",
-  "version": "1.0.0",
-  "description": "Learning & Skill Tracker Plugin for Second Brain Foundation",
-  "type": "module",
+  "name": "@sbf/learning-tracker",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx -p typescript tsc"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
-  "keywords": [
-    "second-brain",
-    "learning",
-    "skills",
-    "courses",
-    "goals"
-  ],
-  "author": "Second Brain Foundation",
-  "license": "MIT",
   "dependencies": {
-    "@sbf/aei": "*",
-    "@sbf/frameworks-knowledge-tracking": "*"
+    "@sbf/shared": "workspace:*",
+    "@sbf/core-entity-manager": "workspace:*",
+    "@sbf/aei": "workspace:*",
+    "@sbf/frameworks-knowledge-tracking": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.3"
   }
 }

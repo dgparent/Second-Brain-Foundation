@@ -1,0 +1,30 @@
+{
+  "name": "@sbf/modules-legal-ops",
+  "version": "1.0.0",
+  "description": "Legal operations module for law firms and legal departments",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc || exit 0",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "sbf",
+    "module",
+    "legal",
+    "law-firm",
+    "case-management",
+    "discovery",
+    "legal-ops"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

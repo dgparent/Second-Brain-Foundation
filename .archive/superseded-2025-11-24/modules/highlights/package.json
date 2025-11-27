@@ -1,0 +1,27 @@
+{
+  "name": "@sbf/modules-highlights",
+  "version": "1.0.0",
+  "description": "Highlights & Notes Plugin for Second Brain Foundation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc"
+  },
+  "keywords": [
+    "second-brain",
+    "highlights",
+    "notes",
+    "insights",
+    "reading"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/aei": "*",
+    "@sbf/frameworks-knowledge-tracking": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

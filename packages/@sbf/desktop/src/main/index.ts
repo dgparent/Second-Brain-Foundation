@@ -1,55 +1,138 @@
 import { app, BrowserWindow, ipcMain, Menu, Tray } from 'electron';
 import * as path from 'path';
 import { EntityManager } from '@sbf/core-entity-manager';
+import { KnowledgeGraph } from '@sbf/core-knowledge-graph';
 import { MemoryEngine } from '@sbf/memory-engine';
 import { LifecycleEngine, DissolutionWorkflow, EntityExtractionWorkflow } from '@sbf/core-lifecycle-engine';
 import { PrivacyService, InMemoryAuditStorage } from '@sbf/core-privacy';
+import { BaseAIProvider, OllamaProvider } from '@sbf/aei';
+import { VAService } from '@sbf/va-dashboard';
+import { TaskService } from '@sbf/personal-tasks';
+import { BudgetService } from '@sbf/budgeting';
+import { FitnessService } from '@sbf/fitness-tracking';
+import { CRMService } from '@sbf/relationship-crm';
+import { PortfolioService } from '@sbf/portfolio-tracking';
+import { NutritionService } from '@sbf/nutrition-tracking';
+import { MedicationService } from '@sbf/medication-tracking';
+import { LearningService } from '@sbf/learning-tracker';
+import { LegalService } from '@sbf/legal-ops';
+import { PropertyService } from '@sbf/property-mgmt';
+import { HACCPService } from '@sbf/restaurant-haccp';
 import { setupIPCHandlers } from './ipc-handlers';
+import { PluginManager } from './PluginManager';
+import { ConfigManager } from './ConfigManager';
 
 let mainWindow: BrowserWindow | null = null;
 let tray: Tray | null = null;
 
 // Initialize backend services
+let knowledgeGraph: KnowledgeGraph;
 let entityManager: EntityManager;
 let memoryEngine: MemoryEngine;
 let lifecycleEngine: LifecycleEngine;
 let dissolutionWorkflow: DissolutionWorkflow;
 let privacyService: PrivacyService;
+let aiProvider: BaseAIProvider;
+let vaService: VAService;
+let taskService: TaskService;
+let budgetService: BudgetService;
+let fitnessService: FitnessService;
+let crmService: CRMService;
+let portfolioService: PortfolioService;
+let nutritionService: NutritionService;
+let medicationService: MedicationService;
+let learningService: LearningService;
+let legalService: LegalService;
+let propertyService: PropertyService;
+let haccpService: HACCPService;
+let pluginManager: PluginManager;
+let configManager: ConfigManager;
 
 async function initializeBackendServices() {
   try {
     console.log('Initializing backend services...');
     
-    // TODO: Desktop module needs refactoring to match current architecture
-    // Current issues:
-    // 1. EntityManager now requires KnowledgeGraph, not MemoryEngine
-    // 2. DissolutionWorkflow requires EntityExtractionWorkflow with AI provider
-    // 3. Need to create proper KnowledgeGraph instance
-    // 4. Need to install electron types: npm install --save-dev @types/electron
+    // Initialize Config Manager
+    configManager = new ConfigManager();
+    const config = configManager.getConfig();
+
+    // Initialize Plugin Manager
+    pluginManager = new PluginManager();
     
     // Initialize Memory Engine
     const vaultRoot = path.join(app.getPath('userData'), 'vault');
     memoryEngine = new MemoryEngine({ vaultRoot });
+
+    // Initialize Knowledge Graph
+    knowledgeGraph = new KnowledgeGraph();
     
-    // Initialize Entity Manager - TEMPORARILY DISABLED
-    // entityManager = new EntityManager(memoryEngine);  // Type mismatch - needs KnowledgeGraph
+    // Initialize Entity Manager
+    entityManager = new EntityManager(knowledgeGraph);
     
-    // Initialize Lifecycle Engine - TEMPORARILY DISABLED
-    // lifecycleEngine = new LifecycleEngine(entityManager);
-    // lifecycleEngine.start(60); // Check every 60 minutes
+    // Initialize Lifecycle Engine
+    lifecycleEngine = new LifecycleEngine(entityManager);
+    lifecycleEngine.start(60); // Check every 60 minutes
     
     // Initialize Privacy Service
     const auditStorage = new InMemoryAuditStorage();
     privacyService = new PrivacyService(auditStorage);
+
+    // Initialize AI Provider from Config
+    aiProvider = new OllamaProvider({
+      model: config.ai.model,
+      baseUrl: config.ai.baseUrl
+    });
+
+    // Initialize Extraction Workflow
+    const extractionWorkflow = new EntityExtractionWorkflow({
+      provider: aiProvider,
+      entityManager
+    });
     
-    // Initialize Dissolution Workflow - TEMPORARILY DISABLED
-    // dissolutionWorkflow = new DissolutionWorkflow({
-    //   entityManager,
-    //   extractionWorkflow: null as any,  // Requires AI provider
-    //   archiveEnabled: true,
-    // });
+    // Initialize Dissolution Workflow
+    dissolutionWorkflow = new DissolutionWorkflow({
+      entityManager,
+      extractionWorkflow,
+      archiveEnabled: true,
+    });
+
+    // Initialize VA Service
+    vaService = new VAService(entityManager, aiProvider);
+
+    // Initialize Task Service
+    taskService = new TaskService(entityManager, aiProvider);
+
+    // Initialize Budget Service
+    budgetService = new BudgetService(entityManager, aiProvider);
+
+    // Initialize Fitness Service
+    fitnessService = new FitnessService(entityManager, aiProvider);
+
+    // Initialize CRM Service
+    crmService = new CRMService(entityManager, aiProvider);
+
+    // Initialize Portfolio Service
+    portfolioService = new PortfolioService(entityManager, aiProvider);
+
+    // Initialize Nutrition Service
+    nutritionService = new NutritionService(entityManager, aiProvider);
+
+    // Initialize Medication Service
+    medicationService = new MedicationService(entityManager);
+
+    // Initialize Learning Service
+    learningService = new LearningService(entityManager, aiProvider);
+
+    // Initialize Legal Service
+    legalService = new LegalService(entityManager, aiProvider);
+
+    // Initialize Property Service
+    propertyService = new PropertyService(entityManager, aiProvider);
+
+    // Initialize HACCP Service
+    haccpService = new HACCPService(entityManager, aiProvider);
     
-    console.log('✅ Backend services initialized successfully (partial - needs refactoring)');
+    console.log('✅ Backend services initialized successfully');
   } catch (error) {
     console.error('❌ Failed to initialize backend services:', error);
     throw error;
@@ -82,7 +165,7 @@ function createWindow() {
 
   // Minimize to tray instead of closing
   mainWindow.on('close', (event) => {
-    if (!app.isQuitting) {
+    if (!(app as any).isQuitting) {
       event.preventDefault();
       mainWindow?.hide();
     }
@@ -103,7 +186,7 @@ function createTray() {
     { 
       label: 'Quit', 
       click: () => {
-        app.isQuitting = true;
+        (app as any).isQuitting = true;
         app.quit();
       }
     }
@@ -127,12 +210,25 @@ app.on('ready', async () => {
     createTray();
     
     // Set up IPC handlers with initialized services
-    // TODO: These services are currently disabled pending architecture refactoring
     setupIPCHandlers({
-      entityManager: entityManager!,  // Non-null assertion - will need fixing
-      lifecycleEngine: lifecycleEngine!,
-      dissolutionWorkflow: dissolutionWorkflow!,
+      entityManager,
+      lifecycleEngine,
+      dissolutionWorkflow,
       privacyService,
+      vaService,
+      taskService,
+      budgetService,
+      fitnessService,
+      crmService,
+      portfolioService,
+      nutritionService,
+      medicationService,
+      learningService,
+      legalService,
+      propertyService,
+      haccpService,
+      aiProvider,
+      configManager,
     });
     
     // Also setup legacy handlers
@@ -170,18 +266,17 @@ app.on('before-quit', () => {
 function setupLegacyHandlers() {
   // Plugin loading
   ipcMain.handle('plugin:list', async () => {
-    // TODO: Implement plugin discovery
-    return [];
+    return await pluginManager.discoverPlugins();
   });
 
   ipcMain.handle('plugin:load', async (event, pluginId: string) => {
-    // TODO: Implement plugin loading
-    return { success: true, pluginId };
+    const success = await pluginManager.loadPlugin(pluginId);
+    return { success, pluginId };
   });
 
   ipcMain.handle('plugin:unload', async (event, pluginId: string) => {
-    // TODO: Implement plugin unloading
-    return { success: true, pluginId };
+    const success = await pluginManager.unloadPlugin(pluginId);
+    return { success, pluginId };
   });
 
   // Entity operations

@@ -1,0 +1,136 @@
+{
+  "id": "personal-overview",
+  "name": "Personal Overview Dashboard",
+  "description": "Comprehensive overview across all personal modules",
+  "type": "personal_overview",
+  "layout": {
+    "type": "grid",
+    "columns": 12,
+    "rowHeight": 80,
+    "gap": 16
+  },
+  "filters": [
+    {
+      "id": "dateRange",
+      "name": "Date Range",
+      "type": "date_range",
+      "field": "dateRange",
+      "defaultValue": "last_30_days"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "tasks-completed",
+      "type": "metric_card",
+      "title": "Tasks Completed",
+      "position": { "x": 0, "y": 0 },
+      "size": { "width": 3, "height": 2 },
+      "config": {
+        "metric": "tasks_completed_this_month",
+        "chartType": "big_number"
+      },
+      "dataSource": "analytics.vw_tasks"
+    },
+    {
+      "id": "task-completion-rate",
+      "type": "metric_card",
+      "title": "Completion Rate",
+      "position": { "x": 3, "y": 0 },
+      "size": { "width": 3, "height": 2 },
+      "config": {
+        "metric": "task_completion_rate",
+        "chartType": "gauge"
+      },
+      "dataSource": "analytics.vw_tasks"
+    },
+    {
+      "id": "active-minutes",
+      "type": "metric_card",
+      "title": "Active Minutes",
+      "position": { "x": 6, "y": 0 },
+      "size": { "width": 3, "height": 2 },
+      "config": {
+        "metric": "weekly_active_minutes",
+        "chartType": "big_number"
+      },
+      "dataSource": "analytics.vw_health_activities"
+    },
+    {
+      "id": "budget-status",
+      "type": "metric_card",
+      "title": "Budget Status",
+      "position": { "x": 9, "y": 0 },
+      "size": { "width": 3, "height": 2 },
+      "config": {
+        "metric": "budget_variance",
+        "chartType": "big_number"
+      },
+      "dataSource": "analytics.vw_financial_transactions"
+    },
+    {
+      "id": "task-completion-trend",
+      "type": "chart",
+      "title": "Task Completion Trend",
+      "position": { "x": 0, "y": 2 },
+      "size": { "width": 6, "height": 4 },
+      "config": {
+        "chartType": "line",
+        "metric": "task_completion_trend",
+        "dimensions": ["date"],
+        "options": {
+          "fill": true,
+          "tension": 0.4
+        }
+      },
+      "dataSource": "analytics.vw_tasks"
+    },
+    {
+      "id": "spending-by-category",
+      "type": "chart",
+      "title": "Spending by Category",
+      "position": { "x": 6, "y": 2 },
+      "size": { "width": 6, "height": 4 },
+      "config": {
+        "chartType": "pie",
+        "metric": "spending_by_category",
+        "dimensions": ["category"]
+      },
+      "dataSource": "analytics.vw_financial_transactions"
+    },
+    {
+      "id": "activity-calendar",
+      "type": "chart",
+      "title": "Activity Heatmap",
+      "position": { "x": 0, "y": 6 },
+      "size": { "width": 6, "height": 4 },
+      "config": {
+        "chartType": "calendar",
+        "metric": "daily_active_minutes",
+        "dimensions": ["date"]
+      },
+      "dataSource": "analytics.vw_health_activities"
+    },
+    {
+      "id": "overdue-tasks",
+      "type": "table",
+      "title": "Overdue Tasks",
+      "position": { "x": 6, "y": 6 },
+      "size": { "width": 6, "height": 4 },
+      "config": {
+        "chartType": "table",
+        "dimensions": ["title", "dueDate", "priority"],
+        "filters": {
+          "status": "overdue"
+        },
+        "options": {
+          "pageSize": 10,
+          "sortBy": "dueDate"
+        }
+      },
+      "dataSource": "analytics.vw_tasks"
+    }
+  ],
+  "refreshInterval": 300,
+  "isTemplate": true,
+  "createdAt": "2025-11-24T00:00:00Z"
+}

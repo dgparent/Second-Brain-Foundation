@@ -42,7 +42,7 @@ services:
   # SBF API Backend
   api:
     build:
-      context: ./aei-core
+      context: ./apps/aei-core
       dockerfile: Dockerfile
     container_name: sbf-api
     environment:
@@ -70,26 +70,24 @@ services:
     networks:
       - sbf-network
 
-  # n8n Workflow Automation
-  n8n:
-    image: n8nio/n8n:latest
-    container_name: sbf-n8n
+  # Trigger.dev - Internal Job Runner
+  triggerdev-api:
+    image: triggerdotdev/trigger.dev:v2
+    container_name: sbf-trigger-api
     environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin}
-      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD:-changeme}
-      - N8N_HOST=0.0.0.0
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=http
-      - WEBHOOK_URL=http://localhost:5678/
-      - GENERIC_TIMEZONE=${TIMEZONE:-America/New_York}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-sbf_user}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-sbf_db}
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
+      - MAGIC_LINK_SECRET=${TRIGGER_MAGIC_LINK_SECRET:-changeme}
+      - SESSION_SECRET=${TRIGGER_SESSION_SECRET:-changeme}
+      - ENCRYPTION_KEY=${TRIGGER_ENCRYPTION_KEY:-changeme}
+      - REMIX_APP_PORT=8787
+      - LOGIN_ORIGIN=http://localhost:8787
+      - APP_ORIGIN=http://localhost:8787
     ports:
-      - "5678:5678"
-    volumes:
-      - n8n_data:/home/node/.n8n
-      - ./packages/sbf-automation/nodes-sbf:/home/node/.n8n/custom
+      - "8787:8787"
     depends_on:
-      - api
+      - postgres
+      - redis
     restart: unless-stopped
     networks:
       - sbf-network
@@ -124,6 +122,64 @@ services:
     networks:
       - sbf-network
 
+  # Apache Superset - Analytics & Dashboards
+  superset:
+    image: apache/superset:latest
+    container_name: sbf-superset
+    environment:
+      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY:-your-superset-secret-key}
+      - DATABASE_DB=${POSTGRES_DB:-sbf_db}
+      - DATABASE_HOST=postgres
+      - DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - DATABASE_USER=${POSTGRES_USER:-sbf_user}
+      - DATABASE_PORT=5432
+      - DATABASE_DIALECT=postgresql
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8088:8088"
+    volumes:
+      - superset_data:/app/superset_home
+      - ./scripts/init-analytics-schema.sql:/docker-entrypoint-initdb.d/analytics.sql
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - sbf-network
+    command: >
+      sh -c "superset db upgrade &&
+             superset init &&
+             superset fab create-admin --username admin --firstname Admin --lastname User --email admin@sbf.local --password ${SUPERSET_ADMIN_PASSWORD:-admin} || true &&
+             superset run -h 0.0.0.0 -p 8088 --with-threads --reload"
+
+  # Grafana - Monitoring & Analytics
+  grafana:
+    image: grafana/grafana:latest
+    container_name: sbf-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_INSTALL_PLUGINS=
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgres:5432
+      - GF_DATABASE_NAME=${POSTGRES_DB:-sbf_db}
+      - GF_DATABASE_USER=${POSTGRES_USER:-sbf_user}
+      - GF_DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - ./config/grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - sbf-network
+
   # Nginx Reverse Proxy (Optional - for production)
   nginx:
     image: nginx:alpine
@@ -136,8 +192,10 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl:ro
     depends_on:
       - api
-      - n8n
+      - triggerdev-api
       - activepieces
+      - superset
+      - grafana
     restart: unless-stopped
     networks:
       - sbf-network
@@ -149,11 +207,13 @@ volumes:
     driver: local
   redis_data:
     driver: local
-  n8n_data:
-    driver: local
   activepieces_data:
     driver: local
   api_logs:
+    driver: local
+  superset_data:
+    driver: local
+  grafana_data:
     driver: local
 
 networks:

@@ -1,6 +1,7 @@
 // Entities
 export * from './entities/FinancialEventEntity';
 export * from './entities/FinancialAccountEntity';
+export * from './entities/AssetEntity';
 
 // Workflows
 export * from './workflows/FinancialAggregationWorkflow';

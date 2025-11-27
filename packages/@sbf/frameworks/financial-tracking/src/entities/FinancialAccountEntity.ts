@@ -38,7 +38,7 @@ export function createFinancialAccount(data: {
     uid: data.uid,
     type: 'finance.account',
     title: data.title,
-    lifecycle: { state: 'permanent' },
+    lifecycle: { state: 'permanent' as const },
     sensitivity: {
       level: 'confidential',
       privacy: {

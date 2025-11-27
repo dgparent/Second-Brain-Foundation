@@ -1,0 +1,121 @@
+/* NOTE: DO NOT ADD COLORS WITHOUT EXTREMELY GOOD REASON AND DESIGN REVIEW
+ * NOTE: KEEP SYNCHRONIZED WITH:
+ * frontend/src/metabase/ui/utils/colors.ts
+ * frontend/src/metabase/lib/colors/palette.ts
+ * frontend/src/metabase/lib/colors/colors.ts
+ * frontend/src/metabase/styled-components/containers/GlobalStyles/GlobalStyles.tsx
+ * frontend/src/metabase/styled-components/theme/css-variables.ts
+ */
+
+/* This file contains two types of colors
+ *
+ * 1. Semantic colors
+ * 2. Base colors
+ *
+ * Semantic colors are the colors that are used in the application. They are derived
+ * from the base colors.
+ *
+ * Base colors are the colors that should never change and never be used outside this file,
+ * or in any components or CSS properties. They should only be used to define the semantic
+ * colors in this file.
+*/
+
+.textDefault {
+  color: var(--mb-color-text-dark);
+}
+
+.textBrand,
+.textBrandHover:hover {
+  color: var(--mb-color-brand);
+}
+
+/** Non-whitelabeled Metabase brand color */
+.textMetabaseBrand {
+  color: var(--mb-color-metabase-brand);
+}
+
+.textSuccess {
+  color: var(--mb-color-success);
+}
+
+/* error */
+
+.textError,
+.textErrorHover {
+  color: var(--mb-color-error);
+}
+
+.bgErrorHover:hover {
+  background-color: var(--mb-color-error);
+}
+
+.bgErrorInput {
+  background-color: var(--mb-color-bg-white);
+}
+
+.textSlate {
+  color: var(--mb-color-text-medium);
+}
+
+.textSlateLight {
+  color: var(--mb-color-text-light);
+}
+
+.textLight {
+  color: var(--mb-color-text-light);
+}
+
+.textMedium,
+.textMediumHover:hover {
+  color: var(--mb-color-text-medium);
+}
+
+.textDark,
+.textDarkHover:hover {
+  color: var(--mb-color-text-dark);
+}
+
+.textPrimary {
+  color: var(--mb-color-text-primary);
+}
+
+.textSecondary {
+  color: var(--mb-color-text-secondary);
+}
+
+.textTertiary {
+  color: var(--mb-color-text-tertiary);
+}
+
+.bgBrandLighter,
+.bgBrandLighterHover:hover {
+  background-color: var(--mb-color-brand-lighter);
+}
+
+.bgLight,
+.bgLightHover:hover {
+  background-color: var(--mb-color-bg-light);
+}
+
+.bgMedium,
+.bgMediumHover:hover {
+  background-color: var(--mb-color-bg-medium);
+}
+
+/* white  - move to bottom for specificity since its often used on hovers, etc */
+.textWhite,
+.textWhiteHover:hover {
+  color: var(--mb-color-text-white);
+}
+
+.bgWhite {
+  background-color: var(--mb-color-bg-white);
+}
+
+.bgLightBlue {
+  background-color: var(--mb-color-bg-light);
+}
+
+.textTooltipSecondary {
+  color: var(--mb-color-tooltip-text-secondary);
+}

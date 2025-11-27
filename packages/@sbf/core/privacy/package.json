@@ -11,8 +11,8 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@sbf/shared": "*",
-    "@sbf/core-entity-manager": "*"
+    "@sbf/shared": "workspace:*",
+    "@sbf/core-entity-manager": "workspace:*"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",

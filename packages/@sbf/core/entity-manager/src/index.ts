@@ -215,3 +215,6 @@ export class EntityManager extends EventEmitter<EntityManagerEvents> {
     };
   }
 }
+
+export * from './types';
+export * from './validation';

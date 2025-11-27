@@ -50,8 +50,17 @@ export function createContactEntity(data: {
       referral_from: data.referral_from,
       custom_fields: data.custom_fields || {},
     } as ContactMetadata,
-    created_at: now,
-    updated_at: now,
+    lifecycle: { state: 'permanent' as const },
+    sensitivity: {
+      level: 'personal',
+      privacy: {
+        cloud_ai_allowed: false,
+        local_ai_allowed: true,
+        export_allowed: true,
+      },
+    },
+    created: now,
+    updated: now,
   };
 }
 
@@ -96,8 +105,17 @@ export function createInteractionEntity(data: {
       attachments: data.attachments || [],
       related_entities: data.related_entities || [],
     },
-    created_at: now,
-    updated_at: now,
+    lifecycle: { state: 'permanent' as const },
+    sensitivity: {
+      level: 'personal',
+      privacy: {
+        cloud_ai_allowed: false,
+        local_ai_allowed: true,
+        export_allowed: true,
+      },
+    },
+    created: now,
+    updated: now,
   };
 }
 
@@ -129,7 +147,16 @@ export function createNetworkGroupEntity(data: {
       tags: data.tags || [],
       notes: data.notes,
     },
-    created_at: now,
-    updated_at: now,
+    lifecycle: { state: 'permanent' as const },
+    sensitivity: {
+      level: 'personal',
+      privacy: {
+        cloud_ai_allowed: false,
+        local_ai_allowed: true,
+        export_allowed: true,
+      },
+    },
+    created: now,
+    updated: now,
   };
 }

@@ -14,7 +14,8 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "composite": true
+    "composite": true,
+    "types": ["node", "jest"]
   },
   "include": [
     "src/**/*"

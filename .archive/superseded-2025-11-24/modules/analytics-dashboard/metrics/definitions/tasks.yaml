@@ -1,0 +1,216 @@
+# Task Metrics Definitions
+# Metrics for the Task Management framework
+
+metrics:
+  # Completion Metrics
+  - id: tasks_completed_today
+    name: tasks_completed_today
+    displayName: "Tasks Completed Today"
+    description: "Number of tasks completed today"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT COUNT(*) 
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND status = 'completed' 
+        AND DATE(completedAt) = CURRENT_DATE
+    category: completion
+    isCore: true
+
+  - id: tasks_completed_this_week
+    name: tasks_completed_this_week
+    displayName: "Tasks Completed This Week"
+    description: "Number of tasks completed this week"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT COUNT(*) 
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND status = 'completed' 
+        AND completedAt >= DATE_TRUNC('week', CURRENT_DATE)
+    category: completion
+    isCore: true
+
+  - id: tasks_completed_this_month
+    name: tasks_completed_this_month
+    displayName: "Tasks Completed This Month"
+    description: "Number of tasks completed this month"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT COUNT(*) 
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND status = 'completed' 
+        AND completedAt >= DATE_TRUNC('month', CURRENT_DATE)
+    category: completion
+    isCore: true
+
+  - id: task_completion_rate
+    name: task_completion_rate
+    displayName: "Task Completion Rate"
+    description: "Percentage of completed tasks vs total tasks"
+    module: tasks
+    type: percentage
+    aggregation: custom
+    sql: |
+      SELECT 
+        ROUND(
+          100.0 * SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0),
+          2
+        )
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND createdAt >= :startDate
+        AND createdAt <= :endDate
+    category: completion
+    format:
+      suffix: "%"
+      decimals: 1
+    isCore: true
+
+  # Overdue Metrics
+  - id: overdue_tasks_count
+    name: overdue_tasks_count
+    displayName: "Overdue Tasks"
+    description: "Number of tasks past their due date"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT COUNT(*) 
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND status != 'completed' 
+        AND dueDate < CURRENT_DATE
+    category: overdue
+    isCore: true
+
+  # Duration Metrics
+  - id: avg_task_completion_time
+    name: avg_task_completion_time
+    displayName: "Average Completion Time"
+    description: "Average time to complete tasks in hours"
+    module: tasks
+    type: duration
+    aggregation: avg
+    sql: |
+      SELECT AVG(EXTRACT(EPOCH FROM (completedAt - createdAt))/3600)
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND status = 'completed'
+        AND completedAt >= :startDate
+        AND completedAt <= :endDate
+    category: duration
+    unit: hours
+    format:
+      decimals: 1
+      suffix: " hrs"
+    isCore: true
+
+  # Priority Distribution
+  - id: high_priority_tasks
+    name: high_priority_tasks
+    displayName: "High Priority Tasks"
+    description: "Number of high priority active tasks"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT COUNT(*) 
+      FROM tasks 
+      WHERE tenantId = :tenantId 
+        AND status NOT IN ('completed', 'cancelled') 
+        AND priority = 'high'
+    category: priority
+    isCore: true
+
+  # Project Metrics
+  - id: tasks_by_project
+    name: tasks_by_project
+    displayName: "Tasks by Project"
+    description: "Task distribution across projects"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT 
+        p.name as project,
+        COUNT(*) as count
+      FROM tasks t
+      LEFT JOIN projects p ON t.projectId = p.id
+      WHERE t.tenantId = :tenantId
+        AND t.status NOT IN ('completed', 'cancelled')
+      GROUP BY p.name
+      ORDER BY count DESC
+    category: distribution
+    isCore: false
+
+  # Status Distribution
+  - id: tasks_by_status
+    name: tasks_by_status
+    displayName: "Tasks by Status"
+    description: "Task distribution by status"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT 
+        status,
+        COUNT(*) as count
+      FROM tasks
+      WHERE tenantId = :tenantId
+      GROUP BY status
+    category: distribution
+    isCore: true
+
+  # Productivity Metrics
+  - id: daily_task_velocity
+    name: daily_task_velocity
+    displayName: "Daily Task Velocity"
+    description: "Average tasks completed per day"
+    module: tasks
+    type: numeric
+    aggregation: avg
+    sql: |
+      SELECT AVG(daily_count)
+      FROM (
+        SELECT DATE(completedAt) as day, COUNT(*) as daily_count
+        FROM tasks
+        WHERE tenantId = :tenantId
+          AND status = 'completed'
+          AND completedAt >= :startDate
+          AND completedAt <= :endDate
+        GROUP BY DATE(completedAt)
+      ) daily
+    category: productivity
+    format:
+      decimals: 1
+    isCore: true
+
+  # Trend Metrics
+  - id: task_completion_trend
+    name: task_completion_trend
+    displayName: "Task Completion Trend"
+    description: "Daily task completions over time"
+    module: tasks
+    type: count
+    aggregation: count
+    sql: |
+      SELECT 
+        DATE(completedAt) as date,
+        COUNT(*) as completed
+      FROM tasks
+      WHERE tenantId = :tenantId
+        AND status = 'completed'
+        AND completedAt >= :startDate
+        AND completedAt <= :endDate
+      GROUP BY DATE(completedAt)
+      ORDER BY date
+    category: trend
+    isCore: true

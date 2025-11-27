@@ -1,0 +1,37 @@
+{
+  "name": "@sbf/api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SBF API Gateway - Multi-tenant Fly.io service",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "@sbf/core-entity-manager": "workspace:*",
+    "@sbf/db-client": "workspace:*",
+    "@sbf/auth-lib": "workspace:*",
+    "@sbf/jobs": "workspace:*",
+    "@sbf/logging": "workspace:*",
+    "@sbf/types": "workspace:*",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/compression": "^1.7.5",
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0",
+    "eslint": "^8.56.0"
+  }
+}

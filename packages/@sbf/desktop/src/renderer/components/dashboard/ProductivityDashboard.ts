@@ -3,6 +3,8 @@
  * Main productivity dashboard with system overview and quick actions
  */
 
+import { VAChat } from '../va/VAChat';
+
 export interface DashboardStats {
   entities: { total: number; recent: number };
   privacy: { encrypted: number; total: number; percentage: number };
@@ -114,32 +116,40 @@ export class ProductivityDashboard {
         </div>
 
         <div class="dashboard-content">
-          <div class="recent-activity">
-            <h2>📈 Recent Activity</h2>
-            <div class="activity-list">
-              ${this.renderRecentActivity()}
+          <div class="main-column">
+            <div class="recent-activity">
+              <h2>📈 Recent Activity</h2>
+              <div class="activity-list">
+                ${this.renderRecentActivity()}
+              </div>
             </div>
           </div>
 
-          <div class="quick-actions">
-            <h2>⚡ Quick Actions</h2>
-            <div class="action-buttons">
-              <button class="action-btn" data-action="new-note">
-                <span class="icon">📝</span>
-                <span class="label">New Note</span>
-              </button>
-              <button class="action-btn" data-action="new-task">
-                <span class="icon">✓</span>
-                <span class="label">New Task</span>
-              </button>
-              <button class="action-btn" data-action="search">
-                <span class="icon">🔍</span>
-                <span class="label">Search</span>
-              </button>
-              <button class="action-btn" data-action="analytics">
-                <span class="icon">📊</span>
-                <span class="label">Analytics</span>
-              </button>
+          <div class="side-column">
+            <div class="quick-actions">
+              <h2>⚡ Quick Actions</h2>
+              <div class="action-buttons">
+                <button class="action-btn" data-action="new-note">
+                  <span class="icon">📝</span>
+                  <span class="label">New Note</span>
+                </button>
+                <button class="action-btn" data-action="new-task">
+                  <span class="icon">✓</span>
+                  <span class="label">New Task</span>
+                </button>
+                <button class="action-btn" data-action="search">
+                  <span class="icon">🔍</span>
+                  <span class="label">Search</span>
+                </button>
+                <button class="action-btn" data-action="analytics">
+                  <span class="icon">📊</span>
+                  <span class="label">Analytics</span>
+                </button>
+              </div>
+            </div>
+            
+            <div id="va-chat-container" class="va-chat-panel">
+              <!-- VA Chat will be rendered here -->
             </div>
           </div>
         </div>
@@ -170,6 +180,10 @@ export class ProductivityDashboard {
 
     this.attachEventListeners();
     this.applyStyles();
+
+    // Initialize VA Chat
+    const vaChat = new VAChat('va-chat-container');
+    vaChat.render();
   }
 
   /**
@@ -356,11 +370,29 @@ export class ProductivityDashboard {
         margin-bottom: 2rem;
       }
 
-      .recent-activity, .quick-actions {
+      .main-column {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .side-column {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .recent-activity, .quick-actions, .va-chat-panel {
         background: #2a2a2a;
         padding: 1.5rem;
         border-radius: 8px;
         border: 1px solid #3a3a3a;
+      }
+
+      .va-chat-panel {
+        height: 400px;
+        padding: 0; /* Chat component handles its own padding */
+        overflow: hidden;
       }
 
       .recent-activity h2, .quick-actions h2, .navigation-panel h2 {

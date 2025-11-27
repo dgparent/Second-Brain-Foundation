@@ -7,10 +7,10 @@ export interface Entity {
   type: string;
   title: string;
   lifecycle: {
-    state: string;
+    state: 'capture' | 'transitional' | 'permanent' | 'archived';
   };
   sensitivity: {
-    level: string;
+    level: 'public' | 'personal' | 'confidential' | 'secret';
     privacy: {
       cloud_ai_allowed: boolean;
       local_ai_allowed: boolean;
@@ -55,7 +55,7 @@ export abstract class FinancialEventBuilder {
   constructor(type: string) {
     this.entity = {
       type,
-      lifecycle: { state: 'permanent' },
+      lifecycle: { state: 'permanent' as const },
       sensitivity: {
         level: 'confidential',
         privacy: {
@@ -144,7 +144,7 @@ export function createFinancialEvent(data: {
     uid: data.uid,
     type: data.type,
     title: data.title,
-    lifecycle: { state: 'permanent' },
+    lifecycle: { state: 'permanent' as const },
     sensitivity: {
       level: 'confidential',
       privacy: {

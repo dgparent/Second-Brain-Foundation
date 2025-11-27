@@ -8,16 +8,478 @@ import { EntityManager } from '@sbf/core-entity-manager';
 import { LifecycleEngine } from '@sbf/core-lifecycle-engine';
 import { DissolutionWorkflow } from '@sbf/core-lifecycle-engine';
 import { PrivacyService, PrivacyLevel } from '@sbf/core-privacy';
+import { VAService } from '@sbf/va-dashboard';
+import { TaskService } from '@sbf/personal-tasks';
+import { BudgetService } from '@sbf/budgeting';
+import { FitnessService } from '@sbf/fitness-tracking';
+import { CRMService } from '@sbf/relationship-crm';
+import { PortfolioService } from '@sbf/portfolio-tracking';
+import { NutritionService } from '@sbf/nutrition-tracking';
+import { MedicationService } from '@sbf/medication-tracking';
+import { LearningService } from '@sbf/learning-tracker';
+import { LegalService } from '@sbf/legal-ops';
+import { PropertyService } from '@sbf/property-mgmt';
+import { HACCPService } from '@sbf/restaurant-haccp';
 import { Entity, LifecycleState } from '@sbf/shared';
+import { BaseAIProvider } from '@sbf/aei';
+import { ConfigManager } from './ConfigManager';
 
 export interface IPCHandlerDependencies {
   entityManager: EntityManager;
   lifecycleEngine: LifecycleEngine;
   dissolutionWorkflow: DissolutionWorkflow;
   privacyService: PrivacyService;
+  vaService: VAService;
+  taskService: TaskService;
+  budgetService: BudgetService;
+  fitnessService: FitnessService;
+  crmService: CRMService;
+  portfolioService: PortfolioService;
+  nutritionService: NutritionService;
+  medicationService: MedicationService;
+  learningService: LearningService;
+  legalService: LegalService;
+  propertyService: PropertyService;
+  haccpService: HACCPService;
+  aiProvider: BaseAIProvider;
+  configManager: ConfigManager;
 }
 
 export function setupIPCHandlers(deps: IPCHandlerDependencies) {
+  // ============================================================================
+  // Config & God Mode Handlers
+  // ============================================================================
+
+  ipcMain.handle('config:get', async () => {
+    return deps.configManager.getConfig();
+  });
+
+  ipcMain.handle('config:set', async (event, newConfig) => {
+    deps.configManager.saveConfig(newConfig);
+    return { success: true };
+  });
+
+  ipcMain.handle('persona:setActive', async (event, persona) => {
+    deps.vaService.setPersona(persona);
+    return { success: true };
+  });
+
+  // ============================================================================
+  // AI Handlers
+  // ============================================================================
+
+  ipcMain.handle('ai:extract', async (event, text: string) => {
+    try {
+      const entities = await deps.aiProvider.extractEntities(text);
+      const classification = await deps.aiProvider.classifyContent(text);
+      return { entities, classification };
+    } catch (error) {
+      console.error('Error extracting from text:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('ai:generate', async (event, { prompt }) => {
+    try {
+      const response = await deps.aiProvider.chat([
+        { role: 'user', content: prompt }
+      ]);
+      return response;
+    } catch (error) {
+      console.error('Error generating text:', error);
+      throw error;
+    }
+  });
+
+  // ============================================================================
+  // Finance Handlers
+  // ============================================================================
+
+  ipcMain.handle('finance:createAccount', async (event, { title, type, currency, institution, initialBalance }) => {
+    try {
+      return await deps.budgetService.createAccount(title, type, currency, institution, initialBalance);
+    } catch (error) {
+      console.error('Error creating account:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:logTransaction', async (event, { title, amount, currency, accountUid, date, category, merchant }) => {
+    try {
+      return await deps.budgetService.logTransaction(title, amount, currency, accountUid, date, category, merchant);
+    } catch (error) {
+      console.error('Error logging transaction:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:getAccounts', async () => {
+    try {
+      return await deps.budgetService.getAccounts();
+    } catch (error) {
+      console.error('Error getting accounts:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:getTransactions', async (event, accountUid) => {
+    try {
+      return await deps.budgetService.getTransactions(accountUid);
+    } catch (error) {
+      console.error('Error getting transactions:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:getNetWorth', async () => {
+    try {
+      return await deps.budgetService.getNetWorth();
+    } catch (error) {
+      console.error('Error getting net worth:', error);
+      throw error;
+    }
+  });
+
+  // Portfolio Handlers
+  ipcMain.handle('finance:addAsset', async (event, { name, assetType, quantity, symbol, currentPrice, currency, accountUid }) => {
+    try {
+      return await deps.portfolioService.addAsset(name, assetType, quantity, symbol, currentPrice, currency, accountUid);
+    } catch (error) {
+      console.error('Error adding asset:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:getAssets', async (event, accountUid) => {
+    try {
+      return await deps.portfolioService.getAssets(accountUid);
+    } catch (error) {
+      console.error('Error getting assets:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:getPortfolioValue', async (event, currency) => {
+    try {
+      return await deps.portfolioService.getPortfolioValue(currency);
+    } catch (error) {
+      console.error('Error getting portfolio value:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('finance:getAllocation', async () => {
+    try {
+      return await deps.portfolioService.getAllocation();
+    } catch (error) {
+      console.error('Error getting allocation:', error);
+      throw error;
+    }
+  });
+
+  // ============================================================================
+  // Fitness Handlers
+  // ============================================================================
+
+  ipcMain.handle('fitness:logMetric', async (event, { metricType, value, unit, date, time, source }) => {
+    try {
+      return await deps.fitnessService.logMetric(metricType, value, unit, date, time, source);
+    } catch (error) {
+      console.error('Error logging metric:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:logWorkout', async (event, { title, activityType, durationMinutes, date, caloriesBurned, notes }) => {
+    try {
+      return await deps.fitnessService.logWorkout(title, activityType, durationMinutes, date, caloriesBurned, notes);
+    } catch (error) {
+      console.error('Error logging workout:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:getMetrics', async (event, metricType) => {
+    try {
+      return await deps.fitnessService.getMetrics(metricType);
+    } catch (error) {
+      console.error('Error getting metrics:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:getWorkouts', async () => {
+    try {
+      return await deps.fitnessService.getWorkouts();
+    } catch (error) {
+      console.error('Error getting workouts:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:getLatestMetric', async (event, metricType) => {
+    try {
+      return await deps.fitnessService.getLatestMetric(metricType);
+    } catch (error) {
+      console.error('Error getting latest metric:', error);
+      throw error;
+    }
+  });
+
+  // Nutrition Handlers
+  ipcMain.handle('fitness:logMeal', async (event, { title, mealType, foods, date, time, notes }) => {
+    try {
+      return await deps.nutritionService.logMeal(title, mealType, foods, date, time, notes);
+    } catch (error) {
+      console.error('Error logging meal:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:getMeals', async (event, { startDate, endDate }) => {
+    try {
+      return await deps.nutritionService.getMeals(startDate, endDate);
+    } catch (error) {
+      console.error('Error getting meals:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:getDailyNutrition', async (event, date) => {
+    try {
+      return await deps.nutritionService.getDailySummary(date);
+    } catch (error) {
+      console.error('Error getting daily nutrition:', error);
+      throw error;
+    }
+  });
+
+  // Medication Handlers
+  ipcMain.handle('fitness:addMedication', async (event, { name, dosage, frequency, startDate, instructions, endDate }) => {
+    try {
+      return await deps.medicationService.addMedication(name, dosage, frequency, startDate, instructions, endDate);
+    } catch (error) {
+      console.error('Error adding medication:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:getActiveMedications', async () => {
+    try {
+      return await deps.medicationService.getActiveMedications();
+    } catch (error) {
+      console.error('Error getting active medications:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('fitness:logDose', async (event, { medicationId, timestamp }) => {
+    try {
+      return await deps.medicationService.logDose(medicationId, timestamp);
+    } catch (error) {
+      console.error('Error logging dose:', error);
+      throw error;
+    }
+  });
+
+  // Learning Handlers
+  ipcMain.handle('learning:addResource', async (event, { title, type, url, topics }) => {
+    try {
+      return await deps.learningService.addResource(title, type, url, topics);
+    } catch (error) {
+      console.error('Error adding learning resource:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('learning:getResources', async (event, status) => {
+    try {
+      return await deps.learningService.getResources(status);
+    } catch (error) {
+      console.error('Error getting learning resources:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('learning:updateProgress', async (event, { uid, percent, status }) => {
+    try {
+      return await deps.learningService.updateProgress(uid, percent, status);
+    } catch (error) {
+      console.error('Error updating learning progress:', error);
+      throw error;
+    }
+  });
+
+  // Legal Handlers
+  ipcMain.handle('legal:createCase', async (event, { title, caseNumber, caseType, client, description }) => {
+    try {
+      return await deps.legalService.createCase(title, caseNumber, caseType, client, description);
+    } catch (error) {
+      console.error('Error creating legal case:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('legal:getCases', async (event, status) => {
+    try {
+      return await deps.legalService.getCases(status);
+    } catch (error) {
+      console.error('Error getting legal cases:', error);
+      throw error;
+    }
+  });
+
+  // Property Handlers
+  ipcMain.handle('property:addProperty', async (event, { title, address, propertyType, purchasePrice, purchaseDate }) => {
+    try {
+      return await deps.propertyService.addProperty(title, address, propertyType, purchasePrice, purchaseDate);
+    } catch (error) {
+      console.error('Error adding property:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('property:getProperties', async (event, status) => {
+    try {
+      return await deps.propertyService.getProperties(status);
+    } catch (error) {
+      console.error('Error getting properties:', error);
+      throw error;
+    }
+  });
+
+  // HACCP Handlers
+  ipcMain.handle('haccp:logEntry', async (event, { item, logType, value, performedBy, isCCP, correctiveAction }) => {
+    try {
+      return await deps.haccpService.logEntry(item, logType, value, performedBy, isCCP, correctiveAction);
+    } catch (error) {
+      console.error('Error logging HACCP entry:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('haccp:getLogs', async (event, { startDate, endDate }) => {
+    try {
+      return await deps.haccpService.getLogs(startDate, endDate);
+    } catch (error) {
+      console.error('Error getting HACCP logs:', error);
+      throw error;
+    }
+  });
+
+  // ============================================================================
+  // CRM Handlers
+  // ============================================================================
+
+  ipcMain.handle('crm:createContact', async (event, { fullName, category, email, phone, company, jobTitle, notes }) => {
+    try {
+      return await deps.crmService.createContact(fullName, category, email, phone, company, jobTitle, notes);
+    } catch (error) {
+      console.error('Error creating contact:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('crm:logInteraction', async (event, { title, type, date, contactUids, summary, notes }) => {
+    try {
+      return await deps.crmService.logInteraction(title, type, date, contactUids, summary, notes);
+    } catch (error) {
+      console.error('Error logging interaction:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('crm:getContacts', async () => {
+    try {
+      return await deps.crmService.getContacts();
+    } catch (error) {
+      console.error('Error getting contacts:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('crm:getInteractions', async (event, contactUid) => {
+    try {
+      return await deps.crmService.getInteractions(contactUid);
+    } catch (error) {
+      console.error('Error getting interactions:', error);
+      throw error;
+    }
+  });
+
+  // ============================================================================
+  // Task Handlers
+  // ============================================================================
+
+  ipcMain.handle('tasks:create', async (event, { title, priority, options }) => {
+    try {
+      return await deps.taskService.createTask(title, priority, options);
+    } catch (error) {
+      console.error('Error creating task:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('tasks:getAll', async () => {
+    try {
+      return await deps.taskService.getAllTasks();
+    } catch (error) {
+      console.error('Error getting tasks:', error);
+      throw error;
+    }
+  });
+
+  ipcMain.handle('tasks:updateStatus', async (event, { uid, status }) => {
+    try {
+      return await deps.taskService.updateStatus(uid, status);
+    } catch (error) {
+      console.error('Error updating task status:', error);
+      throw error;
+    }
+  });
+
+  // ============================================================================
+  // VA Handlers
+  // ============================================================================
+
+  /**
+   * Process a VA query
+   */
+  ipcMain.handle('va:query', async (event, query: string) => {
+    try {
+      const result = await deps.vaService.processQuery(query);
+      return result;
+    } catch (error) {
+      console.error('Error processing VA query:', error);
+      throw error;
+    }
+  });
+
+  /**
+   * Get Constitution Rules
+   */
+  ipcMain.handle('va:getConstitution', async () => {
+    try {
+      return await deps.vaService.getConstitution();
+    } catch (error) {
+      console.error('Error getting constitution:', error);
+      return [];
+    }
+  });
+
+  /**
+   * Update Constitution Rule
+   */
+  ipcMain.handle('va:updateConstitution', async (event, rules: any[]) => {
+    try {
+      await deps.vaService.updateConstitution(rules);
+      return { success: true };
+    } catch (error) {
+      console.error('Error updating constitution:', error);
+      throw error;
+    }
+  });
+
   // ============================================================================
   // Lifecycle Handlers
   // ============================================================================

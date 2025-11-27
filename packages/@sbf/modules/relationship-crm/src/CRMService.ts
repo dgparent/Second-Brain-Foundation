@@ -1,111 +1,123 @@
-/**
- * Relationship CRM Plugin - Main Service
- * 
- * Convenience wrapper that combines all workflows and utilities
- */
+import { EntityManager } from '@sbf/core-entity-manager';
+import { BaseAIProvider } from '@sbf/aei';
+import { 
+  SimpleEntity,
+  createContactEntity,
+  createInteractionEntity,
+  ContactMetadata,
+  InteractionMetadata
+} from '@sbf/frameworks-relationship-tracking';
 
-import { ContactCreationWorkflow } from './workflows/ContactCreationWorkflow';
-import { InteractionLoggingWorkflow } from './workflows/InteractionLoggingWorkflow';
-import { FollowUpReminderWorkflow } from './workflows/FollowUpReminderWorkflow';
-import { ContactSearchUtility } from './utils/ContactSearchUtility';
-import { RelationshipStrengthCalculator } from './utils/RelationshipStrengthCalculator';
-import { RelationshipAnalysisWorkflow } from '@sbf/frameworks-relationship-tracking';
-import type { SimpleEntity } from '@sbf/frameworks-relationship-tracking';
-
-export interface SimpleMemoryEngine {
-  query(filter: { type?: string; metadata?: any }): Promise<SimpleEntity[]>;
-  store(entity: SimpleEntity): Promise<void>;
-  update(uid: string, updates: Partial<SimpleEntity>): Promise<void>;
-}
-
-export interface SimpleAEIProvider {
-  analyze(prompt: string, content: string): Promise<{ result: string; confidence: number }>;
-}
-
-/**
- * Main CRM Service - unified interface for all CRM functionality
- */
 export class CRMService {
-  public contactCreation: ContactCreationWorkflow;
-  public interactionLogging: InteractionLoggingWorkflow;
-  public followUpReminders: FollowUpReminderWorkflow;
-  public contactSearch: ContactSearchUtility;
-  public strengthCalculator: RelationshipStrengthCalculator;
-  public relationshipAnalysis: RelationshipAnalysisWorkflow;
-
   constructor(
-    private memoryEngine: SimpleMemoryEngine,
-    private aeiProvider?: SimpleAEIProvider
-  ) {
-    this.contactCreation = new ContactCreationWorkflow(memoryEngine, aeiProvider);
-    this.interactionLogging = new InteractionLoggingWorkflow(memoryEngine);
-    this.followUpReminders = new FollowUpReminderWorkflow(memoryEngine);
-    this.contactSearch = new ContactSearchUtility(memoryEngine);
-    this.strengthCalculator = new RelationshipStrengthCalculator();
-    this.relationshipAnalysis = new RelationshipAnalysisWorkflow(memoryEngine);
-  }
+    private entityManager: EntityManager,
+    private aiProvider: BaseAIProvider
+  ) {}
 
   /**
-   * Quick method to add a contact
+   * Create a new contact
    */
-  async addContact(options: Parameters<ContactCreationWorkflow['createContact']>[0]) {
-    return this.contactCreation.createContact(options);
-  }
-
-  /**
-   * Quick method to log an interaction
-   */
-  async logInteraction(options: Parameters<InteractionLoggingWorkflow['logInteraction']>[0]) {
-    return this.interactionLogging.logInteraction(options);
-  }
-
-  /**
-   * Quick method to search contacts
-   */
-  async searchContacts(criteria: Parameters<ContactSearchUtility['findContacts']>[0]) {
-    return this.contactSearch.findContacts(criteria);
-  }
-
-  /**
-   * Quick method to get relationship strength
-   */
-  async getRelationshipStrength(contactUid: string) {
-    return this.relationshipAnalysis.calculateRelationshipStrength(contactUid);
-  }
-
-  /**
-   * Quick method to find contacts needing follow-up
-   */
-  async findContactsNeedingFollowUp(daysThreshold: number = 30) {
-    return this.followUpReminders.generateReminders({ days_threshold: daysThreshold });
-  }
-
-  /**
-   * Get CRM statistics
-   */
-  async getStatistics() {
-    const networkStats = await this.relationshipAnalysis.getNetworkStatistics();
-    const contacts = await this.memoryEngine.query({ type: 'crm.contact' });
+  async createContact(
+    fullName: string,
+    category: ContactMetadata['category'],
+    email?: string,
+    phone?: string,
+    company?: string,
+    jobTitle?: string,
+    notes?: string
+  ): Promise<SimpleEntity> {
+    const uid = `contact-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
-    const byLeadStatus = contacts.reduce((acc, c) => {
-      const status = c.metadata.lead_status || 'unknown';
-      acc[status] = (acc[status] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+    const contact = createContactEntity({
+      uid,
+      full_name: fullName,
+      category,
+      email,
+      phone,
+      company,
+      job_title: jobTitle,
+      notes
+    });
 
-    const byPriority = contacts.reduce((acc, c) => {
-      const priority = c.metadata.priority_level || 'unknown';
-      acc[priority] = (acc[priority] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+    await this.entityManager.create(contact as any);
+    return contact;
+  }
 
-    const totalDealValue = contacts.reduce((sum, c) => sum + (c.metadata.deal_value || 0), 0);
+  /**
+   * Log an interaction
+   */
+  async logInteraction(
+    title: string,
+    type: InteractionMetadata['interaction_type'],
+    date: string,
+    contactUids: string[],
+    summary?: string,
+    notes?: string
+  ): Promise<SimpleEntity> {
+    const uid = `interaction-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    const interaction = createInteractionEntity({
+      uid,
+      title,
+      interaction_type: type,
+      date,
+      contact_uids: contactUids,
+      summary,
+      notes
+    });
 
-    return {
-      ...networkStats,
-      by_lead_status: byLeadStatus,
-      by_priority: byPriority,
-      total_deal_value: totalDealValue,
-    };
+    await this.entityManager.create(interaction as any);
+    
+    // Update last contact date for all contacts
+    for (const contactUid of contactUids) {
+      await this.updateLastContactDate(contactUid, date);
+    }
+
+    return interaction;
+  }
+
+  /**
+   * Update last contact date
+   */
+  private async updateLastContactDate(contactUid: string, date: string): Promise<void> {
+    const contact = await this.entityManager.get(contactUid);
+    if (contact && contact.type === 'relationship.contact') {
+      const currentLastContact = contact.metadata.last_contact_date;
+      
+      // Only update if new date is more recent
+      if (!currentLastContact || new Date(date) > new Date(currentLastContact)) {
+        await this.entityManager.update(contactUid, {
+          metadata: {
+            ...contact.metadata,
+            last_contact_date: date
+          }
+        });
+      }
+    }
+  }
+
+  /**
+   * Get all contacts
+   */
+  async getContacts(): Promise<SimpleEntity[]> {
+    const entities = await this.entityManager.getAll();
+    return entities.filter(e => e.type === 'relationship.contact') as unknown as SimpleEntity[];
+  }
+
+  /**
+   * Get interactions for a contact
+   */
+  async getInteractions(contactUid?: string): Promise<SimpleEntity[]> {
+    const entities = await this.entityManager.getAll();
+    const interactions = entities.filter(e => e.type === 'relationship.interaction') as unknown as SimpleEntity[];
+    
+    if (contactUid) {
+      return interactions.filter(i => {
+        const uids = i.metadata.contact_uids as string[] || [];
+        return uids.includes(contactUid);
+      });
+    }
+    
+    return interactions;
   }
 }

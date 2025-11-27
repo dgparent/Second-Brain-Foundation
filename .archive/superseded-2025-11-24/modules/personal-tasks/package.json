@@ -1,0 +1,31 @@
+{
+  "name": "@sbf/modules-personal-tasks",
+  "version": "1.0.0",
+  "description": "Personal task management plugin for SBF - validates Task Management Framework",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx -p typescript tsc || exit 0",
+    "test": "npx -p jest jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "keywords": [
+    "sbf",
+    "plugin",
+    "tasks",
+    "productivity",
+    "personal",
+    "gtd",
+    "eisenhower"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/frameworks-task-management": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

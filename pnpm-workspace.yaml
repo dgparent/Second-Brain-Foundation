@@ -1,0 +1,26 @@
+packages:
+  # Applications
+  - "apps/*"
+  
+  # Shared packages (NEW ARCHITECTURE)
+  - "packages/db-client"
+  - "packages/vector-client"
+  - "packages/ai-client"
+  - "packages/auth-lib"
+  - "packages/config"
+  - "packages/logging"
+  - "packages/types"
+  - "packages/utils"
+  
+  # Legacy SBF packages (TEMPORARILY DISABLED - circular deps)
+  - "packages/@sbf/shared"
+  - "packages/@sbf/aei"
+  - "packages/@sbf/jobs"
+  - "packages/@sbf/memory-engine"
+  - "packages/@sbf/core/*"
+  - "packages/@sbf/frameworks/*"
+  - "packages/@sbf/modules/*"
+  - "packages/@sbf/desktop"
+  
+  # Automation
+  - "packages/sbf-automation"

@@ -25,9 +25,10 @@
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.1",
-    "@sbf/core-privacy": "*",
-    "@sbf/memory-engine": "*",
-    "@sbf/shared": "*",
+    "@langchain/core": "^1.1.0",
+    "@langchain/langgraph": "^1.0.2",
+    "@sbf/ai-client": "workspace:*",
+    "@sbf/config": "workspace:*",
     "eventemitter3": "^5.0.1",
     "openai": "^4.75.1"
   },

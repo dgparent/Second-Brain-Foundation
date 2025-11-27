@@ -1,0 +1,36 @@
+{
+  "name": "@sbf/modules/analytics-dashboard",
+  "version": "1.0.0",
+  "description": "Power BI-like analytics and visualization module for Second Brain Foundation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "sbf",
+    "analytics",
+    "dashboard",
+    "bi",
+    "visualization",
+    "superset",
+    "grafana",
+    "metabase"
+  ],
+  "author": "Second Brain Foundation",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/shared": "*",
+    "@sbf/core/module-system": "*",
+    "axios": "^1.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,8 +1,4 @@
-/**
- * @sbf/modules-property-mgmt
- * 
- * Property management module for real estate operations
- */
-
-export * from './types';
-export * from './helpers';
+export const MODULE_NAME = '@sbf/property-mgmt';
+export function init() { console.log('Initializing property-mgmt module'); }
+export * from './PropertyService';
+export * from './entities/PropertyEntity';

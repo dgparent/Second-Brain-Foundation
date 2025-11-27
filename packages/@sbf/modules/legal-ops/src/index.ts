@@ -1,17 +1,5 @@
-/**
- * @sbf/modules-legal-ops
- * 
- * Legal operations module for law firms and legal departments
- * 
- * Features:
- * - Case/matter management
- * - Discovery workflows
- * - Filing deadlines
- * - Evidence tracking
- * - Legal research integration
- * - Time tracking & billing
- * - Compliance & retention
- */
-
-export * from './types';
-export * from './helpers';
+export const MODULE_NAME = '@sbf/legal-ops';
+export function init() { console.log('Initializing legal-ops module'); }
+export * from './LegalService';
+export * from './entities/CaseEntity';
+export * from './entities/LegalEntity';

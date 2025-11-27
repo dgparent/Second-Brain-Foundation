@@ -1,0 +1,250 @@
+import { css, cx } from '@emotion/css';
+
+import { GrafanaTheme2, VariableHide } from '@grafana/data';
+import { selectors } from '@grafana/e2e-selectors';
+import {
+  SceneObjectState,
+  SceneObjectBase,
+  SceneComponentProps,
+  SceneTimePicker,
+  SceneRefreshPicker,
+  SceneDebugger,
+  VariableDependencyConfig,
+  sceneGraph,
+  SceneObjectUrlSyncConfig,
+  SceneObjectUrlValues,
+  CancelActivationHandler,
+} from '@grafana/scenes';
+import { Box, useStyles2 } from '@grafana/ui';
+
+import { PanelEditControls } from '../panel-edit/PanelEditControls';
+import { getDashboardSceneFor } from '../utils/utils';
+
+import { DashboardControlsButton } from './DashboardControlsMenu';
+import { DashboardDataLayerControls } from './DashboardDataLayerControls';
+import { DashboardLinksControls } from './DashboardLinksControls';
+import { DashboardScene } from './DashboardScene';
+import { VariableControls } from './VariableControls';
+
+export interface DashboardControlsState extends SceneObjectState {
+  timePicker: SceneTimePicker;
+  refreshPicker: SceneRefreshPicker;
+  hideTimeControls?: boolean;
+  hideVariableControls?: boolean;
+  hideLinksControls?: boolean;
+  // Hides the dashbaord-controls dropdown menu
+  hideDashboardControls?: boolean;
+}
+
+export class DashboardControls extends SceneObjectBase<DashboardControlsState> {
+  static Component = DashboardControlsRenderer;
+
+  protected _variableDependency = new VariableDependencyConfig(this, {
+    onAnyVariableChanged: this._onAnyVariableChanged.bind(this),
+  });
+
+  protected _urlSync = new SceneObjectUrlSyncConfig(this, {
+    keys: ['_dash.hideTimePicker', '_dash.hideVariables', '_dash.hideLinks', '_dash.hideDashboardControls'],
+  });
+
+  /**
+   * We want the hideXX url keys to only sync one way (url => state) on init
+   * We don't want these flags to be added to URL.
+   */
+  getUrlState() {
+    return {};
+  }
+
+  updateFromUrl(values: SceneObjectUrlValues) {
+    const { hideTimeControls, hideVariableControls, hideLinksControls, hideDashboardControls } = this.state;
+    const isEnabledViaUrl = (key: string) => values[key] === 'true' || values[key] === '';
+
+    // Only allow hiding, never "unhiding" from url
+    // Because this should really only change on first init it's fine to do multiple setState here
+
+    if (!hideTimeControls && isEnabledViaUrl('_dash.hideTimePicker')) {
+      this.setState({ hideTimeControls: true });
+    }
+
+    if (!hideVariableControls && isEnabledViaUrl('_dash.hideVariables')) {
+      this.setState({ hideVariableControls: true });
+    }
+
+    if (!hideLinksControls && isEnabledViaUrl('_dash.hideLinks')) {
+      this.setState({ hideLinksControls: true });
+    }
+
+    if (!hideDashboardControls && isEnabledViaUrl('_dash.hideDashboardControls')) {
+      this.setState({ hideDashboardControls: true });
+    }
+  }
+
+  public constructor(state: Partial<DashboardControlsState>) {
+    super({
+      timePicker: state.timePicker ?? new SceneTimePicker({}),
+      refreshPicker: state.refreshPicker ?? new SceneRefreshPicker({}),
+      ...state,
+    });
+
+    this.addActivationHandler(() => {
+      let refreshPickerDeactivation: CancelActivationHandler | undefined;
+
+      if (this.state.hideTimeControls) {
+        refreshPickerDeactivation = this.state.refreshPicker.activate();
+      }
+
+      return () => {
+        if (refreshPickerDeactivation) {
+          refreshPickerDeactivation();
+        }
+      };
+    });
+  }
+
+  /**
+   * Links can include all variables so we need to re-render when any change
+   */
+  private _onAnyVariableChanged(): void {
+    const dashboard = getDashboardSceneFor(this);
+    if (dashboard.state.links?.length > 0) {
+      this.forceRender();
+    }
+  }
+
+  // Dashboard controls is a separate dropdown menu at the top-right of the controls
+  public hasDashboardControls(): boolean {
+    const dashboard = getDashboardSceneFor(this);
+    const { links } = dashboard.state;
+    const hasControlMenuVariables = sceneGraph
+      .getVariables(dashboard)
+      ?.state.variables.some((v) => v.state.hide === VariableHide.inControlsMenu);
+    const hasControlMenuLinks = links.some((link) => link.placement === 'inControlsMenu');
+
+    return hasControlMenuVariables || hasControlMenuLinks;
+  }
+
+  public hasControls(): boolean {
+    const hasVariables = sceneGraph
+      .getVariables(this)
+      ?.state.variables.some((v) => v.state.hide !== VariableHide.hideVariable);
+    const hasAnnotations = sceneGraph.getDataLayers(this).some((d) => d.state.isEnabled && !d.state.isHidden);
+    const hasLinks = getDashboardSceneFor(this).state.links?.length > 0;
+    const hideLinks = this.state.hideLinksControls || !hasLinks;
+    const hideVariables = this.state.hideVariableControls || (!hasAnnotations && !hasVariables);
+    const hideTimePicker = this.state.hideTimeControls;
+    const hideDashboardControls = this.state.hideDashboardControls || !this.hasDashboardControls();
+
+    return !(hideVariables && hideLinks && hideTimePicker && hideDashboardControls);
+  }
+}
+
+function DashboardControlsRenderer({ model }: SceneComponentProps<DashboardControls>) {
+  const {
+    refreshPicker,
+    timePicker,
+    hideTimeControls,
+    hideVariableControls,
+    hideLinksControls,
+    hideDashboardControls,
+  } = model.useState();
+  const dashboard = getDashboardSceneFor(model);
+  const { links, editPanel } = dashboard.useState();
+  const styles = useStyles2(getStyles);
+  const showDebugger = window.location.search.includes('scene-debugger');
+
+  if (!model.hasControls()) {
+    // To still have spacing when no controls are rendered
+
+    return <Box padding={1}>{renderHiddenVariables(dashboard)}</Box>;
+  }
+
+  return (
+    <div
+      data-testid={selectors.pages.Dashboard.Controls}
+      className={cx(styles.controls, editPanel && styles.controlsPanelEdit)}
+    >
+      <div className={cx(styles.rightControls, editPanel && styles.rightControlsWrap)}>
+        {!hideTimeControls && (
+          <div className={styles.timeControls}>
+            <timePicker.Component model={timePicker} />
+            <refreshPicker.Component model={refreshPicker} />
+          </div>
+        )}
+        {!hideDashboardControls && model.hasDashboardControls() && <DashboardControlsButton dashboard={dashboard} />}
+      </div>
+      {!hideVariableControls && (
+        <>
+          <VariableControls dashboard={dashboard} />
+          <DashboardDataLayerControls dashboard={dashboard} />
+        </>
+      )}
+      {!hideLinksControls && !editPanel && <DashboardLinksControls links={links} dashboard={dashboard} />}
+      {editPanel && <PanelEditControls panelEditor={editPanel} />}
+      {showDebugger && <SceneDebugger scene={model} key={'scene-debugger'} />}
+    </div>
+  );
+}
+
+function renderHiddenVariables(dashboard: DashboardScene) {
+  const { variables } = sceneGraph.getVariables(dashboard).useState();
+  const renderAsHiddenVariables = variables.filter((v) => v.UNSAFE_renderAsHidden);
+  if (renderAsHiddenVariables && renderAsHiddenVariables.length > 0) {
+    return (
+      <>
+        {renderAsHiddenVariables.map((v) => (
+          <v.Component model={v} key={v.state.key} />
+        ))}
+      </>
+    );
+  }
+  return null;
+}
+
+function getStyles(theme: GrafanaTheme2) {
+  return {
+    controls: css({
+      gap: theme.spacing(1),
+      padding: theme.spacing(2, 2, 1, 2),
+      flexDirection: 'row',
+      flexWrap: 'nowrap',
+      position: 'relative',
+      width: '100%',
+      marginLeft: 'auto',
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column-reverse',
+        alignItems: 'stretch',
+      },
+      '&:hover .dashboard-canvas-add-button': {
+        opacity: 1,
+        filter: 'unset',
+      },
+    }),
+    controlsPanelEdit: css({
+      flexWrap: 'wrap-reverse',
+      // In panel edit we do not need any right padding as the splitter is providing it
+      paddingRight: 0,
+    }),
+    embedded: css({
+      background: 'unset',
+      position: 'unset',
+    }),
+    rightControls: css({
+      display: 'flex',
+      justifyContent: 'flex-end',
+      gap: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      float: 'right',
+      alignItems: 'center',
+    }),
+    timeControls: css({
+      display: 'flex',
+      justifyContent: 'flex-end',
+      gap: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    }),
+    rightControlsWrap: css({
+      flexWrap: 'wrap',
+      marginLeft: 'auto',
+    }),
+  };
+}

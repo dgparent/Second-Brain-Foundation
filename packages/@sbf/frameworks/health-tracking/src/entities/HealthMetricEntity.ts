@@ -40,7 +40,7 @@ export function createHealthMetric(data: {
     uid: data.uid,
     type: 'health.metric',
     title: `${data.metric_type}: ${data.value}${data.unit}`,
-    lifecycle: { state: 'permanent' },
+    lifecycle: { state: 'permanent' as const },
     sensitivity: createHealthPrivacy('confidential'),
     created: new Date().toISOString(),
     updated: new Date().toISOString(),

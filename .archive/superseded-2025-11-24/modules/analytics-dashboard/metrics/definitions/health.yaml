@@ -1,0 +1,262 @@
+# Health Metrics Definitions
+# Metrics for the Health Tracking framework
+
+metrics:
+  # Activity Metrics
+  - id: daily_active_minutes
+    name: daily_active_minutes
+    displayName: "Daily Active Minutes"
+    description: "Total active minutes today"
+    module: health
+    type: duration
+    aggregation: sum
+    sql: |
+      SELECT SUM(duration)
+      FROM activities
+      WHERE tenantId = :tenantId
+        AND DATE(activityDate) = CURRENT_DATE
+    category: activity
+    unit: minutes
+    format:
+      decimals: 0
+      suffix: " min"
+    isCore: true
+
+  - id: weekly_active_minutes
+    name: weekly_active_minutes
+    displayName: "Weekly Active Minutes"
+    description: "Total active minutes this week"
+    module: health
+    type: duration
+    aggregation: sum
+    sql: |
+      SELECT SUM(duration)
+      FROM activities
+      WHERE tenantId = :tenantId
+        AND activityDate >= DATE_TRUNC('week', CURRENT_DATE)
+    category: activity
+    unit: minutes
+    isCore: true
+
+  - id: activity_goal_progress
+    name: activity_goal_progress
+    displayName: "Activity Goal Progress"
+    description: "Progress toward weekly activity goal"
+    module: health
+    type: percentage
+    aggregation: custom
+    sql: |
+      SELECT 
+        ROUND(100.0 * SUM(duration) / NULLIF(:goal, 0), 1)
+      FROM activities
+      WHERE tenantId = :tenantId
+        AND activityDate >= DATE_TRUNC('week', CURRENT_DATE)
+    category: activity
+    format:
+      suffix: "%"
+      decimals: 1
+    isCore: true
+
+  # Nutrition Metrics
+  - id: daily_calories
+    name: daily_calories
+    displayName: "Daily Calories"
+    description: "Total calories consumed today"
+    module: health
+    type: numeric
+    aggregation: sum
+    sql: |
+      SELECT SUM(calories)
+      FROM nutrition_entries
+      WHERE tenantId = :tenantId
+        AND DATE(entryDate) = CURRENT_DATE
+    category: nutrition
+    unit: kcal
+    format:
+      decimals: 0
+      suffix: " kcal"
+    isCore: true
+
+  - id: calorie_target_variance
+    name: calorie_target_variance
+    displayName: "Calorie Target Variance"
+    description: "Difference from daily calorie target"
+    module: health
+    type: numeric
+    aggregation: custom
+    sql: |
+      SELECT 
+        SUM(calories) - :target
+      FROM nutrition_entries
+      WHERE tenantId = :tenantId
+        AND DATE(entryDate) = CURRENT_DATE
+    category: nutrition
+    unit: kcal
+    format:
+      decimals: 0
+      prefix: "+"
+      suffix: " kcal"
+    isCore: true
+
+  # Weight Metrics
+  - id: current_weight
+    name: current_weight
+    displayName: "Current Weight"
+    description: "Most recent weight measurement"
+    module: health
+    type: numeric
+    aggregation: custom
+    sql: |
+      SELECT value
+      FROM measurements
+      WHERE tenantId = :tenantId
+        AND type = 'weight'
+      ORDER BY measurementDate DESC
+      LIMIT 1
+    category: weight
+    unit: kg
+    format:
+      decimals: 1
+      suffix: " kg"
+    isCore: true
+
+  - id: weight_change_this_month
+    name: weight_change_this_month
+    displayName: "Weight Change This Month"
+    description: "Weight change since start of month"
+    module: health
+    type: numeric
+    aggregation: custom
+    sql: |
+      WITH month_start AS (
+        SELECT value
+        FROM measurements
+        WHERE tenantId = :tenantId
+          AND type = 'weight'
+          AND measurementDate >= DATE_TRUNC('month', CURRENT_DATE)
+        ORDER BY measurementDate ASC
+        LIMIT 1
+      ),
+      current AS (
+        SELECT value
+        FROM measurements
+        WHERE tenantId = :tenantId
+          AND type = 'weight'
+        ORDER BY measurementDate DESC
+        LIMIT 1
+      )
+      SELECT current.value - month_start.value
+      FROM current, month_start
+    category: weight
+    unit: kg
+    format:
+      decimals: 1
+      prefix: "±"
+      suffix: " kg"
+    isCore: true
+
+  # Sleep Metrics
+  - id: last_night_sleep
+    name: last_night_sleep
+    displayName: "Last Night Sleep"
+    description: "Sleep duration last night"
+    module: health
+    type: duration
+    aggregation: custom
+    sql: |
+      SELECT duration
+      FROM sleep_records
+      WHERE tenantId = :tenantId
+        AND DATE(sleepDate) = CURRENT_DATE - INTERVAL '1 day'
+      ORDER BY sleepDate DESC
+      LIMIT 1
+    category: sleep
+    unit: hours
+    format:
+      decimals: 1
+      suffix: " hrs"
+    isCore: true
+
+  - id: avg_sleep_this_week
+    name: avg_sleep_this_week
+    displayName: "Average Sleep This Week"
+    description: "Average sleep duration this week"
+    module: health
+    type: duration
+    aggregation: avg
+    sql: |
+      SELECT AVG(duration)
+      FROM sleep_records
+      WHERE tenantId = :tenantId
+        AND sleepDate >= DATE_TRUNC('week', CURRENT_DATE)
+    category: sleep
+    unit: hours
+    format:
+      decimals: 1
+      suffix: " hrs"
+    isCore: true
+
+  # Medication Adherence
+  - id: medication_adherence_rate
+    name: medication_adherence_rate
+    displayName: "Medication Adherence Rate"
+    description: "Percentage of medications taken as scheduled"
+    module: health
+    type: percentage
+    aggregation: custom
+    sql: |
+      SELECT 
+        ROUND(
+          100.0 * SUM(CASE WHEN taken THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0),
+          1
+        )
+      FROM medication_logs
+      WHERE tenantId = :tenantId
+        AND scheduledDate >= :startDate
+        AND scheduledDate <= :endDate
+    category: medication
+    format:
+      suffix: "%"
+      decimals: 1
+    isCore: true
+
+  # Trend Metrics
+  - id: weight_trend
+    name: weight_trend
+    displayName: "Weight Trend"
+    description: "Weight measurements over time"
+    module: health
+    type: numeric
+    aggregation: custom
+    sql: |
+      SELECT 
+        DATE(measurementDate) as date,
+        value
+      FROM measurements
+      WHERE tenantId = :tenantId
+        AND type = 'weight'
+        AND measurementDate >= :startDate
+        AND measurementDate <= :endDate
+      ORDER BY measurementDate
+    category: trend
+    isCore: true
+
+  - id: activity_trend
+    name: activity_trend
+    displayName: "Activity Trend"
+    description: "Daily activity minutes over time"
+    module: health
+    type: numeric
+    aggregation: sum
+    sql: |
+      SELECT 
+        DATE(activityDate) as date,
+        SUM(duration) as minutes
+      FROM activities
+      WHERE tenantId = :tenantId
+        AND activityDate >= :startDate
+        AND activityDate <= :endDate
+      GROUP BY DATE(activityDate)
+      ORDER BY date
+    category: trend
+    isCore: true

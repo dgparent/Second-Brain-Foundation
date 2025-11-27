@@ -87,33 +87,36 @@ npm run dev
 
 ## 📦 Package Structure
 
-The project is organized as a TypeScript monorepo with **41 packages**:
+The project is organized as a TypeScript monorepo using PNPM Workspaces:
 
-### Core Packages (12)
+### Applications (`apps/`)
 
-**Top-Level (7)**
+| App | Description |
+|-----|-------------|
+| `apps/api` | Main REST API service |
+| `apps/web` | Frontend web application |
+| `apps/aei-core` | AI Engine Core service |
+| `apps/auth-service` | Authentication service |
+| `apps/iot-core` | IoT device management |
+| `apps/notif-service` | Notification service |
+| `apps/workers` | Background job workers |
+| `apps/llm-orchestrator` | AI Model Routing Service |
+
+### Core Packages (`packages/`)
+
+**Shared Infrastructure**
 
 | Package | Description |
 |---------|-------------|
 | `@sbf/shared` | Common types, interfaces, and utilities |
-| `@sbf/memory-engine` | Graph-based memory and context management |
-| `@sbf/aei` | AI-Enabled Interface for natural language processing |
-| `@sbf/api` | REST API for SBF integrations |
-| `@sbf/automation` | Workflow automation utilities |
-| `@sbf/cli` | Command-line interface |
-| `@sbf/desktop` | Electron desktop app with module marketplace UI |
+| `@sbf/db-client` | Database client and ORM |
+| `@sbf/vector-client` | Vector database client |
+| `@sbf/ai-client` | AI service client |
+| `@sbf/auth-lib` | Authentication library |
+| `@sbf/config` | Configuration management |
+| `@sbf/logging` | Centralized logging |
 
-**Core Infrastructure (5)**
-
-| Package | Description |
-|---------|-------------|
-| `@sbf/core/module-system` | module loading, lifecycle, and registry |
-| `@sbf/core/knowledge-graph` | Entity relationships and graph operations |
-| `@sbf/core/entity-manager` | CRUD operations for domain entities |
-| `@sbf/core/lifecycle-engine` | Entity lifecycle management |
-| `@sbf/core/privacy` | Privacy and data protection |
-
-### Domain Frameworks (5)
+**Domain Frameworks**
 
 | Framework | Entities | Use Cases |
 |-----------|----------|-----------|
@@ -122,6 +125,18 @@ The project is organized as a TypeScript monorepo with **41 packages**:
 | `@sbf/frameworks/knowledge-tracking` | Resource, Skill, Course, Highlight | Learning, Highlights, Study tracking |
 | `@sbf/frameworks/relationship-tracking` | Contact, Interaction, Network | CRM, Networking, Social |
 | `@sbf/frameworks/task-management` | Task, Project, Milestone | Personal tasks, Team PM, Client work |
+
+### Infrastructure (`infra/`)
+
+| Directory | Description |
+|-----------|-------------|
+| `infra/apps` | Third-party applications (Cal.com, etc.) |
+| `infra/ai` | AI tools and models |
+| `infra/analytics` | Analytics and monitoring stack |
+| `infra/automation` | Automation tools |
+| `infra/fly` | Fly.io deployment config |
+| `infra/neon` | Neon DB config |
+| `infra/vercel` | Vercel deployment config |
 
 ### Production Modules (25)
 
@@ -157,12 +172,6 @@ The project is organized as a TypeScript monorepo with **41 packages**:
 | `@sbf/legal-ops` | Legal | ✅ Production |
 | `@sbf/property-ops` | Property | ✅ Production |
 | `@sbf/restaurant-haccp-ops` | Restaurant | ✅ Production |
-
-### Other Packages (1)
-
-| Package | Description | Status |
-|---------|-------------|--------|
-| `@sbf/integrations` | Third-party integration adapters | ✅ Production |
 
 ---
 
@@ -250,11 +259,18 @@ Electron app with:
 
 ## 📖 Documentation
 
+### For Investors
+
+- **[Executive Summary](./docs/INVESTOR-EXECUTIVE-SUMMARY.md)** - Comprehensive investor presentation
+- **[Product Roadmap](./docs/PRODUCT-ROADMAP.md)** - 5-year vision and milestones
+- **[Competitive Analysis](./docs/COMPETITIVE-ANALYSIS.md)** - Market positioning and differentiation
+
 ### Getting Started
 
 - **[Documentation Hub](./docs/)** - Complete documentation in docs/ directory
 - **[Quick Reference](./docs/QUICK-REFERENCE.md)** - Common commands and workflows
-- **[Deployment Guide](./docs/deployment/DEPLOYMENT.md)** - Production deployment instructions
+- **[Technical Architecture](./docs/03-architecture/TECHNICAL-ARCHITECTURE-V2.md)** - System architecture and design
+- **[Libraries Integration](./docs/LIBRARIES-INTEGRATION-PLAN.md)** - Analytics platform integration plan
 
 ### Development
 
@@ -282,54 +298,34 @@ Electron app with:
 
 ```
 second-brain-foundation/
+├── apps/                        # Application services
+│   ├── api/                     # Main REST API
+│   ├── web/                     # Frontend Web App
+│   ├── aei-core/                # AI Engine Core
+│   ├── auth-service/            # Authentication Service
+│   ├── iot-core/                # IoT Management
+│   ├── notif-service/           # Notifications
+│   ├── workers/                 # Background Workers
+│   └── llm-orchestrator/        # AI Model Router
 ├── packages/
-│   ├── @sbf/
-│   │   ├── shared/              # Common utilities
-│   │   ├── memory-engine/       # Graph-based memory
-│   │   ├── aei/                 # AI interface
-│   │   ├── api/                 # REST API
-│   │   ├── automation/          # Workflow automation
-│   │   ├── cli/                 # Command-line interface
-│   │   ├── integrations/        # Third-party adapters
-│   │   ├── core/
-│   │   │   ├── module-system/   # module infrastructure
-│   │   │   ├── knowledge-graph/ # Entity relationships
-│   │   │   ├── entity-manager/  # CRUD operations
-│   │   │   ├── lifecycle-engine/# Entity lifecycle
-│   │   │   └── privacy/         # Privacy & data protection
-│   │   ├── frameworks/
-│   │   │   ├── financial-tracking/
-│   │   │   ├── health-tracking/
-│   │   │   ├── knowledge-tracking/
-│   │   │   ├── relationship-tracking/
-│   │   │   └── task-management/
-│   │   ├── modules/
-│   │   │   ├── budgeting/
-│   │   │   ├── fitness-tracking/
-│   │   │   ├── learning-tracker/
-│   │   │   ├── medication-tracking/
-│   │   │   ├── nutrition-tracking/
-│   │   │   ├── personal-tasks/
-│   │   │   ├── portfolio-tracking/
-│   │   │   ├── relationship-crm/
-│   │   │   ├── va-dashboard/
-│   │   │   ├── agriculture/
-│   │   │   ├── highlights/
-│   │   │   ├── healthcare/
-│   │   │   ├── legal-ops/
-│   │   │   ├── property-mgmt/
-│   │   │   └── restaurant-haccp/
-│   │   ├── hospitality-ops/        # Hotel & guest management
-│   │   ├── logistics-ops/          # Freight & customs
-│   │   ├── insurance-ops/          # Claims processing
-│   │   ├── construction-ops/       # Project & safety
-│   │   ├── manufacturing-ops/      # Production & QC
-│   │   ├── security-ops/           # Guard management
-│   │   ├── renewable-ops/          # Solar/wind monitoring
-│   │   ├── legal-ops/              # Legal practice mgmt
-│   │   ├── property-ops/           # Real estate mgmt
-│   │   └── restaurant-haccp-ops/   # Food safety
-│   │   └── desktop/             # Electron app
+│   ├── db-client/               # Database Client
+│   ├── vector-client/           # Vector DB Client
+│   ├── ai-client/               # AI Service Client
+│   ├── auth-lib/                # Auth Library
+│   ├── config/                  # Configuration
+│   ├── logging/                 # Logging
+│   ├── sbf-automation/          # Automation
+│   ├── types/                   # Shared Types
+│   ├── utils/                   # Shared Utils
+│   └── @sbf/
+│       ├── shared/              # Legacy Shared
+│       ├── frameworks/          # Domain Frameworks
+│       └── modules/             # Feature Modules
+├── infra/                       # Infrastructure & Tools
+│   ├── apps/                    # Third-party Apps
+│   ├── ai/                      # AI Tools
+│   ├── analytics/               # Analytics Stack
+│   └── automation/              # Automation Tools
 ├── scripts/                     # Build and test scripts
 ├── docs/                        # Comprehensive documentation
 ├── templates/                   # Code templates

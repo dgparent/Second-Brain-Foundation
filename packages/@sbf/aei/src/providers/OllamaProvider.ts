@@ -166,6 +166,53 @@ Only return valid JSON, no additional text.
     }
   }
 
+  async generateEmbedding(
+    text: string,
+    options?: ExtractionOptions
+  ): Promise<number[]> {
+    const response = await fetch(`${this.baseUrl}/api/embeddings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: options?.model || this.defaultModel,
+        prompt: text,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ollama API error: ${response.statusText}`);
+    }
+
+    const data = await response.json() as { embedding: number[] };
+    return data.embedding || [];
+  }
+
+  async chat(
+    messages: { role: 'system' | 'user' | 'assistant'; content: string }[],
+    options?: ExtractionOptions
+  ): Promise<string> {
+    const response = await fetch(`${this.baseUrl}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: options?.model || this.defaultModel,
+        messages: messages,
+        stream: false,
+        options: {
+          temperature: options?.temperature || 0.7,
+          num_predict: options?.maxTokens || 1000,
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ollama API error: ${response.statusText}`);
+    }
+
+    const data = await response.json() as { message: { content: string } };
+    return data.message?.content || '';
+  }
+
   async testConnection(): Promise<boolean> {
     try {
       const response = await fetch(`${this.baseUrl}/api/tags`);

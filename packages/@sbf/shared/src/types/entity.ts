@@ -23,6 +23,8 @@ export type EntityType =
   // Plugin-defined types (extensible)
   | string;
 
+export type TruthLevel = 'U1' | 'A2' | 'L3' | 'LN4' | 'C5';
+
 export interface BMOM {
   because: string;  // Why it matters
   meaning: string;  // What it represents
@@ -41,6 +43,14 @@ export interface Override {
   human_last: string;          // ISO8601 timestamp of last human decision
   prevent_dissolve?: boolean;  // Override 48h lifecycle
   notes?: string;              // Human override reasoning
+}
+
+export interface TruthMetadata {
+  truthLevel: TruthLevel;
+  originSource: string;
+  originChain: string[];
+  acceptedByUser: boolean;
+  lastModifiedByLevel: TruthLevel;
 }
 
 export interface Entity {
@@ -135,4 +145,46 @@ export interface EntityUpdatePayload {
     updateTimestamp?: boolean;
     emitEvents?: boolean;
   };
+}
+
+/**
+ * Legacy Entity interface for compatibility with v1.0 API and DB schema.
+ * This should be used during the migration phase.
+ */
+export interface LegacyEntity {
+  id: string;
+  tenantId: string;
+  type: string;
+  title: string;
+  content: string;
+  metadata: Record<string, any>;
+  tags: string[];
+  createdBy: string;
+  createdAt: Date;
+  updatedAt: Date;
+  truthLevel: TruthLevel;
+  originSource: string;
+  originChain: string[];
+  acceptedByUser: boolean;
+  // Optional fields for DB compatibility
+  embedding?: number[];
+  deletedAt?: Date;
+}
+
+export interface EntityFilters {
+  type?: string | string[];
+  tags?: string[];
+  search?: string;
+  createdAfter?: Date;
+  createdBefore?: Date;
+  limit?: number;
+  offset?: number;
+}
+
+export interface EntityRepository {
+  create(context: any, entity: any): Promise<LegacyEntity>;
+  findById(context: any, id: string): Promise<LegacyEntity | null>;
+  findMany(context: any, filters: EntityFilters): Promise<LegacyEntity[]>;
+  update(context: any, id: string, updates: Partial<LegacyEntity>): Promise<LegacyEntity>;
+  delete(context: any, id: string): Promise<void>;
 }

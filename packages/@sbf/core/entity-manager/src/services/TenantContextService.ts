@@ -2,7 +2,7 @@
 // Manages runtime tenant context for multi-tenant operations
 
 import { Injectable, ForbiddenException, NotFoundException } from '@nestjs/common';
-import { TenantContext, Tenant, TenantMembership, TenantRole } from '@sbf/shared/types/tenant.types';
+import { TenantContext, Tenant, TenantMembership, TenantRole } from '@sbf/shared';
 
 export interface TenantContextResolutionOptions {
   userId: string;

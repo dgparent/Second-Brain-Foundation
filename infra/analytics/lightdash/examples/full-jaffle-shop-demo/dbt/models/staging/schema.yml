@@ -1,0 +1,259 @@
+version: 2
+models:
+  - name: stg_customers
+    meta:
+      group_label: "staging"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+        description: ""
+      - name: first_name
+        description: ""
+      - name: last_name
+        description: ""
+      - name: created
+        description: ""
+  - name: stg_orders
+    meta:
+      group_label: "staging"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+        description: ""
+        meta:
+          dimension:
+            type: number
+      - name: status
+        tests:
+          - accepted_values:
+              values:
+                - placed
+                - shipped
+                - completed
+                - return_pending
+                - returned
+        description: ""
+        meta:
+          dimension:
+            type: string
+      - name: customer_id
+        description: ""
+        meta:
+          dimension:
+            type: number
+      - name: order_date
+        description: ""
+        meta:
+          dimension:
+            type: date
+  - name: stg_payments
+    meta:
+      group_label: "staging"
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null
+        description: ""
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values:
+                - credit_card
+                - coupon
+                - bank_transfer
+                - gift_card
+        description: ""
+      - name: order_id
+        description: ""
+      - name: amount
+        description: ""
+
+  # Health staging models
+  - name: stg_patients
+    description: Cleaned patient demographic and registration information
+    meta:
+      group_label: "staging"
+    columns:
+      - name: patient_id
+        description: Unique patient identifier
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: Patient's full name
+      - name: age
+        description: Patient's current age in years
+      - name: email
+        description: Patient email address
+      - name: health_plan
+        description: Patient's health insurance plan
+      - name: risk_category
+        description: Patient risk stratification (Low, Medium, High)
+
+  - name: stg_health_visits
+    description: Cleaned healthcare visits and encounters
+    meta:
+      group_label: "staging"
+    columns:
+      - name: visit_id
+        description: Unique visit identifier
+        tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: Reference to patient
+        tests:
+          - not_null
+      - name: visit_date
+        description: Date of the healthcare visit
+      - name: visit_type
+        description: Type of visit (Annual Checkup, Sick Visit, etc.)
+      - name: provider
+        description: Healthcare provider who conducted the visit
+
+  - name: stg_health_vitals
+    description: Cleaned vital signs measurements from visits
+    meta:
+      group_label: "staging"
+    columns:
+      - name: vital_id
+        description: Unique vital measurement identifier
+        tests:
+          - unique
+          - not_null
+      - name: visit_id
+        description: Reference to visit
+        tests:
+          - not_null
+      - name: blood_pressure_category
+        description: BP classification (Normal, Elevated, etc.)
+      - name: bmi_category
+        description: BMI classification (Underweight, Normal, etc.)
+
+  - name: stg_health_conditions
+    description: Cleaned patient diagnoses and conditions
+    meta:
+      group_label: "staging"
+    columns:
+      - name: condition_id
+        description: Unique condition identifier
+        tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: Reference to patient
+        tests:
+          - not_null
+      - name: condition_name
+        description: Name of the medical condition
+      - name: condition_category
+        description: Category of condition (Endocrine, Cardiovascular, etc.)
+      - name: chronic
+        description: Whether condition is chronic
+
+  # Facilities Management staging models - all prefixed with stg_fm_
+  - name: stg_fm_work_orders
+    description: Service tickets and maintenance requests
+    meta:
+      group_label: "staging"
+    columns:
+      - name: work_order_id
+        description: Unique identifier
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: Current status
+      - name: priority
+        description: Priority level
+      - name: category
+        description: Work category
+      - name: total_cost
+        description: Total cost
+      - name: labor_cost
+        description: Labor cost
+      - name: materials_cost
+        description: Materials cost
+
+  - name: stg_fm_technicians
+    description: Field service personnel and staff
+    meta:
+      group_label: "staging"
+    columns:
+      - name: technician_id
+        description: Unique identifier
+        tests:
+          - unique
+          - not_null
+      - name: employment_status
+        description: Current status
+      - name: primary_trade
+        description: Primary specialization
+      - name: average_rating
+        description: Performance rating
+      - name: customer_satisfaction_score
+        description: Customer satisfaction rating
+
+  - name: stg_fm_buildings
+    description: Properties and facilities
+    meta:
+      group_label: "staging"
+    columns:
+      - name: building_id
+        description: Unique identifier
+        tests:
+          - unique
+          - not_null
+      - name: building_status
+        description: Current status
+      - name: building_type
+        description: Type of property
+      - name: total_square_feet
+        description: Total size
+      - name: occupancy_rate
+        description: Occupancy percentage
+      - name: total_operating_cost_monthly
+        description: Monthly operating cost
+
+  - name: stg_fm_parts
+    description: Inventory and supplies
+    meta:
+      group_label: "staging"
+    columns:
+      - name: part_id
+        description: Unique identifier
+        tests:
+          - unique
+          - not_null
+      - name: stock_status
+        description: Current status
+      - name: part_category
+        description: Category
+      - name: unit_cost
+        description: Unit cost
+      - name: stock_quantity
+        description: Quantity in stock
+
+  - name: stg_fm_service_contracts
+    description: Service agreements and SLAs
+    meta:
+      group_label: "staging"
+    columns:
+      - name: contract_id
+        description: Unique identifier
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: Current status
+      - name: contract_type
+        description: Type of contract
+      - name: monthly_recurring_revenue
+        description: Monthly revenue
+      - name: customer_satisfaction_score
+        description: Customer satisfaction rating

@@ -1,0 +1,294 @@
+# Financial Metrics Definitions
+# Metrics for the Financial Tracking framework
+
+metrics:
+  # Budget Metrics
+  - id: monthly_budget_status
+    name: monthly_budget_status
+    displayName: "Monthly Budget Status"
+    description: "Current month spending vs budget"
+    module: finance
+    type: currency
+    aggregation: custom
+    sql: |
+      SELECT 
+        SUM(amount)
+      FROM transactions
+      WHERE tenantId = :tenantId
+        AND type = 'expense'
+        AND DATE_TRUNC('month', transactionDate) = DATE_TRUNC('month', CURRENT_DATE)
+    category: budget
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  - id: budget_variance
+    name: budget_variance
+    displayName: "Budget Variance"
+    description: "Difference between budgeted and actual spending"
+    module: finance
+    type: currency
+    aggregation: custom
+    sql: |
+      WITH spending AS (
+        SELECT SUM(amount) as actual
+        FROM transactions
+        WHERE tenantId = :tenantId
+          AND type = 'expense'
+          AND DATE_TRUNC('month', transactionDate) = DATE_TRUNC('month', CURRENT_DATE)
+      ),
+      budget AS (
+        SELECT SUM(amount) as planned
+        FROM budgets
+        WHERE tenantId = :tenantId
+          AND DATE_TRUNC('month', periodStart) = DATE_TRUNC('month', CURRENT_DATE)
+      )
+      SELECT budget.planned - spending.actual
+      FROM spending, budget
+    category: budget
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  # Income vs Expense
+  - id: monthly_income
+    name: monthly_income
+    displayName: "Monthly Income"
+    description: "Total income this month"
+    module: finance
+    type: currency
+    aggregation: sum
+    sql: |
+      SELECT SUM(amount)
+      FROM transactions
+      WHERE tenantId = :tenantId
+        AND type = 'income'
+        AND DATE_TRUNC('month', transactionDate) = DATE_TRUNC('month', CURRENT_DATE)
+    category: income
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  - id: monthly_expenses
+    name: monthly_expenses
+    displayName: "Monthly Expenses"
+    description: "Total expenses this month"
+    module: finance
+    type: currency
+    aggregation: sum
+    sql: |
+      SELECT SUM(amount)
+      FROM transactions
+      WHERE tenantId = :tenantId
+        AND type = 'expense'
+        AND DATE_TRUNC('month', transactionDate) = DATE_TRUNC('month', CURRENT_DATE)
+    category: expense
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  - id: net_monthly_cash_flow
+    name: net_monthly_cash_flow
+    displayName: "Net Monthly Cash Flow"
+    description: "Income minus expenses this month"
+    module: finance
+    type: currency
+    aggregation: custom
+    sql: |
+      SELECT 
+        SUM(CASE WHEN type = 'income' THEN amount ELSE -amount END)
+      FROM transactions
+      WHERE tenantId = :tenantId
+        AND DATE_TRUNC('month', transactionDate) = DATE_TRUNC('month', CURRENT_DATE)
+    category: cashflow
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  # Category Spending
+  - id: spending_by_category
+    name: spending_by_category
+    displayName: "Spending by Category"
+    description: "Expense breakdown by category"
+    module: finance
+    type: currency
+    aggregation: sum
+    sql: |
+      SELECT 
+        category,
+        SUM(amount) as total
+      FROM transactions
+      WHERE tenantId = :tenantId
+        AND type = 'expense'
+        AND transactionDate >= :startDate
+        AND transactionDate <= :endDate
+      GROUP BY category
+      ORDER BY total DESC
+    category: distribution
+    isCore: true
+
+  # Portfolio Metrics
+  - id: portfolio_value
+    name: portfolio_value
+    displayName: "Portfolio Value"
+    description: "Total portfolio value"
+    module: finance
+    type: currency
+    aggregation: sum
+    sql: |
+      SELECT SUM(currentValue)
+      FROM portfolio_holdings
+      WHERE tenantId = :tenantId
+    category: portfolio
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  - id: portfolio_gain_loss
+    name: portfolio_gain_loss
+    displayName: "Portfolio Gain/Loss"
+    description: "Total unrealized gain or loss"
+    module: finance
+    type: currency
+    aggregation: custom
+    sql: |
+      SELECT SUM(currentValue - costBasis)
+      FROM portfolio_holdings
+      WHERE tenantId = :tenantId
+    category: portfolio
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  - id: portfolio_return_pct
+    name: portfolio_return_pct
+    displayName: "Portfolio Return %"
+    description: "Portfolio return percentage"
+    module: finance
+    type: percentage
+    aggregation: custom
+    sql: |
+      SELECT 
+        ROUND(
+          100.0 * SUM(currentValue - costBasis) / NULLIF(SUM(costBasis), 0),
+          2
+        )
+      FROM portfolio_holdings
+      WHERE tenantId = :tenantId
+    category: portfolio
+    format:
+      suffix: "%"
+      decimals: 2
+    isCore: true
+
+  # Net Worth
+  - id: net_worth
+    name: net_worth
+    displayName: "Net Worth"
+    description: "Total assets minus liabilities"
+    module: finance
+    type: currency
+    aggregation: custom
+    sql: |
+      SELECT 
+        SUM(CASE WHEN type = 'asset' THEN balance ELSE -balance END)
+      FROM accounts
+      WHERE tenantId = :tenantId
+    category: networth
+    format:
+      prefix: "$"
+      decimals: 2
+      thousandsSeparator: ","
+    isCore: true
+
+  # Trend Metrics
+  - id: spending_trend
+    name: spending_trend
+    displayName: "Spending Trend"
+    description: "Daily spending over time"
+    module: finance
+    type: currency
+    aggregation: sum
+    sql: |
+      SELECT 
+        DATE(transactionDate) as date,
+        SUM(amount) as spending
+      FROM transactions
+      WHERE tenantId = :tenantId
+        AND type = 'expense'
+        AND transactionDate >= :startDate
+        AND transactionDate <= :endDate
+      GROUP BY DATE(transactionDate)
+      ORDER BY date
+    category: trend
+    isCore: true
+
+  - id: net_worth_trend
+    name: net_worth_trend
+    displayName: "Net Worth Trend"
+    description: "Net worth over time"
+    module: finance
+    type: currency
+    aggregation: custom
+    sql: |
+      SELECT 
+        snapshotDate as date,
+        netWorth
+      FROM net_worth_snapshots
+      WHERE tenantId = :tenantId
+        AND snapshotDate >= :startDate
+        AND snapshotDate <= :endDate
+      ORDER BY snapshotDate
+    category: trend
+    isCore: true
+
+  # Savings Rate
+  - id: savings_rate
+    name: savings_rate
+    displayName: "Savings Rate"
+    description: "Percentage of income saved"
+    module: finance
+    type: percentage
+    aggregation: custom
+    sql: |
+      WITH income AS (
+        SELECT SUM(amount) as total
+        FROM transactions
+        WHERE tenantId = :tenantId
+          AND type = 'income'
+          AND transactionDate >= :startDate
+          AND transactionDate <= :endDate
+      ),
+      expenses AS (
+        SELECT SUM(amount) as total
+        FROM transactions
+        WHERE tenantId = :tenantId
+          AND type = 'expense'
+          AND transactionDate >= :startDate
+          AND transactionDate <= :endDate
+      )
+      SELECT 
+        ROUND(
+          100.0 * (income.total - expenses.total) / NULLIF(income.total, 0),
+          1
+        )
+      FROM income, expenses
+    category: savings
+    format:
+      suffix: "%"
+      decimals: 1
+    isCore: true

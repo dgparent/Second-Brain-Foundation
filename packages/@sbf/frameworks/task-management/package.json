@@ -23,7 +23,7 @@
   "author": "Second Brain Foundation",
   "license": "MIT",
   "dependencies": {
-    "@sbf/shared": "*"
+    "@sbf/shared": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

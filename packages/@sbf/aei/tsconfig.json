@@ -4,7 +4,9 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "composite": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "types": ["node"],
+    "lib": ["es2020", "dom"]
   },
   "include": [
     "src/**/*"

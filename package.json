@@ -4,6 +4,9 @@
   "private": true,
   "description": "Open-source framework for AI-augmented personal knowledge management",
   "workspaces": [
+    "packages/core-domain",
+    "packages/db-client",
+    "packages/vector-client",
     "packages/@sbf/shared",
     "packages/@sbf/memory-engine",
     "packages/@sbf/aei",
@@ -55,9 +58,11 @@
     "marketplace:install": "node scripts/module-marketplace.js install"
   },
   "devDependencies": {
-    "@types/electron": "^1.6.12",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.19.25",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "electron": "^39.2.3",
     "eslint": "^9.39.1",
     "jest": "^30.2.0",
     "prettier": "^3.6.2",
@@ -68,5 +73,11 @@
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "@ant-design/charts": "^2.6.6",
+    "@ant-design/icons": "^6.1.0",
+    "antd": "^6.0.0",
+    "axios": "^1.13.2"
   }
 }

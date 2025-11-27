@@ -19,9 +19,11 @@
     "forceConsistentCasingInFileNames": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "jsx": "react",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noEmit": false
+    "noEmit": false,
+    "types": ["node", "react", "react-dom"]
   },
   "include": [
     "src/**/*"

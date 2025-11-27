@@ -8,9 +8,20 @@ export interface SimpleEntity {
   uid: string;
   type: string;
   title: string;
+  lifecycle: {
+    state: 'capture' | 'transitional' | 'permanent' | 'archived';
+  };
+  sensitivity: {
+    level: 'public' | 'personal' | 'confidential' | 'secret';
+    privacy: {
+      cloud_ai_allowed: boolean;
+      local_ai_allowed: boolean;
+      export_allowed: boolean;
+    };
+  };
+  created: string;
+  updated: string;
   metadata: Record<string, any>;
-  created_at: string;
-  updated_at: string;
 }
 
 export type RelationshipStrength = 'weak' | 'moderate' | 'strong' | 'vital';

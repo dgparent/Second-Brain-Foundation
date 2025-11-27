@@ -98,8 +98,8 @@ export function sortContactsByLastContact(
     const metadataA = a.metadata as ContactMetadata;
     const metadataB = b.metadata as ContactMetadata;
     
-    const dateA = metadataA.last_contact_date || metadataA.first_met_date || a.created_at;
-    const dateB = metadataB.last_contact_date || metadataB.first_met_date || b.created_at;
+    const dateA = metadataA.last_contact_date || metadataA.first_met_date || a.created;
+    const dateB = metadataB.last_contact_date || metadataB.first_met_date || b.created;
     
     const comparison = new Date(dateB).getTime() - new Date(dateA).getTime();
     return descending ? comparison : -comparison;

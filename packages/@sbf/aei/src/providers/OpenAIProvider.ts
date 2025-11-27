@@ -154,6 +154,33 @@ Only return valid JSON, no additional text.
     }
   }
 
+  async generateEmbedding(
+    text: string,
+    options?: ExtractionOptions
+  ): Promise<number[]> {
+    const response = await this.client.embeddings.create({
+      model: 'text-embedding-3-small',
+      input: text,
+      encoding_format: 'float',
+    });
+
+    return response.data[0].embedding;
+  }
+
+  async chat(
+    messages: { role: 'system' | 'user' | 'assistant'; content: string }[],
+    options?: ExtractionOptions
+  ): Promise<string> {
+    const response = await this.client.chat.completions.create({
+      model: options?.model || this.defaultModel,
+      temperature: options?.temperature || 0.7,
+      max_tokens: options?.maxTokens || 1000,
+      messages: messages,
+    });
+
+    return response.choices[0]?.message?.content || '';
+  }
+
   async testConnection(): Promise<boolean> {
     try {
       await this.client.models.list();

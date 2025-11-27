@@ -151,6 +151,40 @@ Only return valid JSON, no additional text.
     }
   }
 
+  async generateEmbedding(
+    text: string,
+    options?: ExtractionOptions
+  ): Promise<number[]> {
+    // Anthropic does not support embeddings natively yet
+    // We could use a local model or throw an error
+    throw new Error('Anthropic provider does not support embeddings');
+  }
+
+  async chat(
+    messages: { role: 'system' | 'user' | 'assistant'; content: string }[],
+    options?: ExtractionOptions
+  ): Promise<string> {
+    const systemMessage = messages.find(m => m.role === 'system');
+    const userMessages = messages.filter(m => m.role !== 'system');
+
+    const response = await this.client.messages.create({
+      model: options?.model || this.defaultModel,
+      max_tokens: options?.maxTokens || 1000,
+      temperature: options?.temperature || 0.7,
+      system: systemMessage?.content,
+      messages: userMessages.map(m => ({
+        role: m.role as 'user' | 'assistant',
+        content: m.content
+      })),
+    });
+
+    const content = response.content[0];
+    if (content.type !== 'text') {
+      return '';
+    }
+    return content.text;
+  }
+
   async testConnection(): Promise<boolean> {
     try {
       await this.client.messages.create({
