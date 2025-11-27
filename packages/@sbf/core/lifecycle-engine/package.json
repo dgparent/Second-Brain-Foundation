@@ -8,6 +8,7 @@
     "build": "npx -p typescript tsc",
     "dev": "tsc --watch",
     "test": "npx -p jest jest",
+    "lint": "eslint src --ext .ts",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --maxWorkers=2"

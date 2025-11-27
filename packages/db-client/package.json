@@ -8,6 +8,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "jest",
+    "lint": "eslint src --ext .ts",
     "migrate": "node dist/migrate.js"
   },
   "dependencies": {
