@@ -9,9 +9,8 @@ export default [
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
-      parser: tseslint.parser,
       parserOptions: {
-        project: true,
+        project: ['./tsconfig.base.json', './packages/*/tsconfig.json', './apps/*/tsconfig.json'],
       },
     },
     rules: {
