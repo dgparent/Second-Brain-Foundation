@@ -17,7 +17,7 @@ const Settings: React.FC = () => {
           },
           {
             key: 'godmode',
-            label: 'God Mode (Advanced)',
+            label: 'Advanced Settings',
             children: (
               <Suspense fallback={<Spin />}>
                 <GodModeSettings />

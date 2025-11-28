@@ -7,6 +7,7 @@ import {
   ExecutionContext,
   UnauthorizedException
 } from '@nestjs/common';
+import { verifyToken } from '@sbf/auth-lib';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -19,9 +20,6 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      // TODO: Validate JWT token
-      // TODO: Load user from database
-      // For now, placeholder:
       const user = await this.validateToken(token);
       request.user = user;
       return true;
@@ -39,12 +37,10 @@ export class AuthGuard implements CanActivate {
   }
 
   private async validateToken(token: string): Promise<any> {
-    // TODO: Implement JWT validation
-    // Placeholder: return mock user
-    return {
-      id: 'user-123',
-      email: 'user@example.com',
-      name: 'Test User'
-    };
+    const payload = verifyToken(token);
+    if (!payload) {
+      throw new UnauthorizedException('Invalid token signature');
+    }
+    return payload;
   }
 }

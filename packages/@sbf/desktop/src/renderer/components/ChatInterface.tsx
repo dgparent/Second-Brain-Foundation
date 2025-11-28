@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Input, Button, List, Avatar, Typography, Spin, Card } from 'antd';
 import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons';
+import ReactMarkdown from 'react-markdown';
 
 const { Text } = Typography;
 const { TextArea } = Input;
@@ -112,7 +113,13 @@ const ChatInterface: React.FC = () => {
                   border: '1px solid #d9d9d9',
                 }}
               >
-                <div style={{ whiteSpace: 'pre-wrap' }}>{msg.content}</div>
+                <div style={{ whiteSpace: 'normal' }}>
+                  {msg.role === 'assistant' ? (
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  ) : (
+                    <div style={{ whiteSpace: 'pre-wrap' }}>{msg.content}</div>
+                  )}
+                </div>
                 
                 {/* Show Orchestrator Details if available */}
                 {msg.details && msg.details.plan && (

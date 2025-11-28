@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Statistic, List, Typography, Tag, Spin } from 'antd';
+import { Card, Row, Col, Statistic, Spin, Typography } from 'antd';
 import { 
   DatabaseOutlined, 
   SafetyCertificateOutlined, 
-  ClockCircleOutlined, 
-  NotificationOutlined 
+  ClockCircleOutlined 
 } from '@ant-design/icons';
+import DailyBriefing from './DailyBriefing';
 
 const { Title, Text } = Typography;
 
@@ -91,21 +91,22 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div style={{ padding: '24px' }}>
-      <Title level={2}>System Dashboard</Title>
+    <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
+      <DailyBriefing />
       
+      <Title level={4} style={{ marginTop: 32, marginBottom: 16 }}>System Internals</Title>
       <Row gutter={[16, 16]}>
         <Col span={8}>
-          <Card>
+          <Card size="small">
             <Statistic 
-              title="Total Entities" 
+              title="Total Notes & Entities" 
               value={stats.entities} 
               prefix={<DatabaseOutlined />} 
             />
           </Card>
         </Col>
         <Col span={8}>
-          <Card>
+          <Card size="small">
             <Statistic 
               title="Privacy Level" 
               value={stats.privacy?.averageLevel || 'N/A'} 
@@ -115,58 +116,12 @@ const Dashboard: React.FC = () => {
           </Card>
         </Col>
         <Col span={8}>
-          <Card>
+          <Card size="small">
             <Statistic 
               title="Active Lifecycle" 
               value={stats.lifecycle?.activeCount || 0} 
               prefix={<ClockCircleOutlined />} 
             />
-          </Card>
-        </Col>
-      </Row>
-
-      <Row gutter={[16, 16]} style={{ marginTop: '24px' }}>
-        <Col span={12}>
-          <Card title="Recent Notifications" extra={<NotificationOutlined />}>
-            <List
-              dataSource={stats.notifications.slice(0, 5)}
-              renderItem={(item: any) => (
-                <List.Item>
-                  <List.Item.Meta
-                    title={item.title}
-                    description={item.message}
-                  />
-                  <Tag color={item.priority === 'high' ? 'red' : 'blue'}>
-                    {item.priority || 'normal'}
-                  </Tag>
-                </List.Item>
-              )}
-              locale={{ emptyText: 'No new notifications' }}
-            />
-          </Card>
-        </Col>
-        <Col span={12}>
-          <Card title="System Status">
-            <List>
-              <List.Item>
-                <Text>AI Brain (Ollama)</Text>
-                <Tag color={stats.aiStatus === 'connected' ? 'green' : 'red'}>
-                  {stats.aiStatus === 'connected' ? 'Connected' : 'Disconnected'}
-                </Tag>
-              </List.Item>
-              <List.Item>
-                <Text>Encryption Status</Text>
-                <Tag color="green">Active</Tag>
-              </List.Item>
-              <List.Item>
-                <Text>Database Connection</Text>
-                <Tag color="green">Connected</Tag>
-              </List.Item>
-              <List.Item>
-                <Text>Sync Status</Text>
-                <Tag color="blue">Up to date</Tag>
-              </List.Item>
-            </List>
           </Card>
         </Col>
       </Row>

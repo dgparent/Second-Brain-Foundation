@@ -8,7 +8,7 @@
     "build": "npx -p typescript tsc",
     "dev": "tsc --watch",
     "test": "npx -p jest jest",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src",
     "clean": "rm -rf dist",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",

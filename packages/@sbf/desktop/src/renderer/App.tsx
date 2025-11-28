@@ -68,15 +68,37 @@ const App: React.FC = () => {
           onClick={({ key }) => setCurrentView(key)}
           items={[
             { key: 'dashboard', icon: <DashboardOutlined />, label: 'Dashboard' },
-            { key: 'analytics', icon: <BarChartOutlined />, label: 'Analytics' },
-            { key: 'finance', icon: <BankOutlined />, label: 'Finance' },
-            { key: 'health', icon: <HeartOutlined />, label: 'Health' },
-            { key: 'knowledge', icon: <ReadOutlined />, label: 'Knowledge' },
-            { key: 'legal', icon: <AuditOutlined />, label: 'Legal Ops' },
-            { key: 'property', icon: <HomeOutlined />, label: 'Property' },
-            { key: 'haccp', icon: <SafetyCertificateOutlined />, label: 'HACCP' },
+            { key: 'chat', icon: <MessageOutlined />, label: 'Chat', onClick: () => setChatOpen(true) },
             { type: 'divider' },
-            { key: 'settings', icon: <SettingOutlined />, label: 'Settings' },
+            { 
+              key: 'life', 
+              label: 'Life OS', 
+              type: 'group',
+              children: [
+                { key: 'health', icon: <HeartOutlined />, label: 'Health' },
+                { key: 'finance', icon: <BankOutlined />, label: 'Finance' },
+                { key: 'property', icon: <HomeOutlined />, label: 'Property' },
+              ]
+            },
+            {
+              key: 'work',
+              label: 'Work OS',
+              type: 'group',
+              children: [
+                { key: 'legal', icon: <AuditOutlined />, label: 'Legal Ops' },
+                { key: 'haccp', icon: <SafetyCertificateOutlined />, label: 'HACCP' },
+              ]
+            },
+            {
+              key: 'system',
+              label: 'System',
+              type: 'group',
+              children: [
+                { key: 'knowledge', icon: <ReadOutlined />, label: 'Knowledge' },
+                { key: 'analytics', icon: <BarChartOutlined />, label: 'Analytics' },
+                { key: 'settings', icon: <SettingOutlined />, label: 'Settings' },
+              ]
+            }
           ]} 
         />
       </Sider>

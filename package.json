@@ -1,6 +1,7 @@
 {
   "name": "second-brain-foundation",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "description": "Open-source framework for AI-augmented personal knowledge management",
   "workspaces": [
