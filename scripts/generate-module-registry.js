@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ModuleS_DIR = path.join(__dirname, '..', 'packages', '@sbf', 'Modules');
-const OUTPUT_FILE = path.join(__dirname, '..', 'module-registry.json');
+const OUTPUT_FILE = path.join(__dirname, '..', 'config', 'module-registry.json');
 
 function scanModules() {
   const Modules = [];

@@ -11,11 +11,11 @@
 ### New to Second Brain Foundation?
 **Just want to understand what this is?**  
 → **[README.md](../README.md)** - Project overview and architecture  
-→ **[PROJECT-STATUS.md](../PROJECT-STATUS.md)** - Current status and progress
+→ **[PROJECT-STATUS.md](./planning/PROJECT-STATUS.md)** - Current status and progress
 
 ### For Developers
 **Want to set up your development environment?**  
-→ **[QUICK-START.md](../QUICK-START.md)** - Get running in 5 minutes  
+→ **[QUICK-START.md](./06-guides/QUICK-START.md)** - Get running in 5 minutes  
 → **[Developer Guide](./06-guides/developer-guide.md)** - Architecture and standards  
 → **[Getting Started](./06-guides/getting-started.md)** - Detailed setup guide
 
@@ -43,12 +43,12 @@
 | Document | Purpose | Audience |
 |----------|---------|----------|
 | **[README.md](../README.md)** | Project overview, architecture, quick start | Everyone |
-| **[PROJECT-STATUS.md](../PROJECT-STATUS.md)** | Current status, roadmap, metrics | Everyone |
-| **[QUICK-START.md](../QUICK-START.md)** | 5-minute setup guide | Developers |
+| **[PROJECT-STATUS.md](./planning/PROJECT-STATUS.md)** | Current status, roadmap, metrics | Everyone |
+| **[QUICK-START.md](./06-guides/QUICK-START.md)** | 5-minute setup guide | Developers |
 | **[CHANGELOG.md](../CHANGELOG.md)** | Version history and changes | Everyone |
 | **[CONTRIBUTING.md](../CONTRIBUTING.md)** | Contribution guidelines | Contributors |
 | **[LICENSE](../LICENSE)** | Project license (MIT) | Everyone |
-| **[WORKSPACE-PROTOCOL.md](../WORKSPACE-PROTOCOL.md)** | Development protocols | Developers |
+| **[WORKSPACE-PROTOCOL.md](./planning/WORKSPACE-PROTOCOL.md)** | Development protocols | Developers |
 
 ---
 
@@ -256,7 +256,7 @@ docs/
 1. [Investor Executive Summary](./01-overview/INVESTOR-EXECUTIVE-SUMMARY.md)
 2. [Competitive Analysis](./01-overview/COMPETITIVE-ANALYSIS.md)
 3. [Product Roadmap](./02-product/PRODUCT-ROADMAP.md)
-4. [Project Status](../PROJECT-STATUS.md)
+4. [Project Status](./planning/PROJECT-STATUS.md)
 
 **Product Managers**
 1. [PRD](./02-product/prd.md)
@@ -265,7 +265,7 @@ docs/
 4. [User Research](./05-research/user-research/)
 
 **Developers**
-1. [Quick Start](../QUICK-START.md)
+1. [Quick Start](./06-guides/QUICK-START.md)
 2. [Developer Guide](./06-guides/developer-guide.md)
 3. [Architecture Overview](./03-architecture/architecture.md)
 4. [API Documentation](./06-guides/api-documentation.md)
@@ -285,14 +285,14 @@ docs/
 **I want to...**
 
 - **Understand the project** → [README](../README.md), [Project Brief](./01-overview/project-brief.md)
-- **Set up development** → [Quick Start](../QUICK-START.md), [Getting Started](./06-guides/getting-started.md)
+- **Set up development** → [Quick Start](./06-guides/QUICK-START.md), [Getting Started](./06-guides/getting-started.md)
 - **Build a module** → [Module Development Guide](./04-implementation/MODULE-DEVELOPMENT-GUIDE.md)
 - **Understand architecture** → [Architecture Overview](./03-architecture/architecture.md)
 - **Deploy to production** → [Infrastructure Next Steps](./04-implementation/infrastructure/NEXT-STEPS-INFRASTRUCTURE.md)
 - **Integrate analytics** → [Analytics Integration](./03-architecture/analytics/ANALYTICS-INTEGRATION.md)
 - **Contribute code** → [Contributing](../CONTRIBUTING.md), [Developer Guide](./06-guides/developer-guide.md)
 - **Troubleshoot issues** → [Troubleshooting](./06-guides/troubleshooting.md)
-- **Check current status** → [Project Status](../PROJECT-STATUS.md)
+- **Check current status** → [Project Status](./planning/PROJECT-STATUS.md)
 - **Review changes** → [Changelog](../CHANGELOG.md)
 
 ---

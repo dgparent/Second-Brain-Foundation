@@ -6,6 +6,8 @@ import { config } from 'dotenv';
 import { logger } from '@sbf/logging';
 import { tenantContextMiddleware, errorHandler } from './middleware';
 import routes from './routes';
+import { vaultService } from './services/vault.service';
+import path from 'path';
 
 config();
 
@@ -18,6 +20,9 @@ app.use(cors());
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Request logging
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -43,8 +48,31 @@ app.use('/api/v1', routes);
 // Error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, async () => {
   logger.info(`SBF API Gateway listening on port ${PORT}`);
+  
+  try {
+    // In development, we might want to start a default watcher
+    // In production, this should be triggered by tenant activation or a startup job
+    if (process.env.NODE_ENV !== 'production') {
+        await vaultService.startTenantWatcher('default');
+    }
+  } catch (error) {
+    logger.error('Failed to start Vault Service:', error);
+  }
 });
+
+// Graceful shutdown
+const shutdown = async () => {
+  logger.info('Shutting down...');
+  await vaultService.stopAll();
+  server.close(() => {
+    logger.info('Server closed');
+    process.exit(0);
+  });
+};
+
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
 
 export default app;

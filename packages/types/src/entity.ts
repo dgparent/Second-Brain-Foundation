@@ -1,4 +1,4 @@
-export type EntityType = 'person' | 'project' | 'place' | 'event' | 'task' | 'note' | 'document';
+import { EntityType } from './generated-ontology';
 
 export interface Entity {
   id: string;

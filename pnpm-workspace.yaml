@@ -11,12 +11,17 @@ packages:
   - "packages/logging"
   - "packages/types"
   - "packages/utils"
+  - "packages/template-engine"
+  - "packages/@sbf/core/vault-connector"
   
   # Legacy SBF packages (TEMPORARILY DISABLED - circular deps)
   - "packages/@sbf/shared"
   - "packages/@sbf/aei"
   - "packages/@sbf/jobs"
   - "packages/@sbf/memory-engine"
+  - "packages/plugins/*"
+  
+  # Core Domain (Legacy - to be migrated)
   - "packages/@sbf/core/*"
   - "packages/@sbf/frameworks/*"
   - "packages/@sbf/modules/*"

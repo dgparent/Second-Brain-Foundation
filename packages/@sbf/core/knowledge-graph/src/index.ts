@@ -35,6 +35,13 @@ export class KnowledgeGraph extends EventEmitter<GraphEvents> {
   private entityRelationships: Map<string, Set<string>> = new Map();
 
   /**
+   * Get all relationships in the graph
+   */
+  getAllRelationships(): StoredRelationship[] {
+    return Array.from(this.relationships.values());
+  }
+
+  /**
    * Add a relationship between two entities
    */
   async addRelationship(relationship: Relationship): Promise<StoredRelationship> {

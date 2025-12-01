@@ -24,6 +24,12 @@
   "license": "MIT",
   "dependencies": {
     "@sbf/shared": "file:../shared",
+    "@sbf/core-vault-connector": "workspace:*",
+    "@sbf/vector-client": "workspace:*",
+    "@sbf/ai-client": "workspace:*",
+    "@sbf/core-knowledge-graph": "workspace:*",
+    "@sbf/logging": "workspace:*",
+    "@sbf/types": "workspace:*",
     "arangojs": "^10.1.2",
     "eventemitter3": "^5.0.1",
     "gray-matter": "^4.0.3"

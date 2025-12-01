@@ -18,6 +18,18 @@
   "references": [
     {
       "path": "../shared"
+    },
+    {
+      "path": "../../types"
+    },
+    {
+      "path": "../../vector-client"
+    },
+    {
+      "path": "../../ai-client"
+    },
+    {
+      "path": "../core/knowledge-graph"
     }
   ]
 }

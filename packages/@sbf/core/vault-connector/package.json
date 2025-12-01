@@ -1,0 +1,28 @@
+{
+  "name": "@sbf/core-vault-connector",
+  "version": "1.0.0",
+  "description": "Vault file system watcher and synchronizer",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@sbf/types": "workspace:*",
+    "@sbf/utils": "workspace:*",
+    "chokidar": "^3.5.3",
+    "gray-matter": "^4.0.3",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.0",
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "eslint": "^8.56.0"
+  }
+}

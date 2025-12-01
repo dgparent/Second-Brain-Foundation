@@ -261,7 +261,7 @@ Electron app with:
 
 ### For Investors
 
-- **[Executive Summary](./docs/INVESTOR-EXECUTIVE-SUMMARY.md)** - Comprehensive investor presentation
+- **[Executive Summary](./docs/reports/EXECUTIVE-SUMMARY.md)** - Comprehensive investor presentation
 - **[Product Roadmap](./docs/PRODUCT-ROADMAP.md)** - 5-year vision and milestones
 - **[Competitive Analysis](./docs/COMPETITIVE-ANALYSIS.md)** - Market positioning and differentiation
 
@@ -567,5 +567,5 @@ If you find Second Brain Foundation useful:
 <p align="center">
   <a href="./CONTRIBUTING.md">Contribute</a> •
   <a href="./docs">Documentation</a> •
-  <a href="./WORKSPACE-PROTOCOL.md">Workspace</a>
+  <a href="./docs/planning/WORKSPACE-PROTOCOL.md">Workspace</a>
 </p>

@@ -126,6 +126,16 @@ export interface VaultOptions {
   autoComputeAeiCode?: boolean;
   emitEvents?: boolean;
   graphDbUrl?: string; // e.g., 'arangodb://localhost:8529' or 'neo4j://localhost:7687'
+  vector?: {
+    apiKey: string;
+    indexName: string;
+  };
+  ai?: {
+    provider: 'openai' | 'ollama';
+    apiKey?: string;
+    baseUrl?: string;
+  };
+  hooks?: MemoryEngineHooks;
 }
 
 export interface VaultScanResult {

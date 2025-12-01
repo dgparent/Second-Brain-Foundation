@@ -1,6 +1,9 @@
 """
 Local Vault Storage for Truth-Hierarchy-Aware Entities
 Implements local-first storage with markdown + frontmatter
+
+DEPRECATED: File watching and storage logic is moving to Node.js (apps/api + packages/@sbf/core/vault-connector).
+This module should only be used for legacy support or specific Python-only tasks until migration is complete.
 """
 
 import os
@@ -9,8 +12,8 @@ from typing import Dict, List, Optional, Any
 from datetime import datetime
 from pathlib import Path
 import frontmatter
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler, FileSystemEvent
+# from watchdog.observers import Observer
+# from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
 from ..models.truth_hierarchy import (
     TruthLevel, TruthMetadata, OriginSource,

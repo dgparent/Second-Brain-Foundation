@@ -3,14 +3,14 @@
  * Scans vault filesystem and converts markdown files to Entity objects
  */
 
-import * as fs from 'fs';
+import * as fs from 'fs/promises';
 import * as path from 'path';
 import matter from 'gray-matter';
 import { Entity, MemoryLevel, Sensitivity, Control, MemoryMetadata, VaultScanResult } from '../types';
 import { computeAeiCode } from './AeiCodeComputer';
 
 export class VaultAdapter {
-  private vaultRoot: string;
+  public vaultRoot: string;
 
   constructor(vaultRoot: string) {
     this.vaultRoot = vaultRoot;
@@ -43,29 +43,37 @@ export class VaultAdapter {
     entities: Entity[],
     errors: Array<{ path: string; error: string }>
   ): Promise<void> {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    try {
+      const entries = await fs.readdir(dir, { withFileTypes: true });
 
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name);
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
 
-      if (entry.isDirectory()) {
-        // Skip hidden and system directories
-        if (!entry.name.startsWith('.') && entry.name !== 'node_modules') {
-          await this.walkDirectory(fullPath, entities, errors);
-        }
-      } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.md')) {
-        try {
-          const entity = await this.processMarkdownFile(fullPath);
-          if (entity) {
-            entities.push(entity);
+        if (entry.isDirectory()) {
+          // Skip hidden and system directories
+          if (!entry.name.startsWith('.') && entry.name !== 'node_modules') {
+            await this.walkDirectory(fullPath, entities, errors);
           }
-        } catch (err) {
-          errors.push({
-            path: fullPath,
-            error: err instanceof Error ? err.message : String(err)
-          });
+        } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.md')) {
+          try {
+            const entity = await this.processMarkdownFile(fullPath);
+            if (entity) {
+              entities.push(entity);
+            }
+          } catch (err) {
+            errors.push({
+              path: fullPath,
+              error: err instanceof Error ? err.message : String(err)
+            });
+          }
         }
       }
+    } catch (error) {
+      // Directory might not exist or be accessible
+      errors.push({
+        path: dir,
+        error: error instanceof Error ? error.message : String(error)
+      });
     }
   }
 
@@ -73,7 +81,7 @@ export class VaultAdapter {
    * Processes a single markdown file and converts to Entity
    */
   private async processMarkdownFile(filePath: string): Promise<Entity | null> {
-    const content = fs.readFileSync(filePath, 'utf-8');
+    const content = await fs.readFile(filePath, 'utf-8');
     const relativePath = path.relative(this.vaultRoot, filePath).replace(/\\/g, '/');
 
     // Parse frontmatter
@@ -122,15 +130,16 @@ export class VaultAdapter {
    */
   private parseMemoryMetadata(frontmatter: any): MemoryMetadata {
     const now = new Date().toISOString();
+    const data = frontmatter.memory || frontmatter;
 
     return {
-      memory_level: (frontmatter.memory_level as MemoryLevel) || 'transitory',
-      stability_score: frontmatter.stability_score ?? 0.5,
-      importance_score: frontmatter.importance_score ?? 0.5,
-      last_active_at: frontmatter.last_active_at || now,
-      user_pinned: frontmatter.user_pinned ?? false,
-      created_at: frontmatter.created_at || now,
-      updated_at: frontmatter.updated_at || now
+      memory_level: (data.memory_level as MemoryLevel) || 'transitory',
+      stability_score: data.stability_score ?? 0.5,
+      importance_score: data.importance_score ?? 0.5,
+      last_active_at: data.last_active_at || now,
+      user_pinned: data.user_pinned ?? false,
+      created_at: data.created_at || now,
+      updated_at: data.updated_at || now
     };
   }
 
@@ -189,10 +198,17 @@ export class VaultAdapter {
   /**
    * Reads a single entity by path
    */
-  async readEntity(relativePath: string): Promise<Entity | null> {
-    const fullPath = path.join(this.vaultRoot, relativePath);
+  async readEntity(filePath: string): Promise<Entity | null> {
+    let fullPath = filePath;
+    
+    // If path is relative, join with vault root
+    if (!path.isAbsolute(filePath)) {
+      fullPath = path.join(this.vaultRoot, filePath);
+    }
 
-    if (!fs.existsSync(fullPath)) {
+    try {
+      await fs.access(fullPath);
+    } catch {
       return null;
     }
 
@@ -207,8 +223,10 @@ export class VaultAdapter {
 
     // Ensure directory exists
     const dir = path.dirname(fullPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    try {
+      await fs.access(dir);
+    } catch {
+      await fs.mkdir(dir, { recursive: true });
     }
 
     // Prepare frontmatter
@@ -240,7 +258,7 @@ export class VaultAdapter {
     const fileContent = matter.stringify(entity.content, frontmatter);
 
     // Write to disk
-    fs.writeFileSync(fullPath, fileContent, 'utf-8');
+    await fs.writeFile(fullPath, fileContent, 'utf-8');
   }
 
   /**
@@ -249,11 +267,36 @@ export class VaultAdapter {
   async deleteEntity(relativePath: string): Promise<boolean> {
     const fullPath = path.join(this.vaultRoot, relativePath);
 
-    if (!fs.existsSync(fullPath)) {
+    try {
+      await fs.access(fullPath);
+      await fs.unlink(fullPath);
+      return true;
+    } catch {
       return false;
     }
+  }
 
-    fs.unlinkSync(fullPath);
-    return true;
+  /**
+   * Moves an entity to a new path
+   */
+  async moveEntity(oldRelativePath: string, newRelativePath: string): Promise<boolean> {
+    const oldFullPath = path.join(this.vaultRoot, oldRelativePath);
+    const newFullPath = path.join(this.vaultRoot, newRelativePath);
+
+    try {
+      // Ensure source exists
+      await fs.access(oldFullPath);
+
+      // Ensure target directory exists
+      const targetDir = path.dirname(newFullPath);
+      await fs.mkdir(targetDir, { recursive: true });
+
+      // Move file
+      await fs.rename(oldFullPath, newFullPath);
+      return true;
+    } catch (error) {
+      console.error(`Failed to move entity from ${oldRelativePath} to ${newRelativePath}:`, error);
+      return false;
+    }
   }
 }

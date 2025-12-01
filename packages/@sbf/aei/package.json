@@ -28,6 +28,8 @@
     "@langchain/core": "^1.1.0",
     "@langchain/langgraph": "^1.0.2",
     "@sbf/ai-client": "workspace:*",
+    "@sbf/vector-client": "workspace:*",
+    "@sbf/logging": "workspace:*",
     "@sbf/config": "workspace:*",
     "eventemitter3": "^5.0.1",
     "openai": "^4.75.1"

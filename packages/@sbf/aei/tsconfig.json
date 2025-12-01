@@ -23,6 +23,18 @@
     },
     {
       "path": "../memory-engine"
+    },
+    {
+      "path": "../../ai-client"
+    },
+    {
+      "path": "../../vector-client"
+    },
+    {
+      "path": "../../logging"
+    },
+    {
+      "path": "../../config"
     }
   ]
 }

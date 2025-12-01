@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Engine Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-gray-800">Memory Engine Dashboard</h1>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- System Status -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4 text-gray-700">System Status</h2>
+                <div id="status-loading" class="text-gray-500">Loading...</div>
+                <div id="status-content" class="hidden space-y-2">
+                    <p><span class="font-bold">Status:</span> <span id="status-val" class="text-green-600"></span></p>
+                    <p><span class="font-bold">Tenant:</span> <span id="tenant-val"></span></p>
+                </div>
+            </div>
+
+            <!-- Graph Stats -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4 text-gray-700">Graph Statistics</h2>
+                <div id="graph-stats-loading" class="text-gray-500">Loading...</div>
+                <div id="graph-stats-content" class="hidden space-y-2">
+                    <p><span class="font-bold">Nodes:</span> <span id="nodes-count" class="text-blue-600 text-2xl"></span></p>
+                    <p><span class="font-bold">Edges:</span> <span id="edges-count" class="text-purple-600 text-2xl"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graph Visualization -->
+        <div class="bg-white p-6 rounded-lg shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700">Knowledge Graph Visualization</h2>
+            <div id="cy" class="w-full h-[500px] border border-gray-200 rounded bg-gray-50"></div>
+        </div>
+
+        <!-- Recent Connections -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700">Recent Connections</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-left text-sm">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-4 py-2 font-medium text-gray-600">Source</th>
+                            <th class="px-4 py-2 font-medium text-gray-600">Type</th>
+                            <th class="px-4 py-2 font-medium text-gray-600">Target</th>
+                        </tr>
+                    </thead>
+                    <tbody id="connections-body">
+                        <tr><td colspan="3" class="px-4 py-4 text-center text-gray-500">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/v1';
+        const TENANT_ID = 'default'; // Hardcoded for demo
+        const HEADERS = { 'x-tenant-id': TENANT_ID };
+
+        async function fetchStats() {
+            try {
+                const res = await fetch(`${API_URL}/memory/stats`, { headers: HEADERS });
+                const data = await res.json();
+                
+                document.getElementById('status-loading').classList.add('hidden');
+                document.getElementById('status-content').classList.remove('hidden');
+                document.getElementById('status-val').textContent = data.status;
+                document.getElementById('tenant-val').textContent = data.tenantId;
+            } catch (e) {
+                console.error('Stats error:', e);
+                document.getElementById('status-loading').textContent = 'Error loading stats';
+            }
+        }
+
+        async function fetchGraph() {
+            try {
+                const res = await fetch(`${API_URL}/memory/graph`, { headers: HEADERS });
+                const data = await res.json();
+                
+                // Update Stats
+                document.getElementById('graph-stats-loading').classList.add('hidden');
+                document.getElementById('graph-stats-content').classList.remove('hidden');
+                document.getElementById('nodes-count').textContent = data.nodes.length;
+                document.getElementById('edges-count').textContent = data.edges.length;
+
+                // Update Table
+                const tbody = document.getElementById('connections-body');
+                tbody.innerHTML = '';
+                if (data.edges.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" class="px-4 py-4 text-center text-gray-500">No connections found</td></tr>';
+                } else {
+                    data.edges.slice(0, 10).forEach(edge => {
+                        const tr = document.createElement('tr');
+                        tr.className = 'border-b last:border-0 hover:bg-gray-50';
+                        tr.innerHTML = `
+                            <td class="px-4 py-2">${edge.source_uid}</td>
+                            <td class="px-4 py-2 text-blue-600 font-mono text-xs">${edge.type}</td>
+                            <td class="px-4 py-2">${edge.target_uid}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                // Render Graph with Cytoscape
+                renderCytoscape(data);
+
+            } catch (e) {
+                console.error('Graph error:', e);
+                document.getElementById('graph-stats-loading').textContent = 'Error loading graph';
+            }
+        }
+
+        function renderCytoscape(data) {
+            const elements = [
+                ...data.nodes.map(n => ({ data: { id: n.id } })),
+                ...data.edges.map(e => ({ data: { source: e.source_uid, target: e.target_uid, label: e.type } }))
+            ];
+
+            cytoscape({
+                container: document.getElementById('cy'),
+                elements: elements,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': '#3b82f6',
+                            'label': 'data(id)',
+                            'color': '#1f2937',
+                            'font-size': '12px',
+                            'text-valign': 'bottom',
+                            'text-margin-y': 5
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'line-color': '#9ca3af',
+                            'target-arrow-color': '#9ca3af',
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier',
+                            'label': 'data(label)',
+                            'font-size': '10px',
+                            'color': '#6b7280',
+                            'text-rotation': 'autorotate',
+                            'text-background-color': '#ffffff',
+                            'text-background-opacity': 1
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'cose',
+                    animate: false
+                }
+            });
+        }
+
+        // Init
+        fetchStats();
+        fetchGraph();
+    </script>
+</body>
+</html>
