@@ -14,6 +14,13 @@ packages:
   - "packages/template-engine"
   - "packages/@sbf/core/vault-connector"
   
+  # Phase 00 Foundation Packages
+  - "packages/@sbf/errors"
+  - "packages/@sbf/domain-base"
+  - "packages/@sbf/job-runner"
+  - "packages/@sbf/db-migrations"
+  - "packages/@sbf/content-engine"
+  
   # Legacy SBF packages (TEMPORARILY DISABLED - circular deps)
   - "packages/@sbf/shared"
   - "packages/@sbf/aei"

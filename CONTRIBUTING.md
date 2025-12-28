@@ -14,6 +14,72 @@ Thank you for contributing! 🎉 This guide covers our **module-based architectu
 
 ---
 
+## 📦 Core Packages
+
+Before building modules, familiarize yourself with our core packages:
+
+### Foundation Packages
+
+| Package | Description | Use When |
+|---------|-------------|----------|
+| `@sbf/errors` | Error hierarchy with structured exceptions | Throwing or handling errors |
+| `@sbf/domain-base` | Base entity classes with CRUD operations | Creating domain entities |
+| `@sbf/job-runner` | Background job processing with retries | Async background tasks |
+| `@sbf/db-migrations` | Database schema migrations | Schema changes |
+| `@sbf/ai-client` | LLM client with token tracking | AI/LLM operations |
+
+### Using Core Packages
+
+```typescript
+// Error handling
+import { RecordNotFoundError, SBFError } from '@sbf/errors';
+
+try {
+  const user = await findUser(id);
+  if (!user) {
+    throw new RecordNotFoundError('User', id);
+  }
+} catch (error) {
+  if (error instanceof SBFError) {
+    console.log(error.toJSON());
+  }
+}
+
+// Domain entities
+import { BaseEntity } from '@sbf/domain-base';
+
+class MyEntity extends BaseEntity {
+  name: string;
+  
+  async beforeSave() {
+    // Validation logic
+  }
+}
+
+// Background jobs
+import { JobRunner, RetryStrategy } from '@sbf/job-runner';
+
+runner.register({
+  type: 'my.job',
+  handler: async (payload) => {
+    // Job logic
+  },
+  options: {
+    retryStrategy: RetryStrategy.EXPONENTIAL,
+    maxRetries: 3,
+  },
+});
+
+// AI operations
+import { AiClientFactory, TokenTracker, ContextBuilder } from '@sbf/ai-client';
+
+const client = AiClientFactory.create({ provider: 'openai', apiKey: key });
+const tracker = new TokenTracker();
+const builder = new ContextBuilder({ model: 'gpt-4' });
+```
+
+---
+
 ## 🎯 Building a module
 
 ### 1. Choose a Framework
