@@ -1,0 +1,92 @@
+# Action Items Transformation Template
+# Extracts actionable tasks and to-dos from content
+
+name: system:action-items
+description: Extract action items and tasks from content
+outputFormat: json
+modelId: gpt-4o-mini
+temperature: 0.2
+maxTokens: 1000
+applicableIngestionTypes:
+  - meeting-notes
+  - email
+  - document
+  - note
+  - slack-thread
+
+promptTemplate: |
+  You are a productivity assistant. Extract all action items, tasks, and to-dos from the following content.
+  
+  Guidelines:
+  - Identify explicit and implicit action items
+  - Extract any mentioned deadlines or due dates
+  - Note who is responsible (if mentioned)
+  - Prioritize based on urgency indicators in the text
+  - Include context about why the action is needed
+  
+  {% if source.title %}
+  Title: {{ source.title }}
+  {% endif %}
+  
+  {% if source.metadata.participants %}
+  Participants: {{ source.metadata.participants | join(', ') }}
+  {% endif %}
+  
+  Content:
+  {{ source.content | cleantext | truncate(8000) }}
+  
+  Respond with JSON in this exact format:
+  {
+    "actionItems": [
+      {
+        "task": "Clear description of what needs to be done",
+        "assignee": "Person responsible (null if not specified)",
+        "dueDate": "Due date if mentioned (null if not specified)",
+        "priority": "high|medium|low",
+        "context": "Brief context about why this needs to be done"
+      }
+    ],
+    "count": <number of action items>
+  }
+
+outputSchema:
+  type: object
+  required:
+    - actionItems
+    - count
+  properties:
+    actionItems:
+      type: array
+      items:
+        type: object
+        required:
+          - task
+          - priority
+        properties:
+          task:
+            type: string
+          assignee:
+            type:
+              - string
+              - "null"
+          dueDate:
+            type:
+              - string
+              - "null"
+          priority:
+            type: string
+            enum:
+              - high
+              - medium
+              - low
+          context:
+            type: string
+    count:
+      type: integer
+      minimum: 0
+
+tags:
+  - action-items
+  - tasks
+  - productivity
+  - core

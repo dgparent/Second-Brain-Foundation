@@ -1,0 +1,42 @@
+{
+  "name": "@sbf/transformation-engine",
+  "version": "0.1.0",
+  "description": "Content transformation engine with template-based prompt rendering",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist",
+    "seed": "ts-node scripts/seed-transformations.ts"
+  },
+  "dependencies": {
+    "@sbf/ai-client": "workspace:*",
+    "@sbf/domain-base": "workspace:*",
+    "@sbf/job-runner": "workspace:*",
+    "@sbf/errors": "workspace:*",
+    "nunjucks": "^3.2.4",
+    "ajv": "^8.12.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/js-yaml": "^4.0.9",
+    "@types/nunjucks": "^3.2.6",
+    "@types/node": "^20.11.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "pg": "^8.11.0"
+  },
+  "keywords": [
+    "transformation",
+    "ai",
+    "templates",
+    "insights"
+  ],
+  "license": "MIT"
+}

@@ -11,6 +11,7 @@
     "packages/@sbf/shared",
     "packages/@sbf/memory-engine",
     "packages/@sbf/aei",
+    "packages/@sbf/transformation-engine",
     "packages/@sbf/core/module-system",
     "packages/@sbf/core/knowledge-graph",
     "packages/@sbf/core/entity-manager",

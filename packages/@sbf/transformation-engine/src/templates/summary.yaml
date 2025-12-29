@@ -1,0 +1,46 @@
+# Summary Transformation Template
+# Generates concise summaries of source content
+
+name: system:summary
+description: Generate a concise summary of the content
+outputFormat: markdown
+modelId: gpt-4o-mini
+temperature: 0.3
+maxTokens: 500
+applicableIngestionTypes:
+  - document
+  - article
+  - note
+  - web-page
+  - pdf
+  - email
+
+promptTemplate: |
+  You are a skilled summarizer. Create a clear, concise summary of the following content.
+  
+  Guidelines:
+  - Keep the summary to 2-3 paragraphs maximum
+  - Capture the main points and key takeaways
+  - Use clear, accessible language
+  - Preserve any critical facts, figures, or dates
+  - Do not include your own opinions or analysis
+  
+  {% if source.title %}
+  Title: {{ source.title }}
+  {% endif %}
+  
+  {% if source.type %}
+  Content Type: {{ source.type }}
+  {% endif %}
+  
+  Content:
+  {{ source.content | cleantext | truncate(12000) }}
+  
+  Provide a summary in markdown format.
+
+outputSchema: null
+
+tags:
+  - summary
+  - overview
+  - core

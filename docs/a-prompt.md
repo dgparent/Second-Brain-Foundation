@@ -1,0 +1,1 @@
+As a bmad-orchestrator agent running in party-mode, follow the nextgen-instructions.md as a guideline to continue the development of the nextgen phase of the app. investigate the nextgen-completion.md to understand the next steps of development and code away.

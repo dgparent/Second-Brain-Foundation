@@ -1,0 +1,87 @@
+# Ingress Controller Configuration for SBF
+# Phase 08: Kubernetes Deployment Configuration
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sbf-ingress
+  namespace: sbf
+  labels:
+    app: sbf
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    # Rate limiting
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    nginx.ingress.kubernetes.io/limit-connections: "20"
+    # SSL
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api.sbf.io
+        - app.sbf.io
+      secretName: sbf-tls
+  rules:
+    # API routes
+    - host: api.sbf.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 8000
+    
+    # Web app routes
+    - host: app.sbf.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service
+                port:
+                  number: 3000
+
+---
+# API-specific Ingress with different rate limits
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sbf-api-chat-ingress
+  namespace: sbf
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    # Stricter rate limiting for chat endpoints
+    nginx.ingress.kubernetes.io/limit-rps: "10"
+    nginx.ingress.kubernetes.io/limit-connections: "5"
+    # SSE support
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api.sbf.io
+      secretName: sbf-tls
+  rules:
+    - host: api.sbf.io
+      http:
+        paths:
+          - path: /api/v1/chat
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 8000

@@ -1,0 +1,196 @@
+/* SBF Companion Plugin Styles */
+
+.sbf-settings-header {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.sbf-settings-section {
+  margin: 1.5em 0;
+}
+
+.sbf-settings-section-title {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+}
+
+/* Sync Status Bar */
+.sbf-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.sbf-status-bar:hover {
+  background-color: var(--background-modifier-hover);
+  border-radius: 4px;
+}
+
+.sbf-status-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.sbf-status-icon.synced {
+  background-color: var(--color-green);
+}
+
+.sbf-status-icon.syncing {
+  background-color: var(--color-yellow);
+  animation: pulse 1s infinite;
+}
+
+.sbf-status-icon.error {
+  background-color: var(--color-red);
+}
+
+.sbf-status-icon.offline {
+  background-color: var(--text-muted);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Conflict Modal */
+.sbf-conflict-modal {
+  max-width: 700px;
+}
+
+.sbf-conflict-modal .modal-content {
+  padding: 1em;
+}
+
+.sbf-conflict-item {
+  background-color: var(--background-secondary);
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.sbf-conflict-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.sbf-conflict-title {
+  font-weight: 600;
+}
+
+.sbf-conflict-actions {
+  display: flex;
+  gap: 0.5em;
+}
+
+.sbf-conflict-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+
+.sbf-conflict-side {
+  background-color: var(--background-primary);
+  border-radius: 4px;
+  padding: 0.75em;
+}
+
+.sbf-conflict-side-header {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 0.5em;
+}
+
+.sbf-conflict-side.local {
+  border-left: 3px solid var(--color-blue);
+}
+
+.sbf-conflict-side.remote {
+  border-left: 3px solid var(--color-purple);
+}
+
+/* Entity Badge */
+.sbf-entity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  background-color: var(--background-modifier-border);
+}
+
+.sbf-entity-badge.person { background-color: var(--color-blue-rgb); }
+.sbf-entity-badge.place { background-color: var(--color-green-rgb); }
+.sbf-entity-badge.topic { background-color: var(--color-purple-rgb); }
+.sbf-entity-badge.project { background-color: var(--color-orange-rgb); }
+
+/* Sync Progress */
+.sbf-sync-progress {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  background-color: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: var(--shadow-l);
+  z-index: 1000;
+  min-width: 250px;
+}
+
+.sbf-sync-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.sbf-sync-progress-bar {
+  height: 4px;
+  background-color: var(--background-modifier-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sbf-sync-progress-fill {
+  height: 100%;
+  background-color: var(--interactive-accent);
+  transition: width 0.3s ease;
+}
+
+.sbf-sync-progress-text {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-top: 0.5em;
+}
+
+/* Sensitivity Indicator */
+.sbf-sensitivity {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85em;
+}
+
+.sbf-sensitivity-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.sbf-sensitivity.public { color: var(--color-green); }
+.sbf-sensitivity.personal { color: var(--color-blue); }
+.sbf-sensitivity.confidential { color: var(--color-orange); }
+.sbf-sensitivity.secret { color: var(--color-red); }

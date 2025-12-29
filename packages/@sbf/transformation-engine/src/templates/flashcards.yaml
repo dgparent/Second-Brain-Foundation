@@ -1,0 +1,96 @@
+# Flashcards Transformation Template
+# Generates study flashcards from content
+
+name: system:flashcards
+description: Generate study flashcards (Q&A pairs) from content
+outputFormat: json
+modelId: gpt-4o-mini
+temperature: 0.4
+maxTokens: 2000
+applicableIngestionTypes:
+  - document
+  - article
+  - note
+  - lecture
+  - book-chapter
+  - textbook
+
+promptTemplate: |
+  You are an educational content creator. Generate flashcards for studying from the following content.
+  
+  Guidelines:
+  - Create 5-15 question-answer pairs
+  - Questions should test understanding, not just recall
+  - Answers should be concise but complete
+  - Include a mix of difficulty levels
+  - Cover the most important concepts
+  - Use clear, unambiguous language
+  - Add tags to categorize each card
+  
+  {% if source.title %}
+  Title: {{ source.title }}
+  {% endif %}
+  
+  {% if source.metadata.subject %}
+  Subject: {{ source.metadata.subject }}
+  {% endif %}
+  
+  Content:
+  {{ source.content | cleantext | truncate(10000) }}
+  
+  Respond with JSON in this exact format:
+  {
+    "flashcards": [
+      {
+        "question": "Clear question text",
+        "answer": "Concise but complete answer",
+        "difficulty": "easy|medium|hard",
+        "tags": ["tag1", "tag2"]
+      }
+    ],
+    "count": <number of flashcards>,
+    "topicCoverage": ["list", "of", "covered", "topics"]
+  }
+
+outputSchema:
+  type: object
+  required:
+    - flashcards
+    - count
+  properties:
+    flashcards:
+      type: array
+      items:
+        type: object
+        required:
+          - question
+          - answer
+          - difficulty
+        properties:
+          question:
+            type: string
+          answer:
+            type: string
+          difficulty:
+            type: string
+            enum:
+              - easy
+              - medium
+              - hard
+          tags:
+            type: array
+            items:
+              type: string
+    count:
+      type: integer
+      minimum: 0
+    topicCoverage:
+      type: array
+      items:
+        type: string
+
+tags:
+  - flashcards
+  - learning
+  - study
+  - education

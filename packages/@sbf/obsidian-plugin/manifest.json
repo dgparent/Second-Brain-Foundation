@@ -1,0 +1,13 @@
+{
+  "id": "sbf-companion",
+  "name": "Second Brain Foundation Companion",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Sync your Obsidian vault with Second Brain Foundation for AI-powered knowledge management",
+  "author": "SBF Team",
+  "authorUrl": "https://secondbrainfoundation.com",
+  "isDesktopOnly": false,
+  "fundingUrl": {
+    "Buy Me a Coffee": "https://buymeacoffee.com/sbf"
+  }
+}

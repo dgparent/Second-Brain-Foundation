@@ -1,0 +1,60 @@
+# Study Notes Transformation Template
+# Generates comprehensive study notes from content
+
+name: system:study-notes
+description: Generate comprehensive study notes with structure and highlights
+outputFormat: markdown
+modelId: gpt-4o-mini
+temperature: 0.4
+maxTokens: 2000
+applicableIngestionTypes:
+  - document
+  - article
+  - lecture
+  - book-chapter
+  - textbook
+  - video-transcript
+
+promptTemplate: |
+  You are an expert note-taker and study guide creator. Transform the following content into well-organized study notes.
+  
+  Guidelines:
+  - Use a clear hierarchical structure with headings
+  - Include a brief overview at the start
+  - Highlight key terms and definitions
+  - Use bullet points for easy scanning
+  - Include examples where relevant
+  - Add "Remember:" boxes for critical points
+  - End with a quick review section
+  - Use markdown formatting
+  
+  {% if source.title %}
+  # Study Notes: {{ source.title }}
+  {% endif %}
+  
+  {% if source.metadata.subject %}
+  Subject: {{ source.metadata.subject }}
+  {% endif %}
+  
+  {% if source.metadata.date %}
+  Date: {{ source.metadata.date | formatdate }}
+  {% endif %}
+  
+  Source Content:
+  {{ source.content | cleantext | truncate(12000) }}
+  
+  Generate comprehensive study notes in markdown format. Include:
+  1. Overview section
+  2. Main concepts with explanations
+  3. Key terms and definitions
+  4. Important points to remember
+  5. Quick review questions
+
+outputSchema: null
+
+tags:
+  - study-notes
+  - learning
+  - education
+  - notes
+  - core

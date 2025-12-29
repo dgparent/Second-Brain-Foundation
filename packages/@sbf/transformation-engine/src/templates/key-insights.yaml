@@ -1,0 +1,80 @@
+# Key Insights Transformation Template
+# Extracts key points and insights from content
+
+name: system:key-insights
+description: Extract key insights and main points from content
+outputFormat: json
+modelId: gpt-4o-mini
+temperature: 0.3
+maxTokens: 1000
+applicableIngestionTypes:
+  - document
+  - article
+  - note
+  - web-page
+  - pdf
+  - meeting-notes
+
+promptTemplate: |
+  You are an analytical assistant. Extract the key insights and main points from the following content.
+  
+  Guidelines:
+  - Identify 3-7 key insights or main points
+  - Each insight should be a complete, standalone statement
+  - Prioritize actionable or notable information
+  - Include any data points or statistics mentioned
+  - Categorize insights where possible
+  
+  {% if source.title %}
+  Title: {{ source.title }}
+  {% endif %}
+  
+  Content:
+  {{ source.content | cleantext | truncate(10000) }}
+  
+  Respond with JSON in this exact format:
+  {
+    "insights": [
+      {
+        "text": "The key insight statement",
+        "category": "category name (e.g., strategy, data, finding, recommendation)",
+        "importance": "high|medium|low"
+      }
+    ],
+    "count": <number of insights>
+  }
+
+outputSchema:
+  type: object
+  required:
+    - insights
+    - count
+  properties:
+    insights:
+      type: array
+      items:
+        type: object
+        required:
+          - text
+          - category
+          - importance
+        properties:
+          text:
+            type: string
+          category:
+            type: string
+          importance:
+            type: string
+            enum:
+              - high
+              - medium
+              - low
+    count:
+      type: integer
+      minimum: 0
+
+tags:
+  - insights
+  - key-points
+  - analysis
+  - core

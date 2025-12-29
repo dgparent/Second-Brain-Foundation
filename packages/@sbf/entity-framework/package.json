@@ -1,0 +1,54 @@
+{
+  "name": "@sbf/entity-framework",
+  "version": "0.1.0",
+  "description": "Entity framework with UID generation, frontmatter parsing, and wikilink support for Second Brain Foundation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "sbf",
+    "second-brain",
+    "entity",
+    "framework",
+    "uid",
+    "frontmatter",
+    "wikilink"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@sbf/domain-base": "workspace:*",
+    "@sbf/db-client": "workspace:*",
+    "@sbf/errors": "workspace:*",
+    "js-yaml": "^4.1.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.19.25",
+    "@types/uuid": "^9.0.8",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}

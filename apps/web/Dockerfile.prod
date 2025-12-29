@@ -1,0 +1,102 @@
+# Production Dockerfile for SBF Web (Next.js)
+# Multi-stage build for optimized image size
+# Based on: https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
+
+# ==========================================
+# Stage 1: Dependencies
+# ==========================================
+FROM node:20-alpine AS deps
+
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@8 --activate
+
+# Copy package files
+COPY package.json pnpm-lock.yaml* ./
+COPY pnpm-workspace.yaml ./
+
+# Copy workspace packages that this app depends on
+COPY packages/@sbf/types/package.json ./packages/@sbf/types/
+COPY packages/@sbf/auth-lib/package.json ./packages/@sbf/auth-lib/
+COPY packages/@sbf/config/package.json ./packages/@sbf/config/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile --prod=false
+
+# ==========================================
+# Stage 2: Builder
+# ==========================================
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@8 --activate
+
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/packages ./packages
+
+# Copy source code
+COPY . .
+
+# Build arguments for environment variables at build time
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_APP_URL
+ARG NEXT_TELEMETRY_DISABLED=1
+
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+ENV NEXT_TELEMETRY_DISABLED=${NEXT_TELEMETRY_DISABLED}
+
+# Build the application
+RUN pnpm --filter @sbf/web build
+
+# ==========================================
+# Stage 3: Production Runner
+# ==========================================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Labels
+LABEL org.opencontainers.image.title="SBF Web" \
+      org.opencontainers.image.description="Second Brain Foundation Web Application" \
+      org.opencontainers.image.version="1.0.0" \
+      org.opencontainers.image.vendor="Second Brain Foundation" \
+      org.opencontainers.image.licenses="MIT"
+
+# Set environment variables
+ENV NODE_ENV=production \
+    PORT=3000 \
+    HOSTNAME="0.0.0.0" \
+    NEXT_TELEMETRY_DISABLED=1
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+# Copy built assets from builder
+COPY --from=builder /app/public ./public
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Switch to non-root user
+USER nextjs
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+
+# Start the application
+CMD ["node", "server.js"]

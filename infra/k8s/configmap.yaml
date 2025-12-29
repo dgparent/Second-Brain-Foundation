@@ -1,0 +1,27 @@
+# Kubernetes ConfigMap for SBF
+# Contains non-sensitive configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sbf-config
+  namespace: sbf
+  labels:
+    app: sbf
+data:
+  # Application settings
+  LOG_LEVEL: "INFO"
+  APP_ENV: "production"
+  
+  # Service URLs (internal)
+  API_URL: "http://api-service:8000"
+  REDIS_URL: "redis://redis-service:6379/0"
+  
+  # Feature flags
+  ENABLE_RATE_LIMITING: "true"
+  ENABLE_CACHING: "true"
+  
+  # Worker settings
+  WORKER_CONCURRENCY: "4"
+  
+  # CORS
+  CORS_ORIGINS: "https://app.sbf.io,https://sbf.io"

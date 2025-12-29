@@ -1,0 +1,80 @@
+# Mindmap Transformation Template
+# Generates hierarchical mindmap structure from content
+
+name: system:mindmap
+description: Generate a hierarchical mindmap structure from content
+outputFormat: json
+modelId: gpt-4o-mini
+temperature: 0.4
+maxTokens: 1500
+applicableIngestionTypes:
+  - document
+  - article
+  - note
+  - lecture
+  - book-chapter
+
+promptTemplate: |
+  You are a knowledge organization expert. Create a hierarchical mindmap structure from the following content.
+  
+  Guidelines:
+  - Create a clear central topic from the main theme
+  - Organize content into 3-6 main branches
+  - Each branch can have 2-5 sub-branches
+  - Keep node labels concise (2-6 words)
+  - Capture relationships and connections
+  - Preserve the logical structure of the original content
+  
+  {% if source.title %}
+  Title: {{ source.title }}
+  {% endif %}
+  
+  Content:
+  {{ source.content | cleantext | truncate(10000) }}
+  
+  Respond with JSON in this exact format:
+  {
+    "centralTopic": "Main topic/theme",
+    "branches": [
+      {
+        "label": "Main branch label",
+        "children": [
+          {
+            "label": "Sub-branch label",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+
+outputSchema:
+  type: object
+  required:
+    - centralTopic
+    - branches
+  properties:
+    centralTopic:
+      type: string
+    branches:
+      type: array
+      items:
+        $ref: "#/$defs/branch"
+  $defs:
+    branch:
+      type: object
+      required:
+        - label
+      properties:
+        label:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: "#/$defs/branch"
+
+tags:
+  - mindmap
+  - visualization
+  - structure
+  - learning

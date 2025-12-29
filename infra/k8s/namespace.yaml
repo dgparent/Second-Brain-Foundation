@@ -1,0 +1,9 @@
+# Kubernetes Namespace for SBF
+# Phase 08: Kubernetes Deployment Configuration
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sbf
+  labels:
+    name: sbf
+    environment: production

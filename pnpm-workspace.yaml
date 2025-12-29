@@ -21,6 +21,12 @@ packages:
   - "packages/@sbf/db-migrations"
   - "packages/@sbf/content-engine"
   
+  # Phase 02 Search Package
+  - "packages/@sbf/search-engine"
+  
+  # Phase 03 Transformation Package
+  - "packages/@sbf/transformation-engine"
+  
   # Legacy SBF packages (TEMPORARILY DISABLED - circular deps)
   - "packages/@sbf/shared"
   - "packages/@sbf/aei"

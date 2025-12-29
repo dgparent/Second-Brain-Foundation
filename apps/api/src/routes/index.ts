@@ -9,6 +9,8 @@ import iotRoutes from './iot.routes';
 import analyticsRoutes from './analytics.routes';
 import syncRoutes from './sync.routes';
 import memoryRoutes from './memory.routes';
+import transformationsRoutes from './transformations.routes';
+import insightsRoutes from './insights.routes';
 
 const router: Router = Router();
 
@@ -27,6 +29,10 @@ router.use('/tenants', tenantsRoutes);
 
 // AI & RAG routes
 router.use('/rag', ragRoutes);
+
+// Transformation & Insights routes (Phase 3)
+router.use('/transformations', transformationsRoutes);
+router.use('/insights', insightsRoutes);
 
 // Automation routes
 router.use('/automations', automationsRoutes);

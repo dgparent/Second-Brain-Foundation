@@ -16,6 +16,8 @@ from fastapi.responses import JSONResponse
 import uvicorn
 
 from api import vault, queue, ask, audit, va
+from api.docs import setup_docs
+from api.routes.health import router as health_router
 from services.watcher import FileWatcher
 
 
@@ -42,11 +44,14 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="AEI Core API",
     description="AI-Enabled Interface for Second Brain Foundation",
-    version="0.1.0",
+    version="1.0.0",
     lifespan=lifespan,
-    docs_url="/docs",
-    redoc_url="/redoc",
+    docs_url=None,  # Disable default docs, we use custom
+    redoc_url=None,  # Disable default redoc, we use custom
 )
+
+# Set up custom OpenAPI documentation
+setup_docs(app)
 
 # CORS configuration - allow React dev server
 app.add_middleware(
@@ -58,35 +63,17 @@ app.add_middleware(
 )
 
 
-# Health check endpoints
-@app.get("/healthz")
-async def health_check():
-    """Liveness probe - is the service running?"""
-    return {"status": "healthy", "service": "aei-core"}
-
-
-@app.get("/readyz")
-async def readiness_check():
-    """Readiness probe - is the service ready to handle requests?"""
-    # TODO: Check database connection
-    # TODO: Check Ollama availability
-    # TODO: Check vault path exists
-    return {
-        "status": "ready",
-        "checks": {
-            "database": "connected",
-            "llm": "available",
-            "vault": "mounted",
-        }
-    }
-
-
 # API routers
+app.include_router(health_router, prefix="/api/v1", tags=["health"])
 app.include_router(va.router, prefix="/api/v1", tags=["va-automation"])
 # app.include_router(vault.router, prefix="/api/v1/vault", tags=["vault"])
 # app.include_router(queue.router, prefix="/api/v1/queue", tags=["queue"])
 # app.include_router(ask.router, prefix="/api/v1/ask", tags=["rag"])
 # app.include_router(audit.router, prefix="/api/v1/audit", tags=["audit"])
+
+# Phase 02: Chat & Search
+from api.chat import router as chat_router
+app.include_router(chat_router, prefix="/api/v1", tags=["chat"])
 
 
 @app.get("/")
@@ -94,9 +81,11 @@ async def root():
     """Root endpoint with API information"""
     return {
         "service": "AEI Core",
-        "version": "0.1.0",
+        "version": "1.0.0",
         "docs": "/docs",
-        "health": "/healthz",
+        "redoc": "/redoc",
+        "openapi": "/openapi.json",
+        "health": "/api/v1/health",
     }
 
 

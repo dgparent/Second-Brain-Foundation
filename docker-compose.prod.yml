@@ -1,0 +1,316 @@
+# Second Brain Foundation - Production Docker Compose
+# Phase 08: Production Deployment Configuration
+# Version: 1.0.0
+
+version: '3.8'
+
+# ============================================
+# Common configurations
+# ============================================
+x-common-env: &common-env
+  TZ: UTC
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+x-healthcheck-defaults: &healthcheck-defaults
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 10s
+
+# ============================================
+# Services
+# ============================================
+services:
+  # -------------------------------------------
+  # API Service (Python FastAPI)
+  # -------------------------------------------
+  api:
+    image: ghcr.io/${GITHUB_REPOSITORY:-sbf}/api:${IMAGE_TAG:-latest}
+    build:
+      context: ./apps/aei-core
+      dockerfile: Dockerfile.prod
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME:-sbf}
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRATION_HOURS: 24
+      # AI Provider Keys
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      # Vector DB
+      PINECONE_API_KEY: ${PINECONE_API_KEY:-}
+      PINECONE_ENVIRONMENT: ${PINECONE_ENVIRONMENT:-}
+      PINECONE_INDEX: ${PINECONE_INDEX:-sbf-embeddings}
+      # Feature flags
+      ENABLE_RATE_LIMITING: "true"
+      ENABLE_CACHING: "true"
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://app.sbf.io,https://sbf.io}
+    deploy:
+      replicas: ${API_REPLICAS:-2}
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        order: start-first
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - sbf-internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+  # -------------------------------------------
+  # Web Frontend (Next.js)
+  # -------------------------------------------
+  web:
+    image: ghcr.io/${GITHUB_REPOSITORY:-sbf}/web:${IMAGE_TAG:-latest}
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile.prod
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.sbf.io}
+    environment:
+      <<: *common-env
+      NODE_ENV: production
+      PORT: 3000
+    deploy:
+      replicas: ${WEB_REPLICAS:-2}
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    depends_on:
+      - api
+    networks:
+      - sbf-internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+
+  # -------------------------------------------
+  # Background Workers (Job Processing)
+  # -------------------------------------------
+  workers:
+    image: ghcr.io/${GITHUB_REPOSITORY:-sbf}/api:${IMAGE_TAG:-latest}
+    command: ["python", "-m", "workers.main"]
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME:-sbf}
+      REDIS_URL: redis://redis:6379/0
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      WORKER_CONCURRENCY: ${WORKER_CONCURRENCY:-4}
+    deploy:
+      replicas: ${WORKER_REPLICAS:-2}
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - sbf-internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+  # -------------------------------------------
+  # PostgreSQL with pgvector
+  # -------------------------------------------
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: ${DB_NAME:-sbf}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '1'
+          memory: 2G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME:-sbf}"]
+    networks:
+      - sbf-internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+
+  # -------------------------------------------
+  # Redis (Caching & Queues)
+  # -------------------------------------------
+  redis:
+    image: redis:7-alpine
+    command: >
+      redis-server 
+      --appendonly yes 
+      --maxmemory 1gb 
+      --maxmemory-policy allkeys-lru
+      --save 60 1000
+    volumes:
+      - redis_data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD", "redis-cli", "ping"]
+    networks:
+      - sbf-internal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+
+  # -------------------------------------------
+  # Nginx (Reverse Proxy & SSL Termination)
+  # -------------------------------------------
+  nginx:
+    image: nginx:1.25-alpine
+    volumes:
+      - ./infra/nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - ./infra/nginx/ssl:/etc/nginx/ssl:ro
+      - ./infra/nginx/sites:/etc/nginx/sites-enabled:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD", "nginx", "-t"]
+    depends_on:
+      - api
+      - web
+    networks:
+      - sbf-internal
+      - sbf-external
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # -------------------------------------------
+  # Ollama (Local AI - Optional)
+  # -------------------------------------------
+  ollama:
+    image: ollama/ollama:latest
+    profiles:
+      - local-ai
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 16G
+        reservations:
+          memory: 8G
+      restart_policy:
+        condition: on-failure
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+    networks:
+      - sbf-internal
+
+# ============================================
+# Volumes
+# ============================================
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  ollama_data:
+    driver: local
+
+# ============================================
+# Networks
+# ============================================
+networks:
+  sbf-internal:
+    driver: bridge
+    internal: true
+  sbf-external:
+    driver: bridge
